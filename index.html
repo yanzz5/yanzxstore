@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jual Nomor WhatsApp — WA Numbers</title>
+  <meta name="description" content="Toko online jual nomor WhatsApp siap pakai. Hubungi langsung lewat WhatsApp untuk membeli." />
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#06b6d4; --glass: rgba(255,255,255,0.03);
+      --radius:14px; --maxw:1100px;
+      --shadow: 0 6px 20px rgba(2,6,23,0.6);
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#071022 0%, #071426 60%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{width:100%;max-width:var(--maxw);}
+    header{
+      display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;
+    }
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;
+      box-shadow:var(--shadow);
+    }
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:var(--muted);font-size:14px}
+
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:22px;}
+    @media (max-width:900px){ .grid{grid-template-columns:1fr;}}
+    .main-card{background:linear-gradient(180deg,var(--card), rgba(10,14,20,0.7)); padding:18px;border-radius:var(--radius); box-shadow:var(--shadow);}
+    .controls{display:flex;gap:10px;align-items:center;margin-bottom:12px;}
+    .search{flex:1;padding:10px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.03);color:inherit;}
+    .select{padding:10px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.03);color:inherit}
+
+    .products{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+    @media (max-width:700px){ .products{grid-template-columns:1fr;}}
+
+    .product{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+      display:flex;gap:12px;align-items:center;
+    }
+    .p-thumb{width:76px;height:76px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;background:rgba(255,255,255,0.03)}
+    .p-body{flex:1}
+    .p-title{font-weight:700;margin:0 0 6px 0}
+    .p-sub{color:var(--muted);font-size:13px;margin:0}
+    .p-price{font-weight:800;color:var(--accent);margin-top:8px}
+    .p-actions{display:flex;flex-direction:column;gap:8px}
+    .btn{
+      background:linear-gradient(90deg,var(--accent),#7c3aed);border:none;padding:10px 12px;border-radius:10px;color:#04111a;font-weight:700;cursor:pointer;
+      box-shadow:0 6px 18px rgba(6,182,212,0.14);
+    }
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600}
+
+    /* sidebar */
+    .sidebar{display:flex;flex-direction:column;gap:12px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .muted{color:var(--muted);font-size:13px}
+    .testi{font-size:13px;color:var(--muted);margin-top:8px}
+
+    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;z-index:60}
+    .modal{background:#071226;padding:18px;border-radius:12px;max-width:480px;width:92%;border:1px solid rgba(255,255,255,0.03)}
+    .modal h3{margin:0 0 10px 0}
+    .field{display:flex;flex-direction:column;margin-bottom:8px}
+    .field label{font-size:13px;color:var(--muted);margin-bottom:6px}
+    .input{padding:10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit}
+    .row{display:flex;gap:10px}
+    .close-x{background:transparent;border:none;color:var(--muted);font-weight:700;cursor:pointer}
+
+    /* small */
+    .tag{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap" role="main">
+    <header>
+      <div class="brand">
+        <div class="logo">WA</div>
+        <div>
+          <h1>WA Numbers — Jual Nomor WhatsApp</h1>
+          <p class="lead">Nomor terpercaya, siap pakai untuk bisnis, marketing, atau verifikasi.</p>
+        </div>
+      </div>
+      <div class="tag">Contact: <strong>+62 812-XXXX-XXXX</strong></div>
+    </header>
+
+    <div class="grid">
+      <main class="main-card" aria-label="Daftar Produk">
+        <div class="controls">
+          <input id="search" class="search" placeholder="Cari kode/nomor atau harga..." aria-label="Cari nomor"/>
+          <select id="filter" class="select" aria-label="Filter harga">
+            <option value="all">Semua harga</option>
+            <option value="low">Di bawah 200k</option>
+            <option value="mid">200k - 500k</option>
+            <option value="high">Di atas 500k</option>
+          </select>
+        </div>
+
+        <div id="products" class="products" aria-live="polite">
+          <!-- Produk akan di-render lewat JS -->
+        </div>
+
+        <section style="margin-top:18px;">
+          <h3 style="margin:0 0 8px 0">Testimoni</h3>
+          <div class="card">
+            <div><strong>Arief</strong> <span class="muted"> — Pembelian 2 nomor</span></div>
+            <div class="testi">Nomor cepat aktif dan sesuai deskripsi. Recomended!</div>
+          </div>
+        </section>
+
+      </main>
+
+      <aside class="sidebar">
+        <div class="card">
+          <h3 style="margin-top:0">Ringkasan Pesanan</h3>
+          <div id="cart-list"><div class="muted">Belum ada pesanan.</div></div>
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <button id="open-cart" class="btn" style="flex:1">Lihat / Checkout</button>
+            <button id="clear-cart" class="btn ghost">Kosongkan</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 style="margin:0 0 8px 0">Informasi</h4>
+          <div class="muted">Pembayaran via transfer / e-wallet. Setelah bayar, kirim bukti dan kami akan aktifkan nomor atau serahkan nomor sesuai kesepakatan lewat WhatsApp.</div>
+        </div>
+
+        <div class="card">
+          <h4 style="margin:0 0 8px 0">Cara Beli</h4>
+          <ol style="margin:0 0 0 18px;color:var(--muted)">
+            <li>Pilih nomor</li>
+            <li>Klik "Beli via WhatsApp"</li>
+            <li>Kirim pesan & lakukan pembayaran</li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      © <span id="year"></span> WA Numbers — Semua hak dilindungi. Jangan lupa cek kebijakan privasi.
+    </footer>
+  </div>
+
+  <!-- modal checkout -->
+  <div id="modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <h3>Checkout & Kirim ke WhatsApp</h3>
+        <button class="close-x" id="close-modal">✕</button>
+      </div>
+      <div id="modal-body">
+        <div class="field">
+          <label for="buyer-name">Nama Anda</label>
+          <input id="buyer-name" class="input" type="text" placeholder="Nama lengkap"/>
+        </div>
+        <div class="field">
+          <label for="buyer-note">Catatan / Pesan</label>
+          <input id="buyer-note" class="input" type="text" placeholder="Mis: Mau aktifkan segera, untuk bisnis"/>
+        </div>
+        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+          <button id="modal-send" class="btn">Kirim ke WhatsApp</button>
+          <button id="modal-cancel" class="btn ghost">Batal</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // === Data produk: ganti sesuai kebutuhan ===
+    const PRODUCTS = [
+      {id:1, title:"Nomor Cantik 0812-345-678", note:"Cocok untuk branding", price:350000, thumb:"#"},
+      {id:2, title:"Nomor VIP 0813-999-000", note:"Mudah diingat", price:750000, thumb:"#"},
+      {id:3, title:"Nomor Standard 0821-111-222", note:"Murah dan siap pakai", price:150000, thumb:"#"},
+      {id:4, title:"Nomor Marketing 0815-555-555", note:"Cocok untuk iklan", price:420000, thumb:"#"},
+    ];
+
+    // Nomor WhatsApp penjual (ganti ke nomor Anda, format international tanpa tanda +/-)
+    const SELLER_WA = "62812XXXXXXXX"; // contoh: 6281234567890
+
+    // Helpers
+    const el = id => document.getElementById(id);
+    const currency = v => new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(v);
+
+    // Render products
+    const productsContainer = el('products');
+    function renderProducts(list){
+      productsContainer.innerHTML = '';
+      if(list.length === 0) {
+        productsContainer.innerHTML = '<div class="muted">Tidak ada produk ditemukan.</div>';
+        return;
+      }
+      list.forEach(p=>{
+        const div = document.createElement('div');
+        div.className = 'product';
+        div.innerHTML = `
+          <div class="p-thumb">+62</div>
+          <div class="p-body">
+            <div class="p-title">${p.title}</div>
+            <div class="p-sub">${p.note}</div>
+            <div class="p-price">${currency(p.price)}</div>
+          </div>
+          <div class="p-actions">
+            <button class="btn buy" data-id="${p.id}">Beli via WhatsApp</button>
+            <button class="btn ghost add" data-id="${p.id}">Tambah ke Keranjang</button>
+          </div>
+        `;
+        productsContainer.appendChild(div);
+      });
+      attachProductEvents();
+    }
+
+    // Cart (simple)
+    let CART = [];
+    function addToCart(id){
+      const item = PRODUCTS.find(p=>p.id===+id);
+      if(!item) return;
+      CART.push(item);
+      renderCart();
+    }
+    function removeFromCart(index){
+      CART.splice(index,1);
+      renderCart();
+    }
+    function clearCart(){ CART = []; renderCart(); }
+
+    function renderCart(){
+      const list = el('cart-list');
+      if(CART.length === 0) {
+        list.innerHTML = '<div class="muted">Belum ada pesanan.</div>';
+        return;
+      }
+      let html = '';
+      let total = 0;
+      CART.forEach((c,i)=>{
+        total += c.price;
+        html += `<div class="cart-item">
+          <div><strong style="font-size:14px">${c.title}</strong><div class="muted" style="font-size:13px">${currency(c.price)}</div></div>
+          <div style="text-align:right">
+            <div style="font-size:13px;color:var(--muted)">x1</div>
+            <button class="btn ghost remove" data-i="${i}" style="margin-top:6px">Hapus</button>
+          </div>
+        </div>`;
+      });
+      html += `<hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:8px 0">`;
+      html += `<div style="display:flex;justify-content:space-between;align-items:center">
+                <div class="muted">Total</div>
+                <div style="font-weight:800">${currency(total)}</div>
+               </div>`;
+      list.innerHTML = html;
+      attachCartEvents();
+    }
+
+    // Attach events to product buttons
+    function attachProductEvents(){
+      document.querySelectorAll('.buy').forEach(btn=>{
+        btn.onclick = e => {
+          const id = btn.dataset.id;
+          const product = PRODUCTS.find(p=>p.id==id);
+          openWhatsAppDirect(product);
+        };
+      });
+      document.querySelectorAll('.add').forEach(btn=>{
+        btn.onclick = e => {
+          addToCart(btn.dataset.id);
+        };
+      });
+    }
+    function attachCartEvents(){
+      document.querySelectorAll('.remove').forEach(b=>{
+        b.onclick = () => removeFromCart(b.dataset.i);
+      });
+    }
+
+    // Open WA chat for single product (direct buy)
+    function openWhatsAppDirect(product){
+      const message = encodeURIComponent(`Halo, saya mau membeli nomor:\n- ${product.title}\n- Harga: ${currency(product.price)}\n\nNama: \nNo. Order (opsional): \n\nTerima kasih.`);
+      const url = `https://wa.me/${SELLER_WA}?text=${message}`;
+      window.open(url,'_blank');
+    }
+
+    // Modal send for cart
+    const modal = el('modal');
+    const modalSend = el('modal-send');
+    el('open-cart').addEventListener('click', () => {
+      if(CART.length===0){ alert('Keranjang kosong. Silakan tambah nomor terlebih dahulu.'); return; }
+      modal.style.display='flex';
+      modal.setAttribute('aria-hidden','false');
+    });
+    el('close-modal').addEventListener('click', closeModal);
+    el('modal-cancel').addEventListener('click', closeModal);
+    el('clear-cart').addEventListener('click', () => { if(confirm('Kosongkan keranjang?')) { clearCart(); }});
+
+    function closeModal(){
+      modal.style.display='none';
+      modal.setAttribute('aria-hidden','true');
+    }
+
+    modalSend.addEventListener('click', ()=>{
+      const name = el('buyer-name').value.trim() || '(tanpa nama)';
+      const note = el('buyer-note').value.trim() || '-';
+      let total = CART.reduce((s,c)=>s+c.price,0);
+      let body = `Halo, saya mau membeli nomor dari WA Numbers.%0A%0A`;
+      CART.forEach((c,i)=>{
+        body += `${i+1}. ${c.title} — ${currency(c.price)}%0A`;
+      });
+      body += `%0ATotal: ${currency(total)}%0A%0ANama: ${name}%0AInfo: ${note}%0A%0ATerima kasih.`;
+      const url = `https://wa.me/${SELLER_WA}?text=${body}`;
+      window.open(url,'_blank');
+      closeModal();
+    });
+
+    // Search & filter
+    el('search').addEventListener('input', applyFilter);
+    el('filter').addEventListener('change', applyFilter);
+
+    function applyFilter(){
+      const q = el('search').value.toLowerCase();
+      const f = el('filter').value;
+      let result = PRODUCTS.filter(p=>{
+        const matchQ = p.title.toLowerCase().includes(q) || p.note.toLowerCase().includes(q) || String(p.price).includes(q);
+        let matchF = true;
+        if(f === 'low') matchF = p.price < 200000;
+        if(f === 'mid') matchF = p.price >= 200000 && p.price <= 500000;
+        if(f === 'high') matchF = p.price > 500000;
+        return matchQ && matchF;
+      });
+      renderProducts(result);
+    }
+
+    // Init
+    (function init(){
+      renderProducts(PRODUCTS);
+      renderCart();
+      el('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+              </html>
