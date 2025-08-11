@@ -1,147 +1,102 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JUAL NOMOR KOSONG BY YANZ</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JUAL BELI NOMOR KOSONG BY YANZ</title>
+  <style>
     body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #1e2a38;
-        color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #0b1c2c;
+      color: white;
     }
+
     header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background-color: #243447;
-        padding: 10px 15px;
-        position: relative;
-        z-index: 1001;
+      background: rgba(0,0,0,0.2);
+      text-align: center;
+      padding: 15px 0;
+      font-size: 1.5em;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #3ac9ff;
+      text-shadow: 0 0 10px #00f0ff;
     }
-    .hamburger {
-        font-size: 26px;
-        cursor: pointer;
-        z-index: 1002;
-        position: relative;
-        top: 2px; /* sedikit turun biar ga tabrakan */
+
+    /* Hamburger */
+    .menu-toggle {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      font-size: 26px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      z-index: 1001;
     }
-    h1 {
-        margin: 0;
-        font-size: 20px;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        text-transform: uppercase;
-        background: linear-gradient(90deg, #1da1f2, #a64cf5);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        letter-spacing: 1px;
-        text-shadow: 0 0 8px rgba(29,161,242,0.7), 0 0 12px rgba(166,76,245,0.7);
-    }
-    /* Sidebar */
+
+    /* Sidebar transparan */
     .sidebar {
-        height: 100%;
-        width: 0;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #111;
-        overflow-x: hidden;
-        transition: 0.3s;
-        padding-top: 60px;
-        z-index: 1000;
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: transparent;
+      overflow-x: hidden;
+      transition: 0.4s;
+      padding-top: 60px;
+      z-index: 1000;
     }
+
     .sidebar a {
-        padding: 12px 20px;
-        text-decoration: none;
-        font-size: 18px;
-        color: white;
-        display: block;
-        transition: 0.2s;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+      transition: 0.3s;
     }
+
     .sidebar a:hover {
-        background-color: #575757;
+      color: #00f0ff;
+      text-shadow: 0 0 5px #00f0ff;
     }
-    /* Konten produk */
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        padding: 20px;
-        justify-content: center;
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
     }
-    .card {
-        background-color: #2f3e52;
-        border-radius: 10px;
-        padding: 20px;
-        width: 250px;
-        text-align: center;
-    }
-    .btn {
-        background-color: #1da1f2;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 5px;
-        text-decoration: none;
-        display: inline-block;
-        margin-top: 10px;
-    }
-    .btn:hover {
-        background-color: #0d8ddb;
-    }
-</style>
+  </style>
 </head>
 <body>
 
-<header>
-    <span class="hamburger" onclick="toggleNav()">&#9776;</span>
-    <h1>JUAL NOMOR KOSONG BY YANZ</h1>
-</header>
+  <button class="menu-toggle" onclick="openNav()">&#9776;</button>
 
-<div id="mySidebar" class="sidebar">
+  <div id="mySidebar" class="sidebar">
+    <span class="close-btn" onclick="closeNav()">&times;</span>
     <a href="#">BERANDA</a>
-    <a href="#">BELI NOMOR KOSONG</a>
     <a href="#">JUAL NOMOR KOSONG</a>
-    <a href="#">ALL TESTIMONI😜</a>
-</div>
+    <a href="#">BELI NOMOR KOSONG</a>
+    <a href="#">ALL TESTIMONI 😜</a>
+  </div>
 
-<div class="container">
-    <div class="card">
-        <h3>Nomor Telegram 1</h3>
-        <p>Harga: Rp 10.000</p>
-        <a class="btn" href="https://t.me/admiinnokosyanz" target="_blank">Beli via Telegram</a>
-    </div>
-    <div class="card">
-        <h3>Nomor Telegram 2</h3>
-        <p>Harga: Rp 15.000</p>
-        <a class="btn" href="https://t.me/admiinnokosyanz" target="_blank">Beli via Telegram</a>
-    </div>
-    <div class="card">
-        <h3>Nomor Telegram 3</h3>
-        <p>Harga: Rp 20.000</p>
-        <a class="btn" href="https://t.me/admiinnokosyanz" target="_blank">Beli via Telegram</a>
-    </div>
-</div>
+  <header>JUAL NOMOR KOSONG BY YANZ</header>
 
-<script>
-let menuOpen = false;
-
-function toggleNav() {
-    const sidebar = document.getElementById("mySidebar");
-    if (!menuOpen) {
-        sidebar.style.width = "250px";
-        menuOpen = true;
-    } else {
-        sidebar.style.width = "0";
-        menuOpen = false;
+  <script>
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "250px";
     }
-}
-</script>
+
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+    }
+  </script>
 
 </body>
 </html>
