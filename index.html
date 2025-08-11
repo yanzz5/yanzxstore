@@ -13,14 +13,19 @@
     }
 
     header {
-      background: rgba(0,0,0,0.2);
       text-align: center;
       padding: 15px 0;
       font-size: 1.5em;
       font-weight: bold;
       letter-spacing: 2px;
-      color: #3ac9ff;
-      text-shadow: 0 0 10px #00f0ff;
+      text-shadow: 0 0 10px #ff0000;
+      animation: colorChange 2s infinite;
+    }
+
+    @keyframes colorChange {
+      0% { color: red; }
+      50% { color: white; }
+      100% { color: red; }
     }
 
     /* Hamburger */
@@ -64,37 +69,95 @@
       text-shadow: 0 0 5px #00f0ff;
     }
 
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 30px;
-      color: white;
+    /* Produk */
+    .products {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .product-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,255,255,0.3);
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 0 15px rgba(0,255,255,0.6);
+      transform: scale(1.05);
+    }
+
+    .product-title {
+      font-size: 1.2em;
+      margin-bottom: 5px;
+    }
+
+    .product-price {
+      color: #00ff99;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .buy-btn {
+      background-color: #00f0ff;
+      color: #000;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
       cursor: pointer;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .buy-btn:hover {
+      background-color: #00aabb;
     }
   </style>
 </head>
 <body>
 
-  <button class="menu-toggle" onclick="openNav()">&#9776;</button>
+  <button class="menu-toggle" onclick="toggleNav()">&#9776;</button>
 
   <div id="mySidebar" class="sidebar">
-    <span class="close-btn" onclick="closeNav()">&times;</span>
     <a href="#">BERANDA</a>
     <a href="#">JUAL NOMOR KOSONG</a>
     <a href="#">BELI NOMOR KOSONG</a>
-    <a href="#">ALL TESTIMONI 😜</a>
+    <a href="#">ALL TESTIMONI YANZ😜</a>
   </div>
 
-  <header>JUAL NOMOR KOSONG BY YANZ</header>
+  <header>JUAL BELI NOMOR KOSONG BY YANZ</header>
+
+  <div class="products">
+    <div class="product-card">
+      <div class="product-title">Nomor WhatsApp Arab</div>
+      <div class="product-price">Rp 5.000</div>
+      <a href="https://t.me/admiinnokosyanz" target="_blank" class="buy-btn">Beli via Telegram</a>
+    </div>
+    <div class="product-card">
+      <div class="product-title">Nomor WhatsApp Indo</div>
+      <div class="product-price">Rp 3.000</div>
+      <a href="https://t.me/admiinnokosyanz" target="_blank" class="buy-btn">Beli via Telegram</a>
+    </div>
+  </div>
 
   <script>
-    function openNav() {
-      document.getElementById("mySidebar").style.width = "250px";
-    }
-
-    function closeNav() {
-      document.getElementById("mySidebar").style.width = "0";
+    let menuOpen = false;
+    function toggleNav() {
+      if (menuOpen) {
+        document.getElementById("mySidebar").style.width = "0";
+        menuOpen = false;
+      } else {
+        document.getElementById("mySidebar").style.width = "250px";
+        menuOpen = true;
+      }
     }
   </script>
 
