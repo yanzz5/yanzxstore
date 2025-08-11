@@ -1,196 +1,139 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jual Nomor Telegram</title>
-  <style>
-    :root {
-      --bg: #1e293b;
-      --card: #334155;
-      --accent: #38bdf8;
-      --text: #e2e8f0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jual Nomor Telegram</title>
+<style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      margin: 0;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #1e2a38;
+        color: white;
     }
     header {
-      padding: 16px;
-      background: var(--card);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #243447;
+        padding: 10px 15px;
+        position: relative;
+        z-index: 1001;
     }
-    .brand {
-      font-size: 1.3rem;
-      font-weight: bold;
-    }
-    /* Hamburger button */
     .hamburger {
-      position: fixed;
-      top: 5px; /* dinaikin supaya nggak tabrakan */
-      left: 16px;
-      width: 30px;
-      height: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 100;
+        font-size: 26px;
+        cursor: pointer;
+        z-index: 1002;
+        position: relative;
+        top: 2px; /* agak turun supaya tidak tabrakan */
     }
-    .hamburger span {
-      display: block;
-      height: 4px;
-      background: var(--accent);
-      border-radius: 2px;
-      transition: 0.3s;
+    h1 {
+        margin: 0;
+        font-size: 18px;
     }
-    /* Sidebar menu */
-    .sidebar-menu {
-      position: fixed;
-      top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100vh;
-      background: var(--card);
-      padding: 40px 20px;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.4);
-      transition: left 0.3s ease;
-      z-index: 101;
-      display: flex;
-      flex-direction: column;
+    /* Sidebar */
+    .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.3s;
+        padding-top: 60px;
+        z-index: 1000;
     }
-    .sidebar-menu.active {
-      left: 0;
+    .sidebar a {
+        padding: 12px 20px;
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        display: block;
+        transition: 0.2s;
     }
-    .sidebar-menu ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
+    .sidebar a:hover {
+        background-color: #575757;
     }
-    .sidebar-menu ul li a {
-      color: #e6eef6;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 18px;
+    .closebtn {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 30px;
+        color: white;
     }
-    .sidebar-menu ul li a:hover {
-      color: var(--accent);
+    /* Konten produk */
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+        justify-content: center;
     }
-    /* Overlay background */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 100;
-    }
-    .overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    /* Produk */
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      padding: 16px;
-    }
-    .product {
-      background: var(--card);
-      padding: 16px;
-      border-radius: 10px;
-      text-align: center;
+    .card {
+        background-color: #2f3e52;
+        border-radius: 10px;
+        padding: 20px;
+        width: 250px;
+        text-align: center;
     }
     .btn {
-      background: var(--accent);
-      color: #000;
-      border: none;
-      padding: 10px 14px;
-      margin-top: 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
+        background-color: #1da1f2;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
     }
     .btn:hover {
-      opacity: 0.85;
+        background-color: #0d8ddb;
     }
-  </style>
+</style>
 </head>
 <body>
-  <header>
-    <button id="hamburger-btn" aria-label="Buka menu" aria-expanded="false" aria-controls="sidebar-menu" class="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <div class="brand">Jual Nomor Telegram</div>
-  </header>
 
-  <!-- Sidebar Menu -->
-  <nav id="sidebar-menu" class="sidebar-menu" aria-hidden="true">
-    <ul>
-      <li><a href="#">Beranda</a></li>
-      <li><a href="#">Beli Nomor WhatsApp Kosong</a></li>
-      <li><a href="#">Testimoni</a></li>
-    </ul>
-  </nav>
-  <div id="overlay" class="overlay" tabindex="-1" aria-hidden="true"></div>
+<header>
+    <span class="hamburger" onclick="openNav()">&#9776;</span>
+    <h1>Jual Nomor Telegram</h1>
+</header>
 
-  <!-- Daftar Produk -->
-  <section class="products">
-    <div class="product">
-      <h3>Nomor Telegram 1</h3>
-      <p>Harga: Rp 50.000</p>
-      <a href="https://t.me/admiinnokosyanz" class="btn">Beli via Telegram</a>
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">Beranda</a>
+    <a href="#">Beli Nomor WhatsApp Kosong</a>
+    <a href="#">Testimoni</a>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h3>Nomor Telegram 1</h3>
+        <p>Harga: Rp 50.000</p>
+        <a class="btn" href="https://t.me/admiinnokosyanz" target="_blank">Beli via Telegram</a>
     </div>
-    <div class="product">
-      <h3>Nomor Telegram 2</h3>
-      <p>Harga: Rp 60.000</p>
-      <a href="https://t.me/admiinnokosyanz" class="btn">Beli via Telegram</a>
+    <div class="card">
+        <h3>Nomor Telegram 2</h3>
+        <p>Harga: Rp 60.000</p>
+        <a class="btn" href="https://t.me/admiinnokosyanz" target="_blank">Beli via Telegram</a>
     </div>
-    <div class="product">
-      <h3>Nomor Telegram 3</h3>
-      <p>Harga: Rp 70.000</p>
-      <a href="https://t.me/admiinnokosyanz" class="btn">Beli via Telegram</a>
+    <div class="card">
+        <h3>Nomor Telegram 3</h3>
+        <p>Harga: Rp 70.000</p>
+        <a class="btn" href="https://t.me/admiinnokosyanz" target="_blank">Beli via Telegram</a>
     </div>
-  </section>
+</div>
 
-  <script>
-    function el(id) { return document.getElementById(id); }
-    const hamburgerBtn = el('hamburger-btn');
-    const sidebarMenu = el('sidebar-menu');
-    const overlay = el('overlay');
+<script>
+function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+}
+function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+}
+</script>
 
-    hamburgerBtn.addEventListener('click', () => {
-      const expanded = hamburgerBtn.getAttribute('aria-expanded') === 'true';
-      hamburgerBtn.setAttribute('aria-expanded', !expanded);
-      sidebarMenu.classList.toggle('active');
-      overlay.classList.toggle('active');
-      sidebarMenu.setAttribute('aria-hidden', expanded);
-    });
-
-    overlay.addEventListener('click', closeSidebar);
-
-    function closeSidebar() {
-      hamburgerBtn.setAttribute('aria-expanded', 'false');
-      sidebarMenu.classList.remove('active');
-      overlay.classList.remove('active');
-      sidebarMenu.setAttribute('aria-hidden', 'true');
-    }
-  </script>
 </body>
 </html>
