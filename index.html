@@ -1,174 +1,353 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toko Nomor WA</title>
-<style>
-  /* Reset dan font */
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
-    color: white;
-    overflow-x: hidden;
-    background: transparent;
-  }
+<!doctype html>
 
-  /* Canvas background */
-  #bgCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-  }
+<html lang="id">  
+<head>  
+  <meta charset="utf-8" />  
+  <meta name="viewport" content="width=device-width,initial-scale=1" />  
+  <title>Jual Nomor WhatsApp — WA Numbers</title>  
+  <meta name="description" content="Toko online jual nomor WhatsApp siap pakai. Hubungi langsung lewat Telegram untuk membeli." />  
+  <style>  
+    :root{  
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#06b6d4; --glass: rgba(255,255,255,0.03);  
+      --radius:14px; --maxw:1100px;  
+      --shadow: 0 6px 20px rgba(2,6,23,0.6);  
+      color-scheme: dark;  
+    }  
+    *{box-sizing:border-box}  
+    body{  
+      margin:0;  
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;  
+      background: linear-gradient(180deg,#071022 0%, #071426 60%);  
+      color:#e6eef6;  
+      -webkit-font-smoothing:antialiased;  
+      -moz-osx-font-smoothing:grayscale;  
+      padding:32px;  
+      display:flex;  
+      justify-content:center;  
+    }  
+    .wrap{width:100%;max-width:var(--maxw);}  
+    header{  
+      display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;  
+      position: relative;
+    }  
+    .brand{display:flex;gap:12px;align-items:center}  
+    .logo{  
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;  
+      box-shadow:var(--shadow);  
+    }  
+    h1{margin:0;font-size:20px}  
+    p.lead{margin:0;color:var(--muted);font-size:14px}  
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:22px;}  
+    @media (max-width:900px){ .grid{grid-template-columns:1fr;}}  
+    .main-card{background:linear-gradient(180deg,var(--card), rgba(10,14,20,0.7)); padding:18px;border-radius:var(--radius); box-shadow:var(--shadow);}  
+    .controls{display:flex;gap:10px;align-items:center;margin-bottom:12px;}  
+    .search{flex:1;padding:10px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.03);color:inherit;}  
+    .select{padding:10px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.03);color:inherit}  
 
-  header {
-    padding: 20px;
-    text-align: center;
-    font-size: 1.5em;
-    background: rgba(0, 0, 0, 0.4);
-  }
+    .products{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}  
+    @media (max-width:700px){ .products{grid-template-columns:1fr;}}  
 
-  main {
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-  }
+    .product{  
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));  
+      padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);  
+      display:flex;gap:12px;align-items:center;  
+    }  
+    .p-thumb{width:76px;height:76px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;background:rgba(255,255,255,0.03)}  
+    .p-body{flex:1}  
+    .p-title{font-weight:700;margin:0 0 6px 0}  
+    .p-sub{color:var(--muted);font-size:13px;margin:0}  
+    .p-price{font-weight:800;color:var(--accent);margin-top:8px}  
+    .p-actions{display:flex;flex-direction:column;gap:8px}  
+    .btn{  
+      background:linear-gradient(90deg,var(--accent),#7c3aed);border:none;padding:10px 12px;border-radius:10px;color:#04111a;font-weight:700;cursor:pointer;  
+      box-shadow:0 6px 18px rgba(6,182,212,0.14);  
+      text-align:center;
+      text-decoration:none;
+      display:inline-block;
+    }  
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600}  
 
-  .product {
-    background: rgba(0,0,0,0.5);
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-  }
+    /* sidebar */  
+    .sidebar{display:flex;flex-direction:column;gap:12px}  
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}  
+    .cart-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}  
+    .muted{color:var(--muted);font-size:13px}  
+    .testi{font-size:13px;color:var(--muted);margin-top:8px}  
 
-  .product h3 {
-    margin: 0 0 10px;
-  }
+    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}  
 
-  .product button {
-    padding: 8px 14px;
-    background: #0088cc; /* Warna khas Telegram */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  .product button:hover {
-    background: #006699;
-  }
-</style>
-</head>
-<body>
+    /* modal */  
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;z-index:60}  
+    .modal{background:#071226;padding:18px;border-radius:12px;max-width:480px;width:92%;border:1px solid rgba(255,255,255,0.03)}  
+    .modal h3{margin:0 0 10px 0}  
+    .field{display:flex;flex-direction:column;margin-bottom:8px}  
+    .field label{font-size:13px;color:var(--muted);margin-bottom:6px}  
+    .input{padding:10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit}  
+    .row{display:flex;gap:10px}  
+    .close-x{background:transparent;border:none;color:var(--muted);font-weight:700;cursor:pointer}  
 
-<canvas id="bgCanvas"></canvas>
+    /* small */  
+    .tag{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;font-size:13px;color:var(--muted)}
 
-<header>
-  <h1>Daftar Nomor</h1>
-</header>
-
-<main id="product-list">
-  <!-- Contoh Produk -->
-  <div class="product">
-    <h3>+62 812-3456-7890</h3>
-    <p>Nomor cantik siap pakai.</p>
-    <strong>Rp 100.000</strong><br><br>
-    <button onclick="beliTelegram('+6281234567890')">Beli via Telegram</button>
-  </div>
-</main>
-
-<script>
-  // Data produk (bisa kamu ganti)
-  const PRODUCTS = [
-    {id:1, title:"+62 812-3456-7890", note:"Nomor cantik siap pakai.", price:100000},
-    {id:2, title:"+62 877-6543-2100", note:"Nomor unik.", price:85000}
-  ];
-
-  // Render produk
-  const listEl = document.getElementById("product-list");
-  listEl.innerHTML = PRODUCTS.map(p => `
-    <div class="product">
-      <h3>${p.title}</h3>
-      <p>${p.note}</p>
-      <strong>Rp ${p.price.toLocaleString()}</strong><br><br>
-      <button onclick="beliTelegram('${p.title}')">Beli via Telegram</button>
-    </div>
-  `).join("");
-
-  function beliTelegram(nomor) {
-    window.location.href = `https://t.me/admiinnokosyanz?text=Halo,%20saya%20ingin%20membeli%20nomor%20${encodeURIComponent(nomor)}`;
-  }
-
-  // Animasi bintang & bulan
-  const canvas = document.getElementById('bgCanvas');
-  const ctx = canvas.getContext('2d');
-  let stars = [];
-  let moon = { x: 100, y: 100, r: 40 };
-
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  function initStars() {
-    stars = [];
-    for (let i = 0; i < 150; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.5,
-        d: Math.random() * 0.5
-      });
+    /* Hamburger button */
+    .hamburger {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      width: 30px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 100;
     }
-  }
-  initStars();
 
-  function drawMoon() {
-    ctx.beginPath();
-    ctx.arc(moon.x, moon.y, moon.r, 0, Math.PI * 2, false);
-    ctx.fillStyle = '#FFD700';
-    ctx.fill();
-    ctx.closePath();
+    .hamburger span {
+      display: block;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
 
-    ctx.beginPath();
-    ctx.arc(moon.x + 10, moon.y - 5, moon.r, 0, Math.PI * 2, false);
-    ctx.fillStyle = 'rgba(0,0,0,0.8)';
-    ctx.fill();
-    ctx.closePath();
-  }
+    /* Sidebar menu */
+    .sidebar-menu {
+      position: fixed;
+      top: 0;
+      left: -250px; /* sembunyi di luar layar */
+      width: 250px;
+      height: 100vh;
+      background: var(--card);
+      padding: 40px 20px 20px;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.4);
+      transition: left 0.3s ease;
+      z-index: 101;
+      display: flex;
+      flex-direction: column;
+    }
 
-  function drawStars() {
-    ctx.fillStyle = 'white';
-    stars.forEach(star => {
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2, false);
-      ctx.fill();
-    });
-  }
+    .sidebar-menu.active {
+      left: 0;
+    }
 
-  function updateStars() {
-    stars.forEach(star => {
-      star.y += star.d;
-      if (star.y > canvas.height) {
-        star.y = 0;
-        star.x = Math.random() * canvas.width;
-      }
-    });
-  }
+    .sidebar-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
 
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawMoon();
-    drawStars();
-    updateStars();
-    requestAnimationFrame(animate);
-  }
-  animate();
-</script>
+    .sidebar-menu ul li a {
+      color: #e6eef6;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+    }
 
-</body>
-</html>
+    .sidebar-menu ul li a:hover {
+      color: var(--accent);
+    }
+
+    /* Overlay background saat menu aktif */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 100;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>  
+</head>  
+<body>  
+  <!-- Hamburger button -->
+  <button id="hamburger-btn" aria-label="Buka menu" aria-expanded="false" aria-controls="sidebar-menu" class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Sidebar menu -->
+  <nav id="sidebar-menu" class="sidebar-menu" aria-hidden="true">
+    <ul>
+      <li><a href="#" onclick="closeSidebar()">Beranda</a></li>
+      <li><a href="#" onclick="closeSidebar()">Private</a></li>
+      <li><a href="#" onclick="closeSidebar()">Testimoni</a></li>
+    </ul>
+  </nav>
+  <div id="overlay" class="overlay" tabindex="-1" aria-hidden="true"></div>
+
+  <div class="wrap" role="main">  
+    <header>  
+      <div class="brand">  
+        <div class="logo">WA</div>  
+        <div>  
+          <h1>WA Numbers — Jual Nomor WhatsApp</h1>  
+          <p class="lead">Nomor terpercaya, siap pakai untuk bisnis, marketing, atau verifikasi.</p>  
+        </div>  
+      </div>  
+      <div class="tag">Contact: <strong>+62 812-XXXX-XXXX</strong></div>  
+    </header>  
+    <div class="grid">  
+      <main class="main-card" aria-label="Daftar Produk">  
+        <div class="controls">  
+          <input id="search" class="search" placeholder="Cari kode/nomor atau harga..." aria-label="Cari nomor"/>  
+          <select id="filter" class="select" aria-label="Filter harga">  
+            <option value="all">Semua harga</option>  
+            <option value="low">Di bawah 200k</option>  
+            <option value="mid">200k - 500k</option>  
+            <option value="high">Di atas 500k</option>  
+          </select>  
+        </div>  
+
+        <div id="products" class="products" aria-live="polite">  
+          <!-- Produk akan di-render lewat JS -->  
+        </div>  
+
+        <section style="margin-top:18px;">  
+          <h3 style="margin:0 0 8px 0">Testimoni</h3>  
+          <div class="card">  
+            <div><strong>Arief</strong> <span class="muted"> — Pembelian 2 nomor</span></div>  
+            <div class="testi">Nomor cepat aktif dan sesuai deskripsi. Recomended!</div>  
+          </div>  
+        </section>  
+
+      </main>  
+
+      <aside class="sidebar">  
+        <div class="card">  
+          <h3 style="margin-top:0">Ringkasan Pesanan</h3>  
+          <div id="cart-list"><div class="muted">Belum ada pesanan.</div></div>  
+          <div style="display:flex;gap:8px;margin-top:12px">  
+            <button id="open-cart" class="btn" style="flex:1">Lihat / Checkout</button>  
+            <button id="clear-cart" class="btn ghost">Kosongkan</button>  
+          </div>  
+        </div>  
+
+        <div class="card">  
+          <h4 style="margin:0 0 8px 0">Informasi</h4>  
+          <div class="muted">Pembayaran via Telegram. Setelah bayar, kirim bukti dan kami akan aktifkan nomor atau serahkan nomor sesuai kesepakatan lewat Telegram.</div>  
+        </div>  
+
+        <div class="card">  
+          <h4 style="margin:0 0 8px 0">Cara Beli</h4>  
+          <ol style="margin:0 0 0 18px;color:var(--muted)">  
+            <li>Pilih nomor</li>  
+            <li>Klik "Beli via Telegram"</li>  
+            <li>Kirim pesan & lakukan pembayaran</li>  
+          </ol>  
+        </div>  
+      </aside>  
+    </div>  
+
+    <footer>  
+      © <span id="year"></span> WA Numbers — Semua hak dilindungi. Jangan lupa cek kebijakan privasi.  
+    </footer>
+
+  </div>  
+
+  <!-- modal checkout -->  
+  <div id="modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">  
+    <div class="modal" role="document">  
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">  
+        <h3>Checkout & Kirim ke Telegram</h3>  
+        <button class="close-x" id="close-modal">✕</button>  
+      </div>  
+      <div id="modal-body">  
+        <div class="field">  
+          <label for="buyer-name">Nama Anda</label>  
+          <input id="buyer-name" class="input" type="text" placeholder="Nama lengkap"/>  
+        </div>  
+        <div class="field">  
+          <label for="buyer-note">Catatan / Pesan</label>  
+          <input id="buyer-note" class="input" type="text" placeholder="Mis: Mau aktifkan segera, untuk bisnis"/>  
+        </div>  
+        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">  
+          <button id="modal-send" class="btn">Kirim ke Telegram</button>  
+          <button id="modal-cancel" class="btn ghost">Batal</button>  
+        </div>  
+      </div>  
+    </div>  
+  </div>  
+
+  <script>  
+    // Data produk: contoh  
+    const PRODUCTS = [  
+      {id:1, title:"Nomor Cantik 0812-345-678", note:"Cocok untuk branding", price:350000, thumb:"#"},  
+      {id:2, title:"Nomor VIP 0813-999-000", note:"Mudah diingat", price:750000, thumb:"#"},  
+      {id:3, title:"Nomor Standard 0821-111-222", note:"Murah dan siap pakai", price:150000, thumb:"#"},  
+      {id:4, title:"Nomor Marketing 0815-555-555", note:"Cocok untuk iklan", price:420000, thumb:"#"},  
+    ];  
+
+    // Telegram username penjual
+    const SELLER_TELEGRAM = "admiinnokosyanz";
+
+    // Helpers  
+    const el = id => document.getElementById(id);  
+    const currency = v => new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(v);  
+
+    // Render products  
+    const productsContainer = el('products');  
+    function renderProducts(list){  
+      productsContainer.innerHTML = '';  
+      if(list.length === 0) {  
+        productsContainer.innerHTML = '<div class="muted">Tidak ada produk ditemukan.</div>';  
+        return;  
+      }  
+      list.forEach(p=>{  
+        const div = document.createElement('div');  
+        div.className = 'product';  
+        div.innerHTML = `  
+          <div class="p-thumb">+62</div>  
+          <div class="p-body">  
+            <div class="p-title">${p.title}</div>  
+            <div class="p-sub">${p.note}</div>  
+            <div class="p-price">${currency(p.price)}</div>  
+          </div>  
+          <div class="p-actions">  
+            <a href="https://t.me/${SELLER_TELEGRAM}" target="_blank" rel="noopener" class="btn buy" data-id="${p.id}" aria-label="Beli ${p.title} via Telegram">Beli via Telegram</a>  
+            <button class="btn ghost add" data-id="${p.id}">Tambah ke Keranjang</button>  
+          </div>  
+        `;  
+        productsContainer.appendChild(div);  
+      });  
+      attachProductEvents();  
+    }  
+
+    // Cart (simple)  
+    let CART = [];  
+    function addToCart(id){  
+      const item = PRODUCTS.find(p=>p.id===+id);  
+      if(!item) return;  
+      CART.push(item);  
+      renderCart();  
+    }  
+    function removeFromCart(index){  
+      CART.splice(index,1);  
+      renderCart();  
+    }  
+    function clearCart(){ CART = []; renderCart(); }  
+
+    function renderCart(){  
+      const list = el('cart-list');  
+      if(CART.length === 0) {  
+        list.innerHTML = '<div class="muted">Belum ada pesanan.</div>';  
+        return;  
+      }  
+      let html = '';  
+      let total = 0;  
+      CART.forEach((c,i)=>{  
+        total += c.price;  
+        html += `<div class="cart-item">  
+          <div><strong style="
