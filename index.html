@@ -1,154 +1,366 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jual Beli Nomor Kosong by Yanz</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>JUAL BELI NOMOR KOSONG BY YANZ</title>
 <link href="https://fonts.cdnfonts.com/css/kapitan" rel="stylesheet">
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #0e1e2b;
-        margin: 0;
-        padding: 0;
-        color: white;
-    }
+  :root{
+    --bg:#0e1e2b;
+    --card:#0f2430;
+    --accent1:#ff3b3b;
+    --accent2:#ffffff;
+    --cyan:#00f0ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: Inter, Arial, sans-serif;
+    background:linear-gradient(180deg,#071927 0%, #0e1e2b 100%);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
 
-    /* Judul Animasi */
-    h1 {
-        font-family: 'Kapitan', sans-serif;
-        text-align: center;
-        font-size: 20px;
-        animation: warna 2s infinite alternate;
-        margin: 15px 0;
-    }
-    @keyframes warna {
-        0% { color: red; }
-        100% { color: white; }
-    }
+  /* Title top center */
+  .title {
+    position:fixed;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+    font-family: 'Kapitan', sans-serif;
+    font-weight:700;
+    font-size:20px;
+    text-transform:uppercase;
+    z-index:1200;
+    background: linear-gradient(90deg,var(--accent1),#a64cf5);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow: 0 0 8px rgba(255,59,59,0.35), 0 0 12px rgba(166,76,245,0.25);
+    animation: titleColor 2.2s infinite;
+    pointer-events:none;
+  }
+  @keyframes titleColor {
+    0%   { filter: hue-rotate(0deg); }
+    45%  { filter: hue-rotate(180deg); -webkit-text-fill-color:transparent; }
+    100% { filter: hue-rotate(0deg); }
+  }
 
-    /* Hamburger Menu */
-    .hamburger {
-        position: fixed;
-        top: 10px;
-        left: 15px;
-        cursor: pointer;
-        z-index: 1000;
-    }
-    .hamburger div {
-        width: 30px;
-        height: 3px;
-        background-color: white;
-        margin: 6px 0;
-        transition: 0.4s;
-    }
+  /* Hamburger */
+  .hamburger {
+    position:fixed;
+    top:8px;
+    left:12px;
+    width:38px;
+    height:32px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    padding:6px;
+    background:transparent;
+    border:none;
+    z-index:1300;
+    cursor:pointer;
+  }
+  .bar {
+    height:3px;
+    border-radius:3px;
+    background:linear-gradient(90deg,#7ce7ff,#b58cff);
+    transition:transform .35s ease, opacity .25s ease;
+    box-shadow: 0 4px 10px rgba(0,240,255,0.06);
+  }
 
-    /* Menu */
-    .menu {
-        position: fixed;
-        top: 0;
-        left: -250px;
-        width: 250px;
-        height: 100%;
-        background: transparent;
-        padding-top: 60px;
-        transition: 0.4s;
-    }
-    .menu a {
-        display: block;
-        color: white;
-        padding: 12px;
-        text-decoration: none;
-        font-weight: bold;
-    }
-    .menu a:hover {
-        background: rgba(255,255,255,0.1);
-    }
-    .menu.active {
-        left: 0;
-    }
+  /* Menu (transparan) - slide + fade + blur */
+  .menu {
+    position:fixed;
+    top:0;
+    left:0;
+    width:260px;
+    height:100%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    backdrop-filter: blur(6px);
+    transform: translateX(-100%);
+    opacity:0;
+    transition: transform 420ms cubic-bezier(.2,.9,.3,1), opacity 420ms ease;
+    padding-top:72px;
+    z-index:1250;
+  }
+  .menu.show {
+    transform: translateX(0);
+    opacity:1;
+  }
+  .menu a{
+    display:block;
+    padding:14px 20px;
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    letter-spacing:0.6px;
+    transition: color 160ms ease, background 160ms ease;
+  }
+  .menu a:hover{
+    color:var(--cyan);
+    background: rgba(255,255,255,0.02);
+  }
 
-    /* Kontainer Produk */
-    .product-container {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-        margin-top: 20px;
-        padding: 10px;
-    }
+  /* Layout spacing */
+  main{padding:92px 18px 36px;}
+  .container{max-width:1100px;margin:0 auto;}
 
-    /* Kartu Produk */
-    .product-card {
-        background-color: #112;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px cyan;
-        width: 220px;
-        text-align: center;
-    }
+  /* Filter area */
+  .filter {
+    display:flex;
+    gap:16px;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    margin-bottom:18px;
+  }
+  .filter .label{font-weight:700;color:#cfefff}
+  .range-wrap{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-width:260px;
+    max-width:520px;
+  }
+  .range-values{min-width:160px;text-align:right;font-weight:800;color:#bfffe6}
 
-    .product-card h2 {
-        font-size: 16px;
-        margin-bottom: 8px;
-    }
+  /* two-handle slider container */
+  .slider {
+    position:relative;
+    width:260px;
+    height:6px;
+    background:rgba(255,255,255,0.06);
+    border-radius:6px;
+  }
+  .slider input[type=range]{
+    -webkit-appearance:none;
+    appearance:none;
+    position:absolute;
+    left:0; top: -7px;
+    width:100%;
+    height:20px;
+    background:transparent;
+    pointer-events:none;
+  }
+  .slider input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    appearance:none;
+    width:16px;height:16px;border-radius:50%;
+    background:var(--cyan);
+    border:3px solid #00110f;
+    cursor:pointer;
+    pointer-events:auto;
+    box-shadow:0 6px 14px rgba(0,240,255,0.18);
+  }
+  /* active range highlight */
+  .slider .range-active{
+    position:absolute; left:0; top:0; height:6px; border-radius:6px;
+    background:linear-gradient(90deg,#00f0ff,#00bebe);
+    z-index:1;
+    pointer-events:none;
+  }
 
-    .product-card p {
-        color: #00ff7f;
-        font-weight: bold;
-        margin: 5px 0;
-    }
+  /* Products grid */
+  .products{
+    display:grid;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    gap:18px;
+    align-items:start;
+  }
+  @media (max-width:900px){ .products{ grid-template-columns: repeat(2, minmax(200px,1fr)); } }
+  @media (max-width:560px){ .products{ grid-template-columns:1fr; } }
 
-    .btn {
-        display: inline-block;
-        background-color: cyan;
-        color: black;
-        padding: 8px 15px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: bold;
-        margin-top: 5px;
-    }
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04);
+    padding:16px;
+    border-radius:12px;
+    box-shadow: 0 6px 20px rgba(0,240,255,0.06);
+    text-align:left;
+    min-height:160px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+  }
+  .card.hidden{ opacity:0; transform:scale(.98); pointer-events:none; height:0; padding:0; margin:0; border:none; }
+  .flag-row{display:flex;align-items:center;gap:10px}
+  .flag-emoji{font-size:22px}
+  .title-card{font-weight:800;margin:0 0 6px 0;font-size:16px}
+  .code{font-weight:700;color:#ffd27a;margin-bottom:8px}
+  .price{font-weight:900;color:#7affc9;margin-bottom:10px}
+  .buy{
+    display:inline-block;
+    background:linear-gradient(90deg,#0077ff,#00b2ff);
+    color:#fff;
+    padding:10px 12px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:800;
+    align-self:flex-start;
+    box-shadow: 0 10px 26px rgba(0,115,255,0.12);
+  }
+
+  /* small helper */
+  .muted{color:rgba(255,255,255,0.65);font-size:13px}
 </style>
 </head>
 <body>
 
-<!-- Hamburger -->
-<div class="hamburger" onclick="toggleMenu()">
-    <div></div>
-    <div></div>
-    <div></div>
-</div>
+  <!-- Hamburger -->
+  <button class="hamburger" id="hambBtn" aria-label="Buka menu">
+    <span class="bar" style="width:100%"></span>
+    <span class="bar" style="width:80%"></span>
+    <span class="bar" style="width:60%"></span>
+  </button>
 
-<!-- Menu -->
-<div class="menu" id="menu">
+  <!-- Menu -->
+  <nav id="sideMenu" class="menu" aria-hidden="true">
     <a href="#">BERANDA</a>
     <a href="#">JUAL NOMOR KOSONG</a>
     <a href="#">BELI NOMOR KOSONG</a>
     <a href="#">ALL TESTIMONI YANZ😜</a>
-</div>
+  </nav>
 
-<!-- Judul -->
-<h1>JUAL BELI NOMOR KOSONG BY YANZ</h1>
+  <!-- Title -->
+  <div class="title">JUAL BELI NOMOR KOSONG BY YANZ</div>
 
-<!-- Produk -->
-<div class="product-container">
-    <div class="product-card">
-        <h2>Nomor WhatsApp Arab</h2>
-        <p>Rp 5.000</p>
-        <a href="https://t.me/admiinnokosyanz" class="btn">Beli via Telegram</a>
+  <main>
+    <div class="container">
+      <div class="spacer" style="height:8px"></div>
+
+      <!-- Filter -->
+      <div class="filter" aria-label="Filter harga">
+        <div class="label">Filter Harga</div>
+
+        <div class="range-wrap">
+          <div class="slider" id="slider">
+            <div class="range-active" id="rangeActive"></div>
+            <input id="minRange" type="range" min="0" max="10000" step="500" value="0">
+            <input id="maxRange" type="range" min="0" max="10000" step="500" value="10000">
+          </div>
+          <div class="range-values">
+            <div>Min: <span id="minVal">0</span></div>
+            <div>Max: <span id="maxVal">10000</span></div>
+          </div>
+        </div>
+
+        <div class="muted">Harga dalam Rp</div>
+      </div>
+
+      <!-- Products -->
+      <section class="products" id="products" aria-label="Daftar produk">
+        <!-- Cards rendered by JS -->
+      </section>
     </div>
-    <div class="product-card">
-        <h2>Nomor WhatsApp Indo</h2>
-        <p>Rp 3.000</p>
-        <a href="https://t.me/admiinnokosyanz" class="btn">Beli via Telegram</a>
-    </div>
-</div>
+  </main>
 
 <script>
-function toggleMenu() {
-    document.getElementById("menu").classList.toggle("active");
-}
+  // PRODUCTS DATA
+  const PRODUCTS = [
+    { id: 1, title: "Nomor WhatsApp Arab", flag: "🇸🇦", code:"+966", price: 5000 },
+    { id: 2, title: "Nomor WhatsApp Indo", flag: "🇮🇩", code:"+62", price: 3000 },
+    { id: 3, title: "Nomor WhatsApp Afganistan", flag: "🇦🇫", code:"+93", price: 4000 },
+  ];
+
+  // DOM
+  const productsEl = document.getElementById('products');
+  const minRange = document.getElementById('minRange');
+  const maxRange = document.getElementById('maxRange');
+  const minVal = document.getElementById('minVal');
+  const maxVal = document.getElementById('maxVal');
+  const rangeActive = document.getElementById('rangeActive');
+
+  // initial render
+  function renderProducts(list){
+    productsEl.innerHTML = '';
+    list.forEach(p=>{
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <div>
+          <div class="flag-row"><div class="flag-emoji">${p.flag}</div><div class="title-card">${p.title}</div></div>
+          <div class="code">${p.code}</div>
+          <div class="price">Rp ${Number(p.price).toLocaleString('id-ID')}</div>
+        </div>
+        <a class="buy" href="https://t.me/admiinnokosyanz?text=${encodeURIComponent('Halo, saya mau membeli '+p.title+' ('+p.code+') - Harga Rp '+p.price)}" target="_blank" rel="noopener">Beli via Telegram</a>
+      `;
+      productsEl.appendChild(card);
+    });
+  }
+
+  // filter logic
+  function applyFilter(){
+    let min = parseInt(minRange.value,10);
+    let max = parseInt(maxRange.value,10);
+    if(min > max){ // swap to keep valid
+      [min, max] = [max, min];
+    }
+    minVal.textContent = min.toLocaleString('id-ID');
+    maxVal.textContent = max.toLocaleString('id-ID');
+
+    // update active range highlight
+    const slider = document.getElementById('slider');
+    const minPercent = (min - parseInt(minRange.min)) / (parseInt(minRange.max) - parseInt(minRange.min));
+    const maxPercent = (max - parseInt(maxRange.min)) / (parseInt(maxRange.max) - parseInt(maxRange.min));
+    const left = minPercent * 100;
+    const width = Math.max((maxPercent - minPercent) * 100, 0);
+    rangeActive.style.left = left + '%';
+    rangeActive.style.width = width + '%';
+
+    const filtered = PRODUCTS.filter(p => p.price >= min && p.price <= max);
+    // if none match, keep showing none (empty)
+    renderProducts(filtered);
+  }
+
+  // init
+  function initRanges(){
+    // ensure ranges don't cross visually
+    minRange.addEventListener('input', ()=> {
+      // prevent min > max by capping
+      if(parseInt(minRange.value) > parseInt(maxRange.value)) {
+        maxRange.value = minRange.value;
+      }
+      applyFilter();
+    });
+    maxRange.addEventListener('input', ()=> {
+      if(parseInt(maxRange.value) < parseInt(minRange.value)) {
+        minRange.value = maxRange.value;
+      }
+      applyFilter();
+    });
+    // set initial active
+    applyFilter();
+  }
+
+  // menu toggle + hamburger animation
+  const hamb = document.getElementById('hambBtn');
+  const menu = document.getElementById('sideMenu');
+  let open = false;
+  hamb.addEventListener('click', ()=>{
+    open = !open;
+    menu.classList.toggle('show', open);
+    menu.setAttribute('aria-hidden', (!open).toString());
+    const bars = hamb.querySelectorAll('.bar');
+    if(open){
+      bars[0].style.transform = 'translateY(7px) rotate(45deg)';
+      bars[1].style.opacity = '0';
+      bars[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+    } else {
+      bars[0].style.transform = '';
+      bars[1].style.opacity = '1';
+      bars[2].style.transform = '';
+    }
+  });
+
+  // initial run
+  initRanges();
 </script>
 
 </body>
