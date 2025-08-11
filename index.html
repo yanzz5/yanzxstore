@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jual Nomor Telegram</title>
+<title>JUAL NOMOR KOSONG BY YANZ</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 <style>
     body {
         margin: 0;
@@ -25,11 +26,19 @@
         cursor: pointer;
         z-index: 1002;
         position: relative;
-        top: 2px; /* agak turun supaya tidak tabrakan */
+        top: 2px; /* sedikit turun biar ga tabrakan */
     }
     h1 {
         margin: 0;
-        font-size: 18px;
+        font-size: 20px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #1da1f2, #a64cf5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 1px;
+        text-shadow: 0 0 8px rgba(29,161,242,0.7), 0 0 12px rgba(166,76,245,0.7);
     }
     /* Sidebar */
     .sidebar {
@@ -54,13 +63,6 @@
     }
     .sidebar a:hover {
         background-color: #575757;
-    }
-    .closebtn {
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        font-size: 30px;
-        color: white;
     }
     /* Konten produk */
     .container {
@@ -97,41 +99,47 @@
 <body>
 
 <header>
-    <span class="hamburger" onclick="openNav()">&#9776;</span>
-    <h1>Jual Nomor Telegram</h1>
+    <span class="hamburger" onclick="toggleNav()">&#9776;</span>
+    <h1>JUAL NOMOR KOSONG BY YANZ</h1>
 </header>
 
 <div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">Beranda</a>
-    <a href="#">Beli Nomor WhatsApp Kosong</a>
-    <a href="#">Testimoni</a>
+    <a href="#">BERANDA</a>
+    <a href="#">BELI NOMOR KOSONG</a>
+    <a href="#">JUAL NOMOR KOSONG</a>
+    <a href="#">ALL TESTIMONI😜</a>
 </div>
 
 <div class="container">
     <div class="card">
         <h3>Nomor Telegram 1</h3>
-        <p>Harga: Rp 50.000</p>
+        <p>Harga: Rp 10.000</p>
         <a class="btn" href="https://t.me/admiinnokosyanz" target="_blank">Beli via Telegram</a>
     </div>
     <div class="card">
         <h3>Nomor Telegram 2</h3>
-        <p>Harga: Rp 60.000</p>
+        <p>Harga: Rp 15.000</p>
         <a class="btn" href="https://t.me/admiinnokosyanz" target="_blank">Beli via Telegram</a>
     </div>
     <div class="card">
         <h3>Nomor Telegram 3</h3>
-        <p>Harga: Rp 70.000</p>
+        <p>Harga: Rp 20.000</p>
         <a class="btn" href="https://t.me/admiinnokosyanz" target="_blank">Beli via Telegram</a>
     </div>
 </div>
 
 <script>
-function openNav() {
-    document.getElementById("mySidebar").style.width = "250px";
-}
-function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
+let menuOpen = false;
+
+function toggleNav() {
+    const sidebar = document.getElementById("mySidebar");
+    if (!menuOpen) {
+        sidebar.style.width = "250px";
+        menuOpen = true;
+    } else {
+        sidebar.style.width = "0";
+        menuOpen = false;
+    }
 }
 </script>
 
