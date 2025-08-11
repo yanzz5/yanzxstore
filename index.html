@@ -1,165 +1,155 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JUAL BELI NOMOR KOSONG BY YANZ</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jual Beli Nomor Kosong by Yanz</title>
+<link href="https://fonts.cdnfonts.com/css/kapitan" rel="stylesheet">
+<style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #0b1c2c;
-      color: white;
+        font-family: Arial, sans-serif;
+        background-color: #0e1e2b;
+        margin: 0;
+        padding: 0;
+        color: white;
     }
 
-    header {
-      text-align: center;
-      padding: 15px 0;
-      font-size: 1.5em;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-shadow: 0 0 10px #ff0000;
-      animation: colorChange 2s infinite;
+    /* Judul Animasi */
+    h1 {
+        font-family: 'Kapitan', sans-serif;
+        text-align: center;
+        font-size: 20px;
+        animation: warna 2s infinite alternate;
+        margin: 15px 0;
+    }
+    @keyframes warna {
+        0% { color: red; }
+        100% { color: white; }
     }
 
-    @keyframes colorChange {
-      0% { color: red; }
-      50% { color: white; }
-      100% { color: red; }
+    /* Hamburger Menu */
+    .hamburger {
+        position: fixed;
+        top: 10px;
+        left: 15px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+    .hamburger div {
+        width: 30px;
+        height: 3px;
+        background-color: white;
+        margin: 6px 0;
+        transition: 0.4s;
     }
 
-    /* Hamburger */
-    .menu-toggle {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      font-size: 26px;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-      z-index: 1001;
+    /* Menu */
+    .menu {
+        position: fixed;
+        top: 0;
+        left: -250px;
+        width: 250px;
+        height: 100%;
+        background: transparent;
+        padding-top: 60px;
+        transition: 0.4s;
+    }
+    .menu a {
+        display: block;
+        color: white;
+        padding: 12px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .menu a:hover {
+        background: rgba(255,255,255,0.1);
+    }
+    .menu.active {
+        left: 0;
     }
 
-    /* Sidebar transparan */
-    .sidebar {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: transparent;
-      overflow-x: hidden;
-      transition: 0.4s;
-      padding-top: 60px;
-      z-index: 1000;
+    /* Kontainer Produk */
+    .product-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        padding: 10px;
     }
 
-    .sidebar a {
-      padding: 10px 20px;
-      text-decoration: none;
-      font-size: 18px;
-      color: white;
-      display: block;
-      transition: 0.3s;
-    }
-
-    .sidebar a:hover {
-      color: #00f0ff;
-      text-shadow: 0 0 5px #00f0ff;
-    }
-
-    /* Produk */
-    .products {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-    }
-
+    /* Kartu Produk */
     .product-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 10px;
-      padding: 15px;
-      margin: 10px;
-      width: 250px;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(0,255,255,0.3);
-      transition: 0.3s;
+        background-color: #112;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px cyan;
+        width: 220px;
+        text-align: center;
     }
 
-    .product-card:hover {
-      box-shadow: 0 0 15px rgba(0,255,255,0.6);
-      transform: scale(1.05);
+    .product-card h2 {
+        font-size: 16px;
+        margin-bottom: 8px;
     }
 
-    .product-title {
-      font-size: 1.2em;
-      margin-bottom: 5px;
+    .product-card p {
+        color: #00ff7f;
+        font-weight: bold;
+        margin: 5px 0;
     }
 
-    .product-price {
-      color: #00ff99;
-      font-weight: bold;
-      margin-bottom: 10px;
+    .btn {
+        display: inline-block;
+        background-color: cyan;
+        color: black;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 5px;
     }
-
-    .buy-btn {
-      background-color: #00f0ff;
-      color: #000;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-
-    .buy-btn:hover {
-      background-color: #00aabb;
-    }
-  </style>
+</style>
 </head>
 <body>
 
-  <button class="menu-toggle" onclick="toggleNav()">&#9776;</button>
+<!-- Hamburger -->
+<div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
 
-  <div id="mySidebar" class="sidebar">
+<!-- Menu -->
+<div class="menu" id="menu">
     <a href="#">BERANDA</a>
     <a href="#">JUAL NOMOR KOSONG</a>
     <a href="#">BELI NOMOR KOSONG</a>
     <a href="#">ALL TESTIMONI YANZ😜</a>
-  </div>
+</div>
 
-  <header>JUAL BELI NOMOR KOSONG BY YANZ</header>
+<!-- Judul -->
+<h1>JUAL BELI NOMOR KOSONG BY YANZ</h1>
 
-  <div class="products">
+<!-- Produk -->
+<div class="product-container">
     <div class="product-card">
-      <div class="product-title">Nomor WhatsApp Arab</div>
-      <div class="product-price">Rp 5.000</div>
-      <a href="https://t.me/admiinnokosyanz" target="_blank" class="buy-btn">Beli via Telegram</a>
+        <h2>Nomor WhatsApp Arab</h2>
+        <p>Rp 5.000</p>
+        <a href="https://t.me/admiinnokosyanz" class="btn">Beli via Telegram</a>
     </div>
     <div class="product-card">
-      <div class="product-title">Nomor WhatsApp Indo</div>
-      <div class="product-price">Rp 3.000</div>
-      <a href="https://t.me/admiinnokosyanz" target="_blank" class="buy-btn">Beli via Telegram</a>
+        <h2>Nomor WhatsApp Indo</h2>
+        <p>Rp 3.000</p>
+        <a href="https://t.me/admiinnokosyanz" class="btn">Beli via Telegram</a>
     </div>
-  </div>
+</div>
 
-  <script>
-    let menuOpen = false;
-    function toggleNav() {
-      if (menuOpen) {
-        document.getElementById("mySidebar").style.width = "0";
-        menuOpen = false;
-      } else {
-        document.getElementById("mySidebar").style.width = "250px";
-        menuOpen = true;
-      }
-    }
-  </script>
+<script>
+function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
+}
+</script>
 
 </body>
 </html>
