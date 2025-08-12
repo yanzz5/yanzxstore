@@ -25,6 +25,30 @@
     overflow-x:hidden;
   }
 
+  /* Preloader */
+  #preloader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+  }
+  .loader {
+    border: 6px solid rgba(255,255,255,0.1);
+    border-top: 6px solid var(--cyan);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
   /* Title top center */
   .title {
     position:fixed;
@@ -42,10 +66,12 @@
     text-shadow: 0 0 8px rgba(255,59,59,0.35), 0 0 12px rgba(166,76,245,0.25);
     animation: titleColor 2.2s infinite;
     pointer-events:none;
-    white-space: nowrap; /* cegah pecah baris */
+    white-space: nowrap;
   }
-  @media (max-width:480px){
-    .title { font-size:16px; }
+  @media (max-width: 480px) {
+    .title {
+      font-size: 16px;
+    }
   }
   @keyframes titleColor {
     0%   { filter: hue-rotate(0deg); }
@@ -180,27 +206,19 @@
     align-self:flex-start;
     box-shadow: 0 10px 26px rgba(0,115,255,0.12);
   }
-  .muted{color:rgba(255,255,255,0.65);font-size:13px}
 </style>
 </head>
 <body>
 
+<!-- Preloader -->
+<div id="preloader">
+  <div class="loader"></div>
+</div>
+
 <!-- Musik otomatis -->
-<audio id="bgmusic" autoplay loop muted>
+<audio id="bgmusic" autoplay loop>
   <source src="https://files.catbox.moe/f0z1w3.mp3" type="audio/mpeg">
 </audio>
-<script>
-  const music = document.getElementById('bgmusic');
-  window.addEventListener('load', () => {
-    music.muted = false;
-    music.play().catch(() => {
-      document.addEventListener('click', () => {
-        music.muted = false;
-        music.play().catch(()=>{});
-      }, { once: true });
-    });
-  });
-</script>
 
 <!-- Hamburger -->
 <button class="hamburger" id="hambBtn" aria-label="Buka menu">
@@ -227,24 +245,32 @@
     </div>
 
     <!-- Products -->
-    <section class="products" id="products" aria-label="Daftar produk">
-      <!-- Cards rendered by JS -->
-    </section>
+    <section class="products" id="products" aria-label="Daftar produk"></section>
   </div>
 </main>
 
 <script>
-  // PRODUCTS DATA
+  // Musik autoplay dengan fallback klik
+  const music = document.getElementById('bgmusic');
+  window.addEventListener('load', () => {
+    music.play().catch(() => {
+      document.addEventListener('click', () => {
+        music.play().catch(()=>{});
+      }, { once: true });
+    });
+  });
+
+  // Produk
   const PRODUCTS = [
     { id: 1, title: "Nomor WhatsApp Arab", flag: "🇸🇦", code:"+966", price: 5000 },
-    { id: 2, title: "Nomor WhatsApp Indo", flag: "🇮🇩", code:"+62", price: 3000 },
-    { id: 3, title: "Nomor WhatsApp Afganistan", flag: "🇦🇫", code:"+93", price: 4000 },
-    { id: 4, title: "Nomor WhatsApp Nigeria", flag: "🇳🇬", code:"+234", price: 4500 },
-    { id: 5, title: "Nomor WhatsApp Sudan", flag: "🇸🇩", code:"+239", price: 4200 },
-    { id: 6, title: "Nomor WhatsApp Mesir", flag: "🇪🇬", code:"+20", price: 4800 },
-    { id: 7, title: "Nomor WhatsApp Bangladesh", flag: "🇧🇩", code:"+880", price: 3500 },
-    { id: 8, title: "Nomor WhatsApp Venezuela", flag: "🇻🇪", code:"+58", price: 4700 },
-    { id: 9, title: "Nomor WhatsApp Kanada", flag: "🇨🇦", code:"+1", price: 6000 },
+    { id: 2, title: "Nomor WhatsApp Nigeria", flag: "🇳🇬", code:"+234", price: 4000 },
+    { id: 3, title: "Nomor WhatsApp Sudan", flag: "🇸🇩", code:"+249", price: 4500 },
+    { id: 4, title: "Nomor WhatsApp Mesir", flag: "🇪🇬", code:"+20", price: 4800 },
+    { id: 5, title: "Nomor WhatsApp Bangladesh", flag: "🇧🇩", code:"+880", price: 4200 },
+    { id: 6, title: "Nomor WhatsApp Venezuela", flag: "🇻🇪", code:"+58", price: 4700 },
+    { id: 7, title: "Nomor WhatsApp Kanada", flag: "🇨🇦", code:"+1", price: 5500 },
+    { id: 8, title: "Nomor WhatsApp Indo", flag: "🇮🇩", code:"+62", price: 3000 },
+    { id: 9, title: "Nomor WhatsApp Afganistan", flag: "🇦🇫", code:"+93", price: 4000 }
   ];
 
   const productsEl = document.getElementById('products');
@@ -308,6 +334,14 @@
       bars[2].style.transform = '';
     }
   });
+
+  // Preloader hilang setelah 2 detik
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('preloader').style.display = 'none';
+    }, 2000);
+  });
 </script>
+
 </body>
 </html>
