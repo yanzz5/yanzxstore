@@ -19,13 +19,10 @@
     font-family: Inter, Arial, sans-serif;
     background:linear-gradient(180deg,#071927 0%, #0e1e2b 100%);
     color:#fff;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
     min-height:100vh;
     overflow-x:hidden;
   }
 
-  /* Title top center */
   .title {
     position:fixed;
     top:10px;
@@ -35,7 +32,7 @@
     font-weight:700;
     font-size:20px;
     text-transform:uppercase;
-    white-space: nowrap; /* cegah pecah baris */
+    white-space: nowrap;
     z-index:1200;
     background: linear-gradient(90deg,var(--accent1),#a64cf5);
     -webkit-background-clip:text;
@@ -46,14 +43,13 @@
   }
   @keyframes titleColor {
     0%   { filter: hue-rotate(0deg); }
-    45%  { filter: hue-rotate(180deg); -webkit-text-fill-color:transparent; }
+    45%  { filter: hue-rotate(180deg); }
     100% { filter: hue-rotate(0deg); }
   }
   @media (max-width: 480px) {
-    .title { font-size: 16px; } /* kecilkan di layar kecil */
+    .title { font-size: 16px; }
   }
 
-  /* Hamburger */
   .hamburger {
     position:fixed;
     top:8px;
@@ -75,10 +71,8 @@
     border-radius:3px;
     background:linear-gradient(90deg,#7ce7ff,#b58cff);
     transition:transform .35s ease, opacity .25s ease;
-    box-shadow: 0 4px 10px rgba(0,240,255,0.06);
   }
 
-  /* Menu (transparan) - slide + fade + blur */
   .menu {
     position:fixed;
     top:0;
@@ -89,7 +83,7 @@
     backdrop-filter: blur(6px);
     transform: translateX(-100%);
     opacity:0;
-    transition: transform 420ms cubic-bezier(.2,.9,.3,1), opacity 420ms ease;
+    transition: transform 420ms, opacity 420ms ease;
     padding-top:72px;
     z-index:1250;
   }
@@ -104,21 +98,18 @@
     text-decoration:none;
     font-weight:700;
     letter-spacing:0.6px;
-    transition: color 160ms ease, background 160ms ease;
   }
   .menu a:hover{
     color:var(--cyan);
     background: rgba(255,255,255,0.02);
   }
 
-  /* Layout spacing */
   main{padding:92px 18px 36px;}
   .container{max-width:1100px;margin:0 auto;}
 
-  /* Search bar */
   .search-bar {
     margin-bottom: 24px;
-    text-align: center; /* center container */
+    text-align: center;
   }
   .search-bar input {
     width: 100%;
@@ -130,24 +121,17 @@
     outline: none;
     background: rgba(255,255,255,0.1);
     color: white;
-    box-shadow: inset 0 0 6px rgba(0,240,255,0.4);
-    transition: background 0.3s ease;
-    margin: 0 auto; /* center input */
+    margin: 0 auto;
     display: block;
   }
   .search-bar input::placeholder {
     color: rgba(255,255,255,0.6);
   }
-  .search-bar input:focus {
-    background: rgba(0,240,255,0.15);
-  }
 
-  /* Products grid */
   .products{
     display:grid;
     grid-template-columns: repeat(3, minmax(220px, 1fr));
     gap:18px;
-    align-items:start;
   }
   @media (max-width:900px){ .products{ grid-template-columns: repeat(2, minmax(200px,1fr)); } }
   @media (max-width:560px){ .products{ grid-template-columns:1fr; } }
@@ -163,11 +147,10 @@
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-    transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
   }
   .flag-row{display:flex;align-items:center;gap:10px}
   .flag-emoji{font-size:22px}
-  .title-card{font-weight:800;margin:0 0 6px 0;font-size:16px}
+  .title-card{font-weight:800;margin:0;font-size:16px}
   .code{font-weight:700;color:#ffd27a;margin-bottom:8px}
   .price{font-weight:900;color:#7affc9;margin-bottom:10px}
   .buy{
@@ -178,127 +161,123 @@
     border-radius:8px;
     text-decoration:none;
     font-weight:800;
-    align-self:flex-start;
-    box-shadow: 0 10px 26px rgba(0,115,255,0.12);
   }
-
-  /* small helper */
-  .muted{color:rgba(255,255,255,0.65);font-size:13px}
 </style>
 </head>
 <body>
 
-  <!-- Hamburger -->
-  <button class="hamburger" id="hambBtn" aria-label="Buka menu">
-    <span class="bar" style="width:100%"></span>
-    <span class="bar" style="width:80%"></span>
-    <span class="bar" style="width:60%"></span>
-  </button>
+<button class="hamburger" id="hambBtn">
+  <span class="bar" style="width:100%"></span>
+  <span class="bar" style="width:80%"></span>
+  <span class="bar" style="width:60%"></span>
+</button>
 
-  <!-- Menu -->
-  <nav id="sideMenu" class="menu" aria-hidden="true">
-    <a href="#">BERANDA</a>
-    <a href="#">JUAL NOMOR KOSONG</a>
-    <a href="#">BELI NOMOR KOSONG</a>
-    <a href="#">ALL TESTIMONI YANZ😜</a>
-  </nav>
+<nav id="sideMenu" class="menu">
+  <a href="#">BERANDA</a>
+  <a href="#">JUAL NOMOR KOSONG</a>
+  <a href="#">BELI NOMOR KOSONG</a>
+  <a href="#">ALL TESTIMONI YANZ😜</a>
+</nav>
 
-  <!-- Title -->
-  <div class="title">JUAL BELI NOMOR KOSONG BY YANZ</div>
+<div class="title">JUAL BELI NOMOR KOSONG BY YANZ</div>
 
-  <main>
-    <div class="container">
-      <div class="search-bar" role="search">
-        <input type="search" id="searchInput" placeholder="Cari nomor, negara, atau kode..." aria-label="Cari produk" autocomplete="off" />
-      </div>
-
-      <!-- Products -->
-      <section class="products" id="products" aria-label="Daftar produk">
-        <!-- Cards rendered by JS -->
-      </section>
+<main>
+  <div class="container">
+    <div class="search-bar">
+      <input type="search" id="searchInput" placeholder="Cari nomor, negara, atau kode..." autocomplete="off" />
     </div>
-  </main>
+    <section class="products" id="products"></section>
+  </div>
+</main>
 
 <script>
-  // PRODUCTS DATA
-  const PRODUCTS = [
-    { id: 1, title: "Nomor WhatsApp Arab", flag: "🇸🇦", code:"+966", price: 5000 },
-    { id: 2, title: "Nomor WhatsApp Indo", flag: "🇮🇩", code:"+62", price: 3000 },
-    { id: 3, title: "Nomor WhatsApp Afganistan", flag: "🇦🇫", code:"+93", price: 4000 },
-  ];
+// Map kode telepon internasional ke ISO country code
+const phoneToISO = {
+  "+966":"SA", "+62":"ID", "+93":"AF", "+234":"NG", "+249":"SD",
+  "+20":"EG", "+880":"BD", "+58":"VE", "+1":"CA"
+};
 
-  // DOM elements
-  const productsEl = document.getElementById('products');
-  const searchInput = document.getElementById('searchInput');
+// Fungsi ISO → Emoji bendera
+function countryFlagFromISO(iso) {
+  if(!iso || iso.length !== 2) return "🏳️";
+  return iso
+    .toUpperCase()
+    .replace(/./g, char => String.fromCodePoint(127397 + char.charCodeAt()));
+}
 
-  // Render products list
-  function renderProducts(list){
-    productsEl.innerHTML = '';
-    if(list.length === 0){
-      productsEl.innerHTML = '<p style="color:#bbb; font-style:italic;">Produk tidak ditemukan.</p>';
-      return;
-    }
-    list.forEach(p=>{
-      const card = document.createElement('article');
-      card.className = 'card';
-      const message = `Halo, saya mau membeli ${p.title} (${p.code}) - Harga Rp ${p.price}`;
-      const encodedMessage = encodeURIComponent(message);
-      const telegramUrl = `https://t.me/admiinnokosyanz?text=${encodedMessage}`;
-      card.innerHTML = `
-        <div>
-          <div class="flag-row"><div class="flag-emoji">${p.flag}</div><div class="title-card">${p.title}</div></div>
-          <div class="code">${p.code}</div>
-          <div class="price">Rp ${Number(p.price).toLocaleString('id-ID')}</div>
-        </div>
-        <a class="buy" href="${telegramUrl}" target="_blank" rel="noopener">Beli via Telegram</a>
-      `;
-      productsEl.appendChild(card);
-    });
+// Fungsi cari bendera otomatis
+function getFlagFromPhoneCode(code) {
+  if(phoneToISO[code]) {
+    return countryFlagFromISO(phoneToISO[code]);
   }
+  return "🏳️"; // fallback bendera putih
+}
 
-  // Filter products based on search query
-  function filterProducts(query){
-    query = query.trim().toLowerCase();
-    if(!query) {
-      renderProducts(PRODUCTS);
-      return;
-    }
-    const filtered = PRODUCTS.filter(p=>{
-      return p.title.toLowerCase().includes(query) ||
-             p.code.toLowerCase().includes(query) ||
-             p.price.toString().includes(query);
-    });
-    renderProducts(filtered);
+const PRODUCTS = [
+  { id: 1, title: "Nomor WhatsApp Arab Saudi", code:"+966", price: 5000 },
+  { id: 2, title: "Nomor WhatsApp Indonesia", code:"+62", price: 3000 },
+  { id: 3, title: "Nomor WhatsApp Afganistan", code:"+93", price: 4000 },
+  { id: 4, title: "Nomor WhatsApp Nigeria", code:"+234", price: 4500 },
+  { id: 5, title: "Nomor WhatsApp Sudan", code:"+249", price: 4200 },
+  { id: 6, title: "Nomor WhatsApp Mesir", code:"+20", price: 4700 },
+  { id: 7, title: "Nomor WhatsApp Bangladesh", code:"+880", price: 3500 },
+  { id: 8, title: "Nomor WhatsApp Venezuela", code:"+58", price: 3800 },
+  { id: 9, title: "Nomor WhatsApp Kanada", code:"+1", price: 6000 }
+];
+
+const productsEl = document.getElementById('products');
+const searchInput = document.getElementById('searchInput');
+
+function renderProducts(list){
+  productsEl.innerHTML = '';
+  if(list.length === 0){
+    productsEl.innerHTML = '<p style="color:#bbb; font-style:italic;">Produk tidak ditemukan.</p>';
+    return;
   }
-
-  // Event listener for search input
-  searchInput.addEventListener('input', e => {
-    filterProducts(e.target.value);
+  list.forEach(p=>{
+    const flag = getFlagFromPhoneCode(p.code);
+    const card = document.createElement('article');
+    card.className = 'card';
+    const message = `Halo, saya mau membeli ${p.title} (${p.code}) - Harga Rp ${p.price}`;
+    const encodedMessage = encodeURIComponent(message);
+    const telegramUrl = `https://t.me/admiinnokosyanz?text=${encodedMessage}`;
+    card.innerHTML = `
+      <div>
+        <div class="flag-row"><div class="flag-emoji">${flag}</div><div class="title-card">${p.title}</div></div>
+        <div class="code">${p.code}</div>
+        <div class="price">Rp ${Number(p.price).toLocaleString('id-ID')}</div>
+      </div>
+      <a class="buy" href="${telegramUrl}" target="_blank" rel="noopener">Beli via Telegram</a>
+    `;
+    productsEl.appendChild(card);
   });
+}
 
-  // Initial render all products
-  renderProducts(PRODUCTS);
+function filterProducts(query){
+  query = query.trim().toLowerCase();
+  if(!query) {
+    renderProducts(PRODUCTS);
+    return;
+  }
+  const filtered = PRODUCTS.filter(p=>
+    p.title.toLowerCase().includes(query) ||
+    p.code.toLowerCase().includes(query) ||
+    p.price.toString().includes(query)
+  );
+  renderProducts(filtered);
+}
 
-  // menu toggle + hamburger animation
-  const hamb = document.getElementById('hambBtn');
+searchInput.addEventListener('input', e => {
+  filterProducts(e.target.value);
+});
+
+renderProducts(PRODUCTS);
+
+document.getElementById('hambBtn').addEventListener('click', ()=>{
   const menu = document.getElementById('sideMenu');
-  let open = false;
-  hamb.addEventListener('click', ()=>{
-    open = !open;
-    menu.classList.toggle('show', open);
-    menu.setAttribute('aria-hidden', (!open).toString());
-    const bars = hamb.querySelectorAll('.bar');
-    if(open){
-      bars[0].style.transform = 'translateY(7px) rotate(45deg)';
-      bars[1].style.opacity = '0';
-      bars[2].style.transform = 'translateY(-7px) rotate(-45deg)';
-    } else {
-      bars[0].style.transform = '';
-      bars[1].style.opacity = '1';
-      bars[2].style.transform = '';
-    }
-  });
+  menu.classList.toggle('show');
+});
 </script>
 
 </body>
-</html>
+  </html>
