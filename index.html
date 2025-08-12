@@ -35,6 +35,7 @@
     font-weight:700;
     font-size:20px;
     text-transform:uppercase;
+    white-space: nowrap; /* cegah pecah baris */
     z-index:1200;
     background: linear-gradient(90deg,var(--accent1),#a64cf5);
     -webkit-background-clip:text;
@@ -47,6 +48,9 @@
     0%   { filter: hue-rotate(0deg); }
     45%  { filter: hue-rotate(180deg); -webkit-text-fill-color:transparent; }
     100% { filter: hue-rotate(0deg); }
+  }
+  @media (max-width: 480px) {
+    .title { font-size: 16px; } /* kecilkan di layar kecil */
   }
 
   /* Hamburger */
@@ -114,6 +118,7 @@
   /* Search bar */
   .search-bar {
     margin-bottom: 24px;
+    text-align: center; /* center container */
   }
   .search-bar input {
     width: 100%;
@@ -127,6 +132,8 @@
     color: white;
     box-shadow: inset 0 0 6px rgba(0,240,255,0.4);
     transition: background 0.3s ease;
+    margin: 0 auto; /* center input */
+    display: block;
   }
   .search-bar input::placeholder {
     color: rgba(255,255,255,0.6);
@@ -234,13 +241,16 @@
     list.forEach(p=>{
       const card = document.createElement('article');
       card.className = 'card';
+      const message = `Halo, saya mau membeli ${p.title} (${p.code}) - Harga Rp ${p.price}`;
+      const encodedMessage = encodeURIComponent(message);
+      const telegramUrl = `https://t.me/admiinnokosyanz?text=${encodedMessage}`;
       card.innerHTML = `
         <div>
           <div class="flag-row"><div class="flag-emoji">${p.flag}</div><div class="title-card">${p.title}</div></div>
           <div class="code">${p.code}</div>
           <div class="price">Rp ${Number(p.price).toLocaleString('id-ID')}</div>
         </div>
-        <a class="buy" href="https://t.me/admiinnokosyanz?text=${encodeURIComponent('Halo, saya mau membeli '+p.title+' ('+p.code+') - Harga Rp '+p.price)}" target="_blank" rel="noopener">Beli via Telegram</a>
+        <a class="buy" href="${telegramUrl}" target="_blank" rel="noopener">Beli via Telegram</a>
       `;
       productsEl.appendChild(card);
     });
@@ -255,7 +265,8 @@
     }
     const filtered = PRODUCTS.filter(p=>{
       return p.title.toLowerCase().includes(query) ||
-             p.code.toLowerCase().includes(query);
+             p.code.toLowerCase().includes(query) ||
+             p.price.toString().includes(query);
     });
     renderProducts(filtered);
   }
