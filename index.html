@@ -3,8 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BELI NOMOR KOSONG BY YANZ</title>
+<title>JUAL NOMOR KOSONG BY YANZ</title>
 <link href="https://fonts.cdnfonts.com/css/kapitan" rel="stylesheet">
+
+<!-- Favicon -->
+<link rel="icon" href="https://files.catbox.moe/l7ofr3.jpeg" type="image/jpeg">
+
 <style>
   :root{
     --bg:#0e1e2b;
@@ -105,25 +109,6 @@
   main{padding:92px 18px 36px;}
   .container{max-width:1100px;margin:0 auto;}
 
-  /* Header globe image */
-  .header-globe {
-    text-align: center;
-    margin: 20px 0 30px;
-  }
-  .header-globe img {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    border: 3px solid var(--cyan);
-    box-shadow: 0 0 18px rgba(0,240,255,0.4), 0 0 28px rgba(166,76,245,0.3);
-    object-fit: cover;
-    animation: pulseGlow 3s infinite alternate;
-  }
-  @keyframes pulseGlow {
-    from { box-shadow: 0 0 14px rgba(0,240,255,0.3); }
-    to { box-shadow: 0 0 28px rgba(166,76,245,0.6); }
-  }
-
   /* Search bar */
   .search-bar { margin-bottom: 24px; text-align: center; }
   .search-bar input {
@@ -188,9 +173,12 @@
 <!-- Preloader -->
 <div id="preloader"><div class="loader"></div></div>
 
-<!-- Musik otomatis -->
+<!-- Musik otomatis (main lalu lanjut kedua) -->
 <audio id="bgmusic" autoplay>
   <source src="https://files.catbox.moe/f0z1w3.mp3" type="audio/mpeg">
+</audio>
+<audio id="bgmusic2">
+  <source src="https://files.catbox.moe/kgt1hg.webm" type="audio/webm">
 </audio>
 
 <!-- Hamburger -->
@@ -211,36 +199,29 @@
 
 <main>
   <div class="container">
-    <!-- Globe header -->
-    <div class="header-globe">
-      <img src="https://files.catbox.moe/l7ofr3.jpeg" alt="Globe Image">
-    </div>
-
-    <!-- Search -->
     <div class="search-bar" role="search">
       <input type="search" id="searchInput" placeholder="Cari nomor, negara, atau kode..." aria-label="Cari produk" autocomplete="off" />
     </div>
-
-    <!-- Products -->
     <section class="products" id="products" aria-label="Daftar produk"></section>
   </div>
 </main>
 
 <script>
   // Musik autoplay dengan fallback klik
-  const music = document.getElementById('bgmusic');
+  const music1 = document.getElementById('bgmusic');
+  const music2 = document.getElementById('bgmusic2');
+
   window.addEventListener('load', () => {
-    music.play().catch(() => {
+    music1.play().catch(() => {
       document.addEventListener('click', () => {
-        music.play().catch(()=>{});
+        music1.play().catch(()=>{});
       }, { once: true });
     });
   });
 
-  // Setelah track pertama selesai, lanjut ke track kedua (sekali main)
-  music.addEventListener('ended', () => {
-    music.src = "https://files.catbox.moe/kgt1hg.webm";
-    music.play().catch(()=>{});
+  // Jika musik1 selesai, lanjut musik2
+  music1.addEventListener('ended', () => {
+    music2.play().catch(()=>{});
   });
 
   // Produk
