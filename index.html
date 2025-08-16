@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>JUAL BELI NOMOR KOSONG BY YANZ</title>
+<title>BELI NOMOR KOSONG BY YANZ</title>
 <link href="https://fonts.cdnfonts.com/css/kapitan" rel="stylesheet">
 <style>
   :root{
@@ -188,7 +188,11 @@
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-    transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 26px rgba(0,240,255,0.18);
   }
   .flag-row{display:flex;align-items:center;gap:10px}
   .flag-emoji{font-size:22px}
@@ -205,6 +209,10 @@
     font-weight:800;
     align-self:flex-start;
     box-shadow: 0 10px 26px rgba(0,115,255,0.12);
+    transition: transform .2s ease;
+  }
+  .buy:hover {
+    transform: scale(1.05);
   }
 </style>
 </head>
@@ -215,8 +223,8 @@
   <div class="loader"></div>
 </div>
 
-<!-- Musik otomatis -->
-<audio id="bgmusic" autoplay loop>
+<!-- Musik otomatis sekali putar -->
+<audio id="bgmusic" autoplay>
   <source src="https://files.catbox.moe/f0z1w3.mp3" type="audio/mpeg">
 </audio>
 
@@ -230,13 +238,12 @@
 <!-- Menu -->
 <nav id="sideMenu" class="menu" aria-hidden="true">
   <a href="#">BERANDA</a>
-  <a href="#">JUAL NOMOR KOSONG</a>
   <a href="#">BELI NOMOR KOSONG</a>
   <a href="#">ALL TESTIMONI YANZ😜</a>
 </nav>
 
 <!-- Title -->
-<div class="title">JUAL BELI NOMOR KOSONG BY YANZ</div>
+<div class="title">BELI NOMOR KOSONG BY YANZ</div>
 
 <main>
   <div class="container">
