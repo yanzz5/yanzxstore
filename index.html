@@ -166,26 +166,6 @@
     background:linear-gradient(90deg,#00b2ff,#0077ff);
     transform:scale(1.05);
   }
-
-  /* Testimoni Section */
-  #testimoni {
-    padding:60px 20px;
-    background:rgba(255,255,255,0.02);
-    border-top:1px solid rgba(255,255,255,0.05);
-  }
-  #testimoni h2 {
-    color:var(--cyan);
-    font-size:24px;
-    margin-bottom:30px;
-    text-align:center;
-  }
-  .testi-box {
-    background:rgba(255,255,255,0.05);
-    padding:20px;
-    border-radius:12px;
-    margin-bottom:20px;
-    text-align:center;
-  }
 </style>
 </head>
 <body>
@@ -193,7 +173,7 @@
 <!-- Preloader -->
 <div id="preloader"><div class="loader"></div></div>
 
-<!-- Musik otomatis -->
+<!-- Musik otomatis (main lalu lanjut kedua) -->
 <audio id="bgmusic" autoplay>
   <source src="https://files.catbox.moe/f0z1w3.mp3" type="audio/mpeg">
 </audio>
@@ -210,14 +190,14 @@
 
 <!-- Menu -->
 <nav id="sideMenu" class="menu" aria-hidden="true">
-  <a href="#beranda">BERANDA</a>
-  <a href="#testimoni" target="_blank">ALL TESTIMONI YANZ😜</a>
+  <a href="#">BERANDA</a>
+  <a href="#">ALL TESTIMONI YANZ😜</a>
 </nav>
 
 <!-- Title -->
 <div class="title">BELI NOMOR KOSONG BY YANZ</div>
 
-<main id="beranda">
+<main>
   <div class="container">
     <div class="search-bar" role="search">
       <input type="search" id="searchInput" placeholder="Cari nomor, negara, atau kode..." aria-label="Cari produk" autocomplete="off" />
@@ -226,32 +206,11 @@
   </div>
 </main>
 
-<!-- Section Testimoni -->
-<section id="testimoni">
-  <h2>Testimoni Pembeli</h2>
-  <div class="container">
-    <div class="testi-box">
-      ⭐⭐⭐⭐⭐<br>
-      <p>"Nomor langsung aktif, pelayanan cepat!"</p>
-      <small>- Budi, Jakarta</small>
-    </div>
-    <div class="testi-box">
-      ⭐⭐⭐⭐⭐<br>
-      <p>"Amanah banget, saya beli 2x selalu lancar."</p>
-      <small>- Rina, Bandung</small>
-    </div>
-    <div class="testi-box">
-      ⭐⭐⭐⭐⭐<br>
-      <p>"Harga murah, nomor asli dan bisa dipakai lama."</p>
-      <small>- Andi, Surabaya</small>
-    </div>
-  </div>
-</section>
-
 <script>
   // Musik autoplay dengan fallback klik
   const music1 = document.getElementById('bgmusic');
   const music2 = document.getElementById('bgmusic2');
+
   window.addEventListener('load', () => {
     music1.play().catch(() => {
       document.addEventListener('click', () => {
@@ -259,6 +218,8 @@
       }, { once: true });
     });
   });
+
+  // Jika musik1 selesai, lanjut musik2
   music1.addEventListener('ended', () => {
     music2.play().catch(()=>{});
   });
@@ -275,6 +236,7 @@
     { id: 8, title: "Nomor WhatsApp Indo", flag: "🇮🇩", code:"+62", price: 3000 },
     { id: 9, title: "Nomor WhatsApp Afganistan", flag: "🇦🇫", code:"+93", price: 4000 }
   ];
+
   const productsEl = document.getElementById('products');
   const searchInput = document.getElementById('searchInput');
 
