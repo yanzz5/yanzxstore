@@ -181,6 +181,50 @@
     background:linear-gradient(90deg,#00b2ff,#0077ff);
     transform:scale(1.05);
   }
+
+  /* Testimoni Gallery */
+  .testimoni { margin-top:60px; }
+  .testimoni h2 {
+    text-align:center;
+    margin-bottom:20px;
+    background: linear-gradient(90deg,#ff3b3b,#a64cf5);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  .gallery {
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+    gap:15px;
+  }
+  .gallery img {
+    width:100%;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.4);
+    cursor:pointer;
+    transition: transform .25s ease;
+  }
+  .gallery img:hover { transform:scale(1.05); }
+  .lightbox {
+    position:fixed; top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.8);
+    display:flex; justify-content:center; align-items:center;
+    visibility:hidden; opacity:0;
+    transition:opacity 0.3s ease;
+    z-index:3000;
+  }
+  .lightbox.show { visibility:visible; opacity:1; }
+  .lightbox img {
+    max-width:90%; max-height:80%;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.6);
+  }
+  .lightbox span {
+    position:absolute;
+    top:20px; right:30px;
+    font-size:32px; font-weight:bold;
+    color:white; cursor:pointer;
+  }
 </style>
 </head>
 <body>
@@ -213,7 +257,7 @@
   <!-- Menu -->
   <nav id="sideMenu" class="menu" aria-hidden="true">
     <a href="#">BERANDA</a>
-    <a href="#">ALL TESTIMONI YANZ😜</a>
+    <a href="#testimoni">ALL TESTIMONI YANZ😜</a>
   </nav>
 
   <!-- Title -->
@@ -221,19 +265,36 @@
 
   <main>
     <div class="container">
+      <!-- Produk -->
       <div class="search-bar" role="search">
         <input type="search" id="searchInput" placeholder="Cari nomor, negara, atau kode..." aria-label="Cari produk" autocomplete="off" />
       </div>
       <section class="products" id="products" aria-label="Daftar produk"></section>
+
+      <!-- Testimoni -->
+      <section class="testimoni" id="testimoni">
+        <h2>📸 Testimoni Yanz</h2>
+        <div class="gallery">
+          <img src="https://files.catbox.moe/l7ofr3.jpeg" alt="Testimoni 1">
+          <img src="https://files.catbox.moe/4t1sq9.jpg" alt="Testimoni 2">
+          <img src="https://files.catbox.moe/w0gflf.jpg" alt="Testimoni 3">
+          <img src="https://files.catbox.moe/jqcn1h.jpg" alt="Testimoni 4">
+        </div>
+      </section>
     </div>
   </main>
+</div>
+
+<!-- Popup Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span id="closeBtn">&times;</span>
+  <img id="lightboxImg" src="" alt="Preview">
 </div>
 
 <script>
   // Musik autoplay dengan fallback klik
   const music1 = document.getElementById('bgmusic');
   const music2 = document.getElementById('bgmusic2');
-
   window.addEventListener('load', () => {
     music1.play().catch(() => {
       document.addEventListener('click', () => {
@@ -241,8 +302,6 @@
       }, { once: true });
     });
   });
-
-  // Jika musik1 selesai, lanjut musik2
   music1.addEventListener('ended', () => {
     music2.play().catch(()=>{});
   });
@@ -259,10 +318,8 @@
     { id: 8, title: "Nomor WhatsApp Indo", flag: "🇮🇩", code:"+62", price: 3000 },
     { id: 9, title: "Nomor WhatsApp Afganistan", flag: "🇦🇫", code:"+93", price: 4000 }
   ];
-
   const productsEl = document.getElementById('products');
   const searchInput = document.getElementById('searchInput');
-
   function renderProducts(list){
     productsEl.innerHTML = '';
     if(list.length === 0){
@@ -283,7 +340,6 @@
       productsEl.appendChild(card);
     });
   }
-
   function filterProducts(query){
     query = query.trim().toLowerCase();
     if(!query) { renderProducts(PRODUCTS); return; }
@@ -321,7 +377,20 @@
       document.getElementById('preloader').style.display = 'none';
     }, 2000);
   });
-</script>
 
-</body>
-</html>
+  // Lightbox Testimoni
+  const gallery = document.querySelectorAll('.gallery img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const closeBtn = document.getElementById('closeBtn');
+  gallery.forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.classList.add('show');
+      lightboxImg.src = img.src;
+    });
+  });
+  closeBtn.addEventListener('click', () => {
+    lightbox.classList.remove('show');
+  });
+  lightbox.addEventListener('click', (e) => {
+    if(e.target === lightbox) lightbox.classList.remove('show');
