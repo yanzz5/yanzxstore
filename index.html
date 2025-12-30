@@ -1,201 +1,233 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Fish IT Store</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Fish IT Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-        }
+<style>
+*{box-sizing:border-box;font-family:Segoe UI}
+body{margin:0;background:#f1f5f9}
 
-        header {
-            background: #0d6efd;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
+/* HEADER */
+header{
+background:linear-gradient(135deg,#0d6efd,#0bbcd6);
+color:white;
+padding:25px;
+text-align:center
+}
+nav a{
+color:white;
+margin:0 10px;
+text-decoration:none;
+font-weight:bold
+}
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px 0;
-        }
+/* CONTAINER */
+.container{max-width:1200px;margin:auto;padding:20px}
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+/* SLIDER */
+.slider{overflow:hidden;position:relative}
+.slides{display:flex;transition:.6s}
+.slide{min-width:100%;display:flex;justify-content:center}
+.card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.1);
+text-align:center;
+max-width:300px
+}
+.card img{
+width:220px;height:220px;
+object-fit:cover;border-radius:12px
+}
+.price{color:#0d6efd;font-size:20px;font-weight:bold}
+.order{
+display:inline-block;
+background:#25D366;
+color:white;
+padding:10px 18px;
+border-radius:25px;
+text-decoration:none;
+margin-top:10px
+}
 
-        /* Slider */
-        .slider {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-        }
+/* SLIDER BUTTON */
+.btn{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:#0008;
+color:white;
+border:none;
+padding:10px;
+border-radius:50%;
+cursor:pointer
+}
+.prev{left:10px}
+.next{right:10px}
 
-        .slides {
-            display: flex;
-            transition: 0.5s;
-        }
+/* KATEGORI */
+.categories{text-align:center;margin:40px 0 20px}
+.categories button{
+padding:10px 18px;
+margin:5px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
+background:#e2e8f0
+}
+.categories button.active{
+background:#0d6efd;
+color:white
+}
 
-        .product {
-            min-width: 100%;
-            background: white;
-            padding: 20px;
-            text-align: center;
-        }
+/* KATALOG GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px
+}
+.item{display:block}
 
-        .product img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .product h3 {
-            margin: 10px 0 5px;
-        }
-
-        .price {
-            color: #0d6efd;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        /* Buttons */
-        .btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 18px;
-        }
-
-        .prev { left: 10px; }
-        .next { right: 10px; }
-
-        footer {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 30px;
-        }
-    </style>
+/* FOOTER */
+footer{
+background:#0f172a;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px
+}
+</style>
 </head>
 <body>
 
 <header>
-    <h1>Fish IT Store</h1>
-    <p>Jual Kebutuhan Ikan & Aquascape Lengkap</p>
+<h1>Fish IT Store</h1>
+<p>Kebutuhan Ikan & Aquascape Lengkap</p>
+<nav>
+<a href="#home">Home</a>
+<a href="#katalog">Katalog</a>
+</nav>
 </header>
 
-<div class="container">
-    <h2>Produk Unggulan</h2>
+<!-- HOME / SLIDER -->
+<div class="container" id="home">
+<h2 align="center">Produk Unggulan</h2>
 
-    <div class="slider">
-        <div class="slides" id="slides">
+<div class="slider">
+<div class="slides" id="slides">
 
-            <div class="product">
-                <img src="https://via.placeholder.com/200" alt="Filter Aquarium">
-                <h3>Filter Aquarium IT Pro</h3>
-                <p class="price">Rp 150.000</p>
-                <p>Filter air kuat dan hemat listrik</p>
-            </div>
+<div class="slide">
+<div class="card">
+<img src="https://via.placeholder.com/300">
+<h3>Filter Aquarium IT Pro</h3>
+<p class="price">Rp 150.000</p>
+<a class="order" href="#">Order WA</a>
+</div>
+</div>
 
-            <div class="product">
-                <img src="https://via.placeholder.com/200" alt="Pompa Air">
-                <h3>Pompa Air Fish IT</h3>
-                <p class="price">Rp 120.000</p>
-                <p>Aliran stabil untuk aquarium</p>
-            </div>
+<div class="slide">
+<div class="card">
+<img src="https://via.placeholder.com/300">
+<h3>Lampu LED Aquascape</h3>
+<p class="price">Rp 200.000</p>
+<a class="order" href="#">Order WA</a>
+</div>
+</div>
 
-            <div class="product">
-                <img src="https://via.placeholder.com/200" alt="Lampu Aquarium">
-                <h3>Lampu LED Aquarium</h3>
-                <p class="price">Rp 200.000</p>
-                <p>Mendukung pertumbuhan tanaman air</p>
-            </div>
+<div class="slide">
+<div class="card">
+<img src="https://via.placeholder.com/300">
+<h3>Pompa Air Fish IT</h3>
+<p class="price">Rp 120.000</p>
+<a class="order" href="#">Order WA</a>
+</div>
+</div>
 
-            <div class="product">
-                <img src="https://via.placeholder.com/200" alt="Pakan Ikan">
-                <h3>Pakan Ikan Premium</h3>
-                <p class="price">Rp 45.000</p>
-                <p>Nutrisi lengkap untuk ikan hias</p>
-            </div>
+</div>
 
-        </div>
+<button class="btn prev" onclick="prev()">❮</button>
+<button class="btn next" onclick="next()">❯</button>
+</div>
+</div>
 
-        <button class="btn prev" onclick="prevSlide()">❮</button>
-        <button class="btn next" onclick="nextSlide()">❯</button>
-    </div>
+<!-- KATALOG -->
+<div class="container" id="katalog">
+<h2 align="center">Katalog Produk</h2>
+
+<div class="categories">
+<button class="active" onclick="filter('all',this)">Semua</button>
+<button onclick="filter('filter',this)">Filter</button>
+<button onclick="filter('lampu',this)">Lampu</button>
+<button onclick="filter('pompa',this)">Pompa</button>
+<button onclick="filter('pakan',this)">Pakan</button>
+</div>
+
+<div class="grid">
+
+<div class="card item filter">
+<img src="https://via.placeholder.com/200">
+<h3>Filter Aquarium IT Pro</h3>
+<p class="price">Rp 150.000</p>
+<a class="order" href="#">Order</a>
+</div>
+
+<div class="card item lampu">
+<img src="https://via.placeholder.com/200">
+<h3>Lampu LED Aquascape</h3>
+<p class="price">Rp 200.000</p>
+<a class="order" href="#">Order</a>
+</div>
+
+<div class="card item pompa">
+<img src="https://via.placeholder.com/200">
+<h3>Pompa Air Fish IT</h3>
+<p class="price">Rp 120.000</p>
+<a class="order" href="#">Order</a>
+</div>
+
+<div class="card item pakan">
+<img src="https://via.placeholder.com/200">
+<h3>Pakan Ikan Premium</h3>
+<p class="price">Rp 45.000</p>
+<a class="order" href="#">Order</a>
+</div>
+
+</div>
 </div>
 
 <footer>
-    <p>© 2025 Fish IT Store | WhatsApp: 08xxxxxxxxxx</p>
+© 2025 Fish IT Store | WhatsApp: 08xxxxxxxxxx
 </footer>
 
 <script>
-    let index = 0;
-    const slides = document.getElementById("slides");
-    const totalSlides = slides.children.length;
+/* SLIDER */
+let i=0;
+const slides=document.getElementById("slides");
+const total=slides.children.length;
 
-    function showSlide() {
-        slides.style.transform = "translateX(" + (-index * 100) + "%)";
-    }
+function show(){
+slides.style.transform=`translateX(${-i*100}%)`;
+}
+function next(){i=(i+1)%total;show()}
+function prev(){i=(i-1+total)%total;show()}
+setInterval(next,4000);
 
-    function nextSlide() {
-        index = (index + 1) % totalSlides;
-        showSlide();
-    }
+/* FILTER */
+function filter(cat,btn){
+document.querySelectorAll('.categories button')
+.forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
 
-    function prevSlide() {
-        index = (index - 1 + totalSlides) % totalSlides;
-        showSlide();
-    }
-
-    // Auto slide
-    setInterval(nextSlide, 4000);
+document.querySelectorAll('.item').forEach(item=>{
+item.style.display = (cat==='all'||item.classList.contains(cat))
+? 'block':'none';
+});
+}
 </script>
 
-</body>
-</html>New = document.getElementById('products');
-  searchInputNew.addEventListener('input', e => filterProducts(e.target.value));
-  renderProducts(PRODUCTS);
-
-  // Tampilkan kembali judul
-  pageTitle.style.display = "block";
-});
-
-document.getElementById('menu-testimoni').addEventListener('click', e=>{
-  e.preventDefault();
-  content.innerHTML = `
-    <h2 style="text-align:center;margin-bottom:20px;">Testimoni Pelanggan Yanz</h2>
-    <div class="gallery">
-      <img src="https://files.catbox.moe/abcd1.jpeg" alt="Testimoni 1">
-      <img src="https://files.catbox.moe/abcd2.jpeg" alt="Testimoni 2">
-      <img src="https://files.catbox.moe/abcd3.jpeg" alt="Testimoni 3">
-      <img src="https://files.catbox.moe/abcd4.jpeg" alt="Testimoni 4">
-    </div>
-  `;
-
-  // Sembunyikan judul
-  pageTitle.style.display = "none";
-});
-
-// Preloader
-window.addEventListener('load', () => {
-  setTimeout(() => { document.getElementById('preloader').style.display = 'none'; }, 2000);
-});
-</script>
 </body>
 </html>
