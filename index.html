@@ -1,170 +1,174 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>JUAL NOMOR KOSONG BY YANZ</title>
-<link href="https://fonts.cdnfonts.com/css/kapitan" rel="stylesheet">
-<link rel="icon" href="https://files.catbox.moe/l7ofr3.jpeg" type="image/jpeg">
-<style>
-  :root{
-    --bg:#0e1e2b;
-    --card:#0f2430;
-    --accent1:#ff3b3b;
-    --accent2:#ffffff;
-    --cyan:#00f0ff;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family: Inter, Arial, sans-serif;color:#fff;min-height:100vh;overflow-x:hidden;position: relative;z-index:0;}
-  #bg-video {position: fixed;top: 50%;left: 50%;min-width: 100%;min-height: 100%;width: auto;height: auto;transform: translate(-50%, -50%);z-index: -1;object-fit: cover;}
-  #preloader {position: fixed;top: 0; left: 0;width: 100%; height: 100%;background: var(--bg);display: flex;align-items: center;justify-content: center;z-index: 2000;}
-  .loader {border: 6px solid rgba(255,255,255,0.1);border-top: 6px solid var(--cyan);border-radius: 50%;width: 60px;height: 60px;animation: spin 1s linear infinite;}
-  @keyframes spin {0% { transform: rotate(0deg);}100% { transform: rotate(360deg);}}
-  .title {position:fixed;top:10px;left:50%;transform:translateX(-50%);font-family: 'Kapitan', sans-serif;font-weight:700;font-size:20px;text-transform:uppercase;z-index:1200;background: linear-gradient(90deg,var(--accent1),#a64cf5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow: 0 0 8px rgba(255,59,59,0.35), 0 0 12px rgba(166,76,245,0.25);animation: titleColor 2.2s infinite;pointer-events:none;white-space: nowrap;}
-  @keyframes titleColor {0%{filter:hue-rotate(0deg);}45%{filter:hue-rotate(180deg);}100%{filter:hue-rotate(0deg);}}
-  .hamburger {position:fixed;top:8px; left:12px;width:38px; height:32px;display:flex; flex-direction:column; justify-content:center;gap:5px; padding:6px;background:transparent; border:none;z-index:1300; cursor:pointer;}
-  .bar {height:3px; border-radius:3px;background:linear-gradient(90deg,#7ce7ff,#b58cff);transition:transform .35s ease, opacity .25s ease;box-shadow: 0 4px 10px rgba(0,240,255,0.06);}
-  .menu {position:fixed;top:0;left:0;width:260px;height:100%;background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));backdrop-filter: blur(6px);transform: translateX(-100%);opacity:0;transition: transform 420ms cubic-bezier(.2,.9,.3,1), opacity 420ms ease;padding-top:72px;z-index:1250;}
-  .menu.show { transform: translateX(0); opacity:1; }
-  .menu a{display:block; padding:14px 20px;color:#fff; text-decoration:none;font-weight:700; letter-spacing:0.6px;transition: color 160ms ease, background 160ms ease;}
-  .menu a:hover{ color:var(--cyan); background: rgba(255,255,255,0.02);}
-  main{padding:92px 18px 36px;}
-  .container{max-width:1100px;margin:0 auto;}
-  .search-bar { margin-bottom: 24px; text-align: center; }
-  .search-bar input {width:100%; max-width:400px;padding:10px 14px; font-size:16px;border-radius:8px; border:none; outline:none;background: rgba(255,255,255,0.1); color:white;box-shadow: inset 0 0 6px rgba(0,240,255,0.4);transition: background 0.3s ease;margin:0 auto; display:block;}
-  .search-bar input::placeholder { color: rgba(255,255,255,0.6);}
-  .search-bar input:focus { background: rgba(0,240,255,0.15);}
-  .products{display:grid;grid-template-columns: repeat(3, minmax(220px, 1fr));gap:18px; align-items:start;}
-  @media (max-width:900px){ .products{ grid-template-columns: repeat(2, minmax(200px,1fr)); } }
-  @media (max-width:560px){ .products{ grid-template-columns:1fr; } }
-  .card{background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);padding:16px; border-radius:12px;box-shadow: 0 6px 20px rgba(0,240,255,0.06);text-align:left; min-height:160px;display:flex; flex-direction:column; justify-content:space-between;transition: transform .25s ease, box-shadow .25s ease, border .25s ease;}
-  .card:hover{transform: translateY(-8px) scale(1.02);border:1px solid transparent;border-image: linear-gradient(90deg,#00f0ff,#a64cf5,#ff3b3b) 1;box-shadow: 0 0 18px rgba(0,240,255,0.3), 0 0 28px rgba(166,76,245,0.2);}
-  .flag-row{display:flex;align-items:center;gap:10px}
-  .flag-emoji{font-size:22px}
-  .title-card{font-weight:800;margin:0 0 6px 0;font-size:16px}
-  .code{font-weight:700;color:#ffd27a;margin-bottom:8px}
-  .price{font-weight:900;color:#7affc9;margin-bottom:10px}
-  .buy{display:inline-block;background:linear-gradient(90deg,#0077ff,#00b2ff);color:#fff; padding:10px 12px;border-radius:8px; text-decoration:none;font-weight:800; align-self:flex-start;box-shadow: 0 10px 26px rgba(0,115,255,0.12);transition: background 0.3s ease, transform 0.2s ease;}
-  .buy:hover{background:linear-gradient(90deg,#00b2ff,#0077ff);transform:scale(1.05);}
-  /* Galeri Testimoni */
-  .gallery {display:grid;grid-template-columns: repeat(auto-fill,minmax(220px,1fr));gap:16px;}
-  .gallery img {width:100%;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.4);transition:transform 0.3s ease;}
-  .gallery img:hover{transform:scale(1.05);}
-</style>
+    <meta charset="UTF-8">
+    <title>Fish IT Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        header {
+            background: #0d6efd;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Slider */
+        .slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .slides {
+            display: flex;
+            transition: 0.5s;
+        }
+
+        .product {
+            min-width: 100%;
+            background: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product h3 {
+            margin: 10px 0 5px;
+        }
+
+        .price {
+            color: #0d6efd;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Buttons */
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-<video id="bg-video" autoplay muted loop playsinline>
-  <source src="https://files.catbox.moe/tjzk67.mp4" type="video/mp4">
-</video>
-<div class="overlay-content">
-  <div id="preloader"><div class="loader"></div></div>
-  <audio id="bgmusic" autoplay>
-    <source src="https://files.catbox.moe/f0z1w3.mp3" type="audio/mpeg">
-  </audio>
-  <audio id="bgmusic2">
-    <source src="https://files.catbox.moe/kgt1hg.webm" type="audio/webm">
-  </audio>
-  <button class="hamburger" id="hambBtn" aria-label="Buka menu">
-    <span class="bar" style="width:100%"></span>
-    <span class="bar" style="width:80%"></span>
-    <span class="bar" style="width:60%"></span>
-  </button>
-  <nav id="sideMenu" class="menu" aria-hidden="true">
-    <a href="#" id="menu-beranda">BERANDA</a>
-    <a href="#" id="menu-testimoni">ALL TESTIMONI YANZ😜</a>
-  </nav>
-  <div class="title" id="pageTitle">JUAL NOMOR KOSONG BY YANZ</div>
-  <main>
-    <div class="container" id="content">
-      <!-- Default Beranda -->
-      <div class="search-bar">
-        <input type="search" id="searchInput" placeholder="Cari nomor, negara, atau kode..." autocomplete="off" />
-      </div>
-      <section class="products" id="products"></section>
+
+<header>
+    <h1>Fish IT Store</h1>
+    <p>Jual Kebutuhan Ikan & Aquascape Lengkap</p>
+</header>
+
+<div class="container">
+    <h2>Produk Unggulan</h2>
+
+    <div class="slider">
+        <div class="slides" id="slides">
+
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="Filter Aquarium">
+                <h3>Filter Aquarium IT Pro</h3>
+                <p class="price">Rp 150.000</p>
+                <p>Filter air kuat dan hemat listrik</p>
+            </div>
+
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="Pompa Air">
+                <h3>Pompa Air Fish IT</h3>
+                <p class="price">Rp 120.000</p>
+                <p>Aliran stabil untuk aquarium</p>
+            </div>
+
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="Lampu Aquarium">
+                <h3>Lampu LED Aquarium</h3>
+                <p class="price">Rp 200.000</p>
+                <p>Mendukung pertumbuhan tanaman air</p>
+            </div>
+
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="Pakan Ikan">
+                <h3>Pakan Ikan Premium</h3>
+                <p class="price">Rp 45.000</p>
+                <p>Nutrisi lengkap untuk ikan hias</p>
+            </div>
+
+        </div>
+
+        <button class="btn prev" onclick="prevSlide()">❮</button>
+        <button class="btn next" onclick="nextSlide()">❯</button>
     </div>
-  </main>
 </div>
+
+<footer>
+    <p>© 2025 Fish IT Store | WhatsApp: 08xxxxxxxxxx</p>
+</footer>
+
 <script>
-const music1 = document.getElementById('bgmusic');
-const music2 = document.getElementById('bgmusic2');
-window.addEventListener('load', () => {
-  music1.play().catch(() => {
-    document.addEventListener('click', () => { music1.play().catch(()=>{}); }, { once: true });
-  });
-});
-music1.addEventListener('ended', () => { music2.play().catch(()=>{}); });
+    let index = 0;
+    const slides = document.getElementById("slides");
+    const totalSlides = slides.children.length;
 
-const PRODUCTS = [
-  { id: 1, title: "Nomor WhatsApp Arab", flag: "🇸🇦", code:"+966", price: 5000 },
-  { id: 2, title: "Nomor WhatsApp Nigeria", flag: "🇳🇬", code:"+234", price: 4000 },
-  { id: 3, title: "Nomor WhatsApp Sudan", flag: "🇸🇩", code:"+249", price: 4500 },
-  { id: 4, title: "Nomor WhatsApp Mesir", flag: "🇪🇬", code:"+20", price: 4800 },
-  { id: 5, title: "Nomor WhatsApp Bangladesh", flag: "🇧🇩", code:"+880", price: 4200 },
-  { id: 6, title: "Nomor WhatsApp Venezuela", flag: "🇻🇪", code:"+58", price: 4700 },
-  { id: 7, title: "Nomor WhatsApp Kanada", flag: "🇨🇦", code:"+1", price: 5500 },
-  { id: 8, title: "Nomor WhatsApp Indo", flag: "🇮🇩", code:"+62", price: 3000 },
-  { id: 9, title: "Nomor WhatsApp Afganistan", flag: "🇦🇫", code:"+93", price: 4000 }
-];
+    function showSlide() {
+        slides.style.transform = "translateX(" + (-index * 100) + "%)";
+    }
 
-const productsEl = document.getElementById('products');
-const searchInput = document.getElementById('searchInput');
-function renderProducts(list){
-  productsEl.innerHTML = '';
-  if(list.length === 0){ productsEl.innerHTML = '<p style="color:#bbb;font-style:italic;">Produk tidak ditemukan.</p>'; return; }
-  list.forEach(p=>{
-    const card = document.createElement('article');
-    card.className = 'card';
-    card.innerHTML = `
-      <div>
-        <div class="flag-row"><div class="flag-emoji">${p.flag}</div><div class="title-card">${p.title}</div></div>
-        <div class="code">${p.code}</div>
-        <div class="price">Rp ${Number(p.price).toLocaleString('id-ID')}</div>
-      </div>
-      <a class="buy" href="https://t.me/admiinnokosyanz?text=${encodeURIComponent('Halo, saya mau membeli '+p.title+' ('+p.code+') - Harga Rp '+p.price)}" target="_blank">Beli via Telegram</a>`;
-    productsEl.appendChild(card);
-  });
-}
-function filterProducts(query){
-  query = query.trim().toLowerCase();
-  if(!query) { renderProducts(PRODUCTS); return; }
-  const filtered = PRODUCTS.filter(p=> p.title.toLowerCase().includes(query) || p.code.toLowerCase().includes(query));
-  renderProducts(filtered);
-}
-searchInput.addEventListener('input', e => filterProducts(e.target.value));
-renderProducts(PRODUCTS);
+    function nextSlide() {
+        index = (index + 1) % totalSlides;
+        showSlide();
+    }
 
-// Menu toggle
-const hamb = document.getElementById('hambBtn');
-const menu = document.getElementById('sideMenu');
-let open = false;
-hamb.addEventListener('click', ()=>{
-  open = !open;
-  menu.classList.toggle('show', open);
-  menu.setAttribute('aria-hidden', (!open).toString());
-  const bars = hamb.querySelectorAll('.bar');
-  if(open){
-    bars[0].style.transform = 'translateY(7px) rotate(45deg)';
-    bars[1].style.opacity = '0';
-    bars[2].style.transform = 'translateY(-7px) rotate(-45deg)';
-  } else {
-    bars[0].style.transform = '';
-    bars[1].style.opacity = '1';
-    bars[2].style.transform = '';
-  }
-});
+    function prevSlide() {
+        index = (index - 1 + totalSlides) % totalSlides;
+        showSlide();
+    }
 
-// Ganti konten Beranda <-> Testimoni
-const content = document.getElementById('content');
-const pageTitle = document.getElementById('pageTitle');
+    // Auto slide
+    setInterval(nextSlide, 4000);
+</script>
 
-document.getElementById('menu-beranda').addEventListener('click', e=>{
-  e.preventDefault();
-  content.innerHTML = `
-    <div class="search-bar"><input type="search" id="searchInput" placeholder="Cari nomor, negara, atau kode..." autocomplete="off" /></div>
-    <section class="products" id="products"></section>
-  `;
-  const searchInputNew = document.getElementById('searchInput');
-  const productsElNew = document.getElementById('products');
+</body>
+</html>New = document.getElementById('products');
   searchInputNew.addEventListener('input', e => filterProducts(e.target.value));
   renderProducts(PRODUCTS);
 
