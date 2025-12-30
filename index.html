@@ -2,178 +2,123 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Neon Anime Store</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Neon Store</title>
 
 <style>
-*{box-sizing:border-box;font-family:'Segoe UI'}
-body{margin:0;background:#05010d;color:white}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#05010d;color:#fff}
 
 /* BACKGROUND */
 .bg{
 min-height:100vh;
 background:url('bg.jpg') center/cover no-repeat;
-position:relative;
 padding:15px;
 }
-.bg::before{
-content:"";
-position:absolute;
-inset:0;
-background:rgba(5,1,13,.85);
-}
-.app{position:relative;z-index:2}
 
-/* BURGER MENU */
+/* BURGER */
 .burger{
-position:fixed;
-top:15px;
-left:15px;
-font-size:26px;
-cursor:pointer;
-z-index:10;
-color:#0ff;
+position:fixed;top:15px;left:15px;
+font-size:26px;color:#0ff;cursor:pointer;z-index:9
 }
 .menu{
-position:fixed;
-top:0;
-left:-220px;
-width:200px;
-height:100%;
-background:#09001a;
+position:fixed;top:0;left:-200px;
+width:180px;height:100%;
+background:#060015;
 padding:20px;
-transition:.3s;
-box-shadow:0 0 20px #0ff;
+transition:.3s
 }
 .menu a{
-display:block;
-color:#0ff;
-text-decoration:none;
-margin:15px 0;
-font-weight:bold;
+display:block;color:#0ff;
+text-decoration:none;margin:15px 0
 }
-.menu.active{left:0}
+.menu.show{left:0}
 
 /* SEARCH */
-.search-box{
-display:flex;
-justify-content:center;
-margin:20px 0;
+.search{
+margin:40px auto 15px;
+text-align:center
 }
-.search-box input{
-width:80%;
-max-width:400px;
-padding:12px;
-border-radius:30px;
-border:none;
-outline:none;
-background:#0b0220;
-color:#0ff;
-box-shadow:0 0 15px #0ff;
-text-align:center;
+.search input{
+width:85%;max-width:350px;
+padding:10px;border:none;border-radius:20px;
+background:#0a0220;color:#0ff;
+text-align:center
 }
 
 /* KATEGORI */
-.categories{
-display:flex;
-overflow-x:auto;
-gap:10px;
-margin-bottom:15px;
+.cat{
+display:flex;gap:8px;overflow-x:auto;
+margin-bottom:15px
 }
-.categories button{
-padding:8px 16px;
-border:none;
-border-radius:20px;
-background:#12002a;
-color:#0ff;
-box-shadow:0 0 10px #0ff;
-cursor:pointer;
-white-space:nowrap;
+.cat button{
+padding:6px 14px;
+border:none;border-radius:20px;
+background:#0a0220;color:#0ff;
+cursor:pointer;white-space:nowrap
 }
-.categories button.active{
-background:#0ff;
-color:#000;
-}
+.cat .on{background:#0ff;color:#000}
 
 /* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:12px;
+gap:10px
 }
-
-/* CARD */
 .card{
-background:rgba(20,0,50,.6);
-border-radius:14px;
-padding:10px;
-box-shadow:0 0 15px rgba(0,255,255,.4);
+background:#0a0220;
+border-radius:12px;
+padding:8px
 }
 .card img{
-width:100%;
-height:120px;
-object-fit:cover;
-border-radius:10px;
+width:100%;height:110px;
+object-fit:cover;border-radius:8px
 }
-.card h3{
-font-size:13px;
-margin:6px 0;
-}
-.price{
-color:#00ff88;
-font-weight:bold;
-font-size:13px;
-}
+.card h3{font-size:13px;margin:5px 0}
+.price{color:#00ff88;font-size:13px;font-weight:bold}
 .buy{
-display:block;
-margin-top:6px;
-padding:7px;
+display:block;margin-top:6px;
+background:#0ff;color:#000;
 text-align:center;
-background:#0ff;
-color:#000;
-border-radius:8px;
-text-decoration:none;
-font-size:12px;
-font-weight:bold;
+padding:6px;border-radius:6px;
+text-decoration:none;font-size:12px
 }
 
 /* DESKTOP */
 @media(min-width:768px){
 .grid{grid-template-columns:repeat(4,1fr)}
-.card img{height:150px}
+.card img{height:140px}
 }
 </style>
 </head>
 <body>
 
-<div class="burger" onclick="toggleMenu()">☰</div>
+<div class="burger" onclick="menu()">☰</div>
 
 <div class="menu" id="menu">
 <a href="#">Home</a>
 <a href="#">Produk</a>
-<a href="#">Kategori</a>
 <a href="#">Kontak</a>
 </div>
 
 <div class="bg">
-<div class="app">
 
 <!-- SEARCH -->
-<div class="search-box">
-<input type="text" id="search" placeholder="Cari produk..." onkeyup="searchProduct()">
+<div class="search">
+<input id="search" placeholder="Cari produk..." onkeyup="cari()">
 </div>
 
 <!-- KATEGORI -->
-<div class="categories">
-<button class="active" onclick="filterCat('all',this)">All</button>
-<button onclick="filterCat('filter',this)">Filter</button>
-<button onclick="filterCat('lampu',this)">Lampu</button>
-<button onclick="filterCat('pompa',this)">Pompa</button>
-<button onclick="filterCat('pakan',this)">Pakan</button>
+<div class="cat">
+<button class="on" onclick="filter('all',this)">All</button>
+<button onclick="filter('filter',this)">Filter</button>
+<button onclick="filter('lampu',this)">Lampu</button>
+<button onclick="filter('pompa',this)">Pompa</button>
+<button onclick="filter('pakan',this)">Pakan</button>
 </div>
 
 <!-- PRODUK -->
-<div class="grid" id="productGrid">
+<div class="grid">
 
 <div class="card item filter">
 <img src="p1.jpg">
@@ -204,35 +149,24 @@ font-weight:bold;
 </div>
 
 </div>
-
-</div>
 </div>
 
 <script>
-/* MENU */
-function toggleMenu(){
-document.getElementById('menu').classList.toggle('active');
+function menu(){
+document.getElementById('menu').classList.toggle('show')
 }
-
-/* FILTER */
-function filterCat(cat,btn){
-document.querySelectorAll('.categories button')
-.forEach(b=>b.classList.remove('active'));
-btn.classList.add('active');
-
-document.querySelectorAll('.item').forEach(item=>{
-item.style.display=(cat==='all'||item.classList.contains(cat))
-?'block':'none';
-});
+function filter(c,b){
+document.querySelectorAll('.cat button').forEach(x=>x.classList.remove('on'))
+b.classList.add('on')
+document.querySelectorAll('.item').forEach(i=>{
+i.style.display=(c=='all'||i.classList.contains(c))?'block':'none'
+})
 }
-
-/* SEARCH */
-function searchProduct(){
-let input=document.getElementById('search').value.toLowerCase();
-document.querySelectorAll('.item').forEach(item=>{
-let text=item.innerText.toLowerCase();
-item.style.display=text.includes(input)?'block':'none';
-});
+function cari(){
+let v=document.getElementById('search').value.toLowerCase()
+document.querySelectorAll('.item').forEach(i=>{
+i.style.display=i.innerText.toLowerCase().includes(v)?'block':'none'
+})
 }
 </script>
 
