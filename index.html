@@ -3,85 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Neon Store</title>
+<title>Yanzx Store</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#05010d;color:#fff}
 
-/* BACKGROUND */
-.bg{
-min-height:100vh;
-background:url('bg.jpg') center/cover no-repeat;
-padding:15px;
-}
-
 /* BURGER */
 .burger{
-position:fixed;top:15px;left:15px;
-font-size:26px;color:#0ff;cursor:pointer;z-index:9
+position:fixed;
+top:15px;
+left:15px;
+font-size:26px;
+color:#0ff;
+cursor:pointer;
+z-index:1002;
 }
+
+/* MENU */
 .menu{
-position:fixed;top:0;left:-200px;
-width:180px;height:100%;
+position:fixed;
+top:60px; /* 🔽 TURUN */
+left:-200px;
+width:180px;
+height:calc(100% - 60px);
 background:#060015;
 padding:20px;
-transition:.3s
+transition:.3s;
+z-index:1001;
+border-top-right-radius:12px;
 }
 .menu a{
-display:block;color:#0ff;
-text-decoration:none;margin:15px 0
+display:block;
+color:#0ff;
+text-decoration:none;
+margin:15px 0;
 }
 .menu.show{left:0}
 
+/* OVERLAY */
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.5);
+display:none;
+z-index:1000;
+}
+.overlay.show{display:block}
+
 /* SEARCH */
 .search{
-margin:40px auto 15px;
-text-align:center
+margin:20px auto 15px;
+text-align:center;
 }
 .search input{
-width:85%;max-width:350px;
-padding:10px;border:none;border-radius:20px;
-background:#0a0220;color:#0ff;
-text-align:center
+width:85%;
+max-width:350px;
+padding:10px;
+border:none;
+border-radius:20px;
+background:#0a0220;
+color:#0ff;
+text-align:center;
+outline:none;
 }
-
-/* KATEGORI */
-.cat{
-display:flex;gap:8px;overflow-x:auto;
-margin-bottom:15px
-}
-.cat button{
-padding:6px 14px;
-border:none;border-radius:20px;
-background:#0a0220;color:#0ff;
-cursor:pointer;white-space:nowrap
-}
-.cat .on{background:#0ff;color:#000}
 
 /* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:10px
+gap:10px;
+padding:15px;
 }
+
+/* CARD */
 .card{
 background:#0a0220;
 border-radius:12px;
-padding:8px
+padding:8px;
 }
 .card img{
-width:100%;height:110px;
-object-fit:cover;border-radius:8px
+width:100%;
+height:110px;
+object-fit:cover;
+border-radius:8px;
 }
-.card h3{font-size:13px;margin:5px 0}
-.price{color:#00ff88;font-size:13px;font-weight:bold}
+.card h3{
+font-size:13px;
+margin:6px 0;
+}
+.price{
+color:#00ff88;
+font-size:13px;
+font-weight:bold;
+}
 .buy{
-display:block;margin-top:6px;
-background:#0ff;color:#000;
+display:block;
+margin-top:6px;
+background:#0ff;
+color:#000;
 text-align:center;
-padding:6px;border-radius:6px;
-text-decoration:none;font-size:12px
+padding:6px;
+border-radius:6px;
+text-decoration:none;
+font-size:12px;
+font-weight:bold;
 }
 
 /* DESKTOP */
@@ -93,80 +119,68 @@ text-decoration:none;font-size:12px
 </head>
 <body>
 
-<div class="burger" onclick="menu()">☰</div>
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
+<!-- BURGER -->
+<div class="burger" onclick="toggleMenu()">☰</div>
+
+<!-- MENU -->
 <div class="menu" id="menu">
 <a href="#">Home</a>
 <a href="#">Produk</a>
 <a href="#">Kontak</a>
 </div>
 
-<div class="bg">
-
 <!-- SEARCH -->
 <div class="search">
 <input id="search" placeholder="Cari produk..." onkeyup="cari()">
 </div>
 
-<!-- KATEGORI -->
-<div class="cat">
-<button class="on" onclick="filter('all',this)">All</button>
-<button onclick="filter('filter',this)">Filter</button>
-<button onclick="filter('lampu',this)">Lampu</button>
-<button onclick="filter('pompa',this)">Pompa</button>
-<button onclick="filter('pakan',this)">Pakan</button>
-</div>
-
 <!-- PRODUK -->
 <div class="grid">
 
-<div class="card item filter">
+<div class="card item">
 <img src="p1.jpg">
-<h3>Filter Aquarium Pro</h3>
-<p class="price">Rp 150.000</p>
-<a class="buy" href="#">Beli</a>
-</div>
-
-<div class="card item lampu">
-<img src="p2.jpg">
 <h3>Lampu LED Aquascape</h3>
 <p class="price">Rp 200.000</p>
 <a class="buy" href="#">Beli</a>
 </div>
 
-<div class="card item pompa">
-<img src="p3.jpg">
-<h3>Pompa Air IT</h3>
-<p class="price">Rp 120.000</p>
-<a class="buy" href="#">Beli</a>
-</div>
-
-<div class="card item pakan">
-<img src="p4.jpg">
+<div class="card item">
+<img src="p2.jpg">
 <h3>Pakan Ikan Premium</h3>
 <p class="price">Rp 45.000</p>
 <a class="buy" href="#">Beli</a>
 </div>
 
+<div class="card item">
+<img src="p3.jpg">
+<h3>Pompa Air Aquarium</h3>
+<p class="price">Rp 120.000</p>
+<a class="buy" href="#">Beli</a>
 </div>
+
+<div class="card item">
+<img src="p4.jpg">
+<h3>Filter Aquarium Pro</h3>
+<p class="price">Rp 150.000</p>
+<a class="buy" href="#">Beli</a>
+</div>
+
 </div>
 
 <script>
-function menu(){
-document.getElementById('menu').classList.toggle('show')
+function toggleMenu(){
+document.getElementById('menu').classList.toggle('show');
+document.getElementById('overlay').classList.toggle('show');
 }
-function filter(c,b){
-document.querySelectorAll('.cat button').forEach(x=>x.classList.remove('on'))
-b.classList.add('on')
-document.querySelectorAll('.item').forEach(i=>{
-i.style.display=(c=='all'||i.classList.contains(c))?'block':'none'
-})
-}
+
 function cari(){
-let v=document.getElementById('search').value.toLowerCase()
+let v=document.getElementById('search').value.toLowerCase();
 document.querySelectorAll('.item').forEach(i=>{
-i.style.display=i.innerText.toLowerCase().includes(v)?'block':'none'
-})
+i.style.display=i.innerText.toLowerCase().includes(v)?'block':'none';
+});
 }
 </script>
 
