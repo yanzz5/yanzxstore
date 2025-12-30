@@ -11,104 +11,66 @@ body{background:#05010d;color:#fff}
 
 /* BURGER */
 .burger{
-position:fixed;
-top:15px;
-left:15px;
-font-size:26px;
-color:#0ff;
-cursor:pointer;
-z-index:1002;
+position:fixed;top:15px;left:15px;
+font-size:26px;color:#0ff;cursor:pointer;z-index:1002
 }
 
 /* MENU */
 .menu{
-position:fixed;
-top:60px; /* 🔽 TURUN */
-left:-200px;
-width:180px;
-height:calc(100% - 60px);
-background:#060015;
-padding:20px;
-transition:.3s;
-z-index:1001;
-border-top-right-radius:12px;
+position:fixed;top:60px;left:-200px;
+width:180px;height:calc(100% - 60px);
+background:#060015;padding:20px;
+transition:.3s;z-index:1001;
+border-top-right-radius:12px
 }
 .menu a{
-display:block;
-color:#0ff;
-text-decoration:none;
-margin:15px 0;
+display:block;color:#0ff;text-decoration:none;
+margin:14px 0
 }
 .menu.show{left:0}
 
 /* OVERLAY */
 .overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.5);
-display:none;
-z-index:1000;
+position:fixed;inset:0;background:rgba(0,0,0,.5);
+display:none;z-index:1000
 }
 .overlay.show{display:block}
 
 /* SEARCH */
-.search{
-margin:20px auto 15px;
-text-align:center;
-}
+.search{margin:20px auto 15px;text-align:center}
 .search input{
-width:85%;
-max-width:350px;
-padding:10px;
-border:none;
-border-radius:20px;
-background:#0a0220;
-color:#0ff;
-text-align:center;
-outline:none;
+width:85%;max-width:350px;padding:10px;
+border:none;border-radius:20px;
+background:#0a0220;color:#0ff;text-align:center;outline:none
 }
 
-/* GRID */
+/* GRID PRODUK */
 .grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-padding:15px;
+display:grid;grid-template-columns:repeat(2,1fr);
+gap:10px;padding:15px
 }
-
-/* CARD */
 .card{
-background:#0a0220;
-border-radius:12px;
-padding:8px;
+background:#0a0220;border-radius:12px;padding:8px
 }
 .card img{
-width:100%;
-height:110px;
-object-fit:cover;
-border-radius:8px;
+width:100%;height:110px;object-fit:cover;border-radius:8px
 }
-.card h3{
-font-size:13px;
-margin:6px 0;
-}
-.price{
-color:#00ff88;
-font-size:13px;
-font-weight:bold;
-}
+.card h3{font-size:13px;margin:6px 0}
+.price{color:#00ff88;font-size:13px;font-weight:bold}
 .buy{
-display:block;
-margin-top:6px;
-background:#0ff;
-color:#000;
-text-align:center;
-padding:6px;
-border-radius:6px;
-text-decoration:none;
-font-size:12px;
-font-weight:bold;
+display:block;margin-top:6px;background:#0ff;color:#000;
+text-align:center;padding:6px;border-radius:6px;
+text-decoration:none;font-size:12px;font-weight:bold
 }
+
+/* TESTIMONI */
+#testimoni{padding:20px}
+.testi{
+background:#0a0220;border-radius:12px;
+padding:12px;margin-bottom:10px
+}
+.testi h4{font-size:13px;color:#0ff}
+.testi p{font-size:12px;color:#ddd;margin-top:4px}
 
 /* DESKTOP */
 @media(min-width:768px){
@@ -127,18 +89,19 @@ font-weight:bold;
 
 <!-- MENU -->
 <div class="menu" id="menu">
-<a href="#">Home</a>
-<a href="#">Produk</a>
-<a href="#">Kontak</a>
+<a href="#home" onclick="toggleMenu()">Home</a>
+<a href="#produk" onclick="toggleMenu()">Produk</a>
+<a href="#testimoni" onclick="toggleMenu()">Testimoni</a>
+<a href="#kontak" onclick="toggleMenu()">Kontak</a>
 </div>
 
 <!-- SEARCH -->
-<div class="search">
+<div id="home" class="search">
 <input id="search" placeholder="Cari produk..." onkeyup="cari()">
 </div>
 
 <!-- PRODUK -->
-<div class="grid">
+<div id="produk" class="grid">
 
 <div class="card item">
 <img src="p1.jpg">
@@ -170,12 +133,39 @@ font-weight:bold;
 
 </div>
 
+<!-- TESTIMONI -->
+<div id="testimoni">
+<h3 style="color:#0ff;margin-bottom:10px">Testimoni Pembeli</h3>
+
+<div class="testi">
+<h4>⭐ Andi</h4>
+<p>Barang sesuai, pengiriman cepat. Recommended!</p>
+</div>
+
+<div class="testi">
+<h4>⭐ Rina</h4>
+<p>Harga murah, kualitas mantap. Bakal order lagi.</p>
+</div>
+
+<div class="testi">
+<h4>⭐ Budi</h4>
+<p>Admin fast respon, aman terpercaya.</p>
+</div>
+</div>
+
+<!-- KONTAK -->
+<div id="kontak" style="padding:20px">
+<h3 style="color:#0ff">Kontak</h3>
+<p style="font-size:12px;margin-top:6px">
+WhatsApp / Telegram: <b>@yanzx</b>
+</p>
+</div>
+
 <script>
 function toggleMenu(){
 document.getElementById('menu').classList.toggle('show');
 document.getElementById('overlay').classList.toggle('show');
 }
-
 function cari(){
 let v=document.getElementById('search').value.toLowerCase();
 document.querySelectorAll('.item').forEach(i=>{
