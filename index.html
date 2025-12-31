@@ -10,231 +10,144 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{color:#fff;background:#000;overflow-x:hidden}
 
-/* VIDEO BACKGROUND */
-#bg-video{
-position:fixed;
-top:0;left:0;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:-2;
+/* VIDEO BG */
+video.bg{
+position:fixed;top:0;left:0;width:100%;height:100%;
+object-fit:cover;z-index:-2
 }
-
-/* OVERLAY DARK */
-.bg-overlay{
-position:fixed;
-inset:0;
-background:rgba(5,1,13,0.75);
-z-index:-1;
+.overlay-bg{
+position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:-1
 }
-
-body{color:#fff}
 
 /* INTRO */
 #intro{
-position:fixed;inset:0;
+position:fixed;inset:0;background:#000;
 display:flex;align-items:center;justify-content:center;
-z-index:2000;
-background:rgba(5,1,13,.9);
-animation:fadeOut 1s ease forwards;
-animation-delay:2.5s
+z-index:2000;animation:fadeOut 1s ease forwards;animation-delay:2s
 }
-#intro h1{
-color:#0ff;font-size:24px;
-text-align:center;
-text-shadow:0 0 15px #0ff
-}
+#intro h1{color:#0ff;font-size:22px;text-align:center}
 @keyframes fadeOut{to{opacity:0;visibility:hidden}}
 
 /* BURGER */
 .burger{
 position:fixed;top:15px;left:15px;
-font-size:26px;color:#0ff;
-cursor:pointer;z-index:1002
+font-size:26px;color:#0ff;cursor:pointer;z-index:1002
 }
 
 /* MENU */
 .menu{
-position:fixed;top:60px;left:-220px;
-width:200px;height:calc(100% - 60px);
-background:#060015;
-padding:20px;
-transition:.3s;
-z-index:1001
+position:fixed;top:60px;left:-220px;width:200px;height:100%;
+background:#050015;padding:20px;transition:.3s;z-index:1001
 }
 .menu a{
-display:block;
-color:#0ff;
-text-decoration:none;
-margin:14px 0;
-font-size:15px
+display:block;color:#0ff;text-decoration:none;
+margin:14px 0;font-size:15px
 }
 .menu.show{left:0}
 
 /* OVERLAY */
 .overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.6);
-display:none;
-z-index:1000
+position:fixed;inset:0;background:rgba(0,0,0,.5);
+display:none;z-index:1000
 }
 .overlay.show{display:block}
 
 /* SEARCH */
-.search{text-align:center;margin:25px 0}
+.search{text-align:center;margin:80px 0 20px}
 .search input{
-width:85%;max-width:350px;
-padding:10px;border:none;
-border-radius:20px;
-background:#0a0220;
-color:#0ff;text-align:center
+width:85%;max-width:350px;padding:12px;
+border:none;border-radius:20px;
+background:#0a0220;color:#0ff;text-align:center
 }
 
 /* FILTER */
-.filter{
-margin-top:12px;
-display:flex;
-justify-content:center;
-gap:10px;
-flex-wrap:wrap
-}
+.filter{text-align:center;margin-bottom:15px}
 .filter button{
-background:#0a0220;
-color:#0ff;
-border:1px solid #0ff;
-padding:6px 14px;
-border-radius:20px;
-font-size:12px;
-cursor:pointer
-}
-.filter button.active,
-.filter button:hover{
-background:#0ff;
-color:#000
+margin:5px;padding:8px 16px;
+border:none;border-radius:20px;
+background:#0ff;color:#000;font-weight:bold;cursor:pointer
 }
 
 /* PRODUK */
 .grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-padding:15px
+display:grid;grid-template-columns:repeat(2,1fr);
+gap:12px;padding:15px
 }
 .card{
-background:#0a0220;
-border-radius:14px;
-padding:8px;
-box-shadow:0 0 12px #00ffff22
+background:#0a0220;border-radius:14px;padding:10px
 }
 .card img{
-width:100%;
-height:120px;
-object-fit:cover;
-border-radius:10px
+width:100%;height:120px;object-fit:cover;border-radius:10px
 }
-.card h3{font-size:13px;margin:6px 0}
-.price{color:#00ff88;font-size:13px;font-weight:bold}
+.card h3{font-size:13px;margin:8px 0}
+.price{color:#00ff88;font-weight:bold}
 .buy{
-display:block;
-margin-top:6px;
-background:#0ff;
-color:#000;
-text-align:center;
-padding:7px;
-border-radius:8px;
-font-size:12px;
-font-weight:bold;
-cursor:pointer
+margin-top:8px;background:#0ff;color:#000;
+padding:8px;border-radius:8px;
+text-align:center;font-weight:bold;cursor:pointer
 }
 
 /* PAGE */
 .page{display:none;padding:25px;text-align:center}
 .page h2{color:#0ff;margin-bottom:15px}
 
-/* TESTIMONI */
-.testi-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px
-}
-.testi-grid img{
-width:100%;
-height:120px;
-object-fit:cover;
-border-radius:10px;
-border:1px solid #0ff
-}
-
 /* TENTANG */
 .about img{
-width:100%;
-max-width:400px;
-border-radius:15px;
-margin-bottom:20px;
-box-shadow:0 0 15px #0ff
+width:100%;max-width:350px;border-radius:15px;margin-bottom:20px
 }
 .about p{
-font-size:18px;
-line-height:1.8;
-margin-bottom:18px;
-color:#e0ffff
+font-size:17px;line-height:1.7;margin-bottom:15px
 }
 
 /* KONTAK */
+.contact-btn{
+background:#0ff;color:#000;border:none;
+padding:12px 25px;border-radius:20px;
+font-weight:bold;cursor:pointer
+}
 .contact-icons{
-display:flex;
-flex-direction:column;
-gap:15px;
-align-items:center;
-margin-top:20px
+display:none;flex-direction:column;
+gap:15px;margin-top:20px;align-items:center
 }
 .contact-icons a{
-display:flex;
-align-items:center;
-gap:10px;
-color:#0ff;
-text-decoration:none;
-font-size:16px
+display:flex;gap:10px;align-items:center;
+color:#0ff;text-decoration:none;font-size:16px
 }
-.contact-icons img{
-width:36px;
-filter:drop-shadow(0 0 6px #0ff)
-}
+.contact-icons img{width:36px}
 
 @media(min-width:768px){
 .grid{grid-template-columns:repeat(4,1fr)}
-.testi-grid{grid-template-columns:repeat(4,1fr)}
 }
 </style>
 </head>
 <body>
 
-<!-- VIDEO BACKGROUND -->
-<video id="bg-video" autoplay loop muted playsinline>
+<!-- BACKGROUND -->
+<video class="bg" autoplay muted loop>
 <source src="https://files.catbox.moe/0g4pr6.mp4" type="video/mp4">
 </video>
-<div class="bg-overlay"></div>
+<div class="overlay-bg"></div>
 
 <!-- INTRO -->
 <div id="intro">
-<h1>Selamat Datang<br>di Website Kebutuhan Fish It Roblox</h1>
+<h1>Selamat Datang<br>Yanzx Store Fish It</h1>
 </div>
 
 <!-- AUDIO -->
-<audio autoplay>
-<source src="https://files.catbox.moe/atdzi4.mp3" type="audio/mpeg">
+<audio id="welcomeSound">
+<source src="https://files.catbox.moe/atdzi4.mp3">
 </audio>
 
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 <div class="burger" onclick="toggleMenu()">☰</div>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
 <div class="menu" id="menu">
 <a onclick="showHome()">Home</a>
 <a onclick="showHome()">Produk</a>
-<a onclick="showTestimoni()">Testimoni</a>
 <a onclick="showTentang()">Tentang</a>
+<a onclick="showTestimoni()">Testimoni</a>
 <a onclick="showKontak()">Kontak</a>
 </div>
 
@@ -242,20 +155,29 @@ filter:drop-shadow(0 0 6px #0ff)
 <div id="homePage">
 <div class="search">
 <input id="search" placeholder="Cari produk Fish It..." onkeyup="cari()">
+</div>
+
 <div class="filter">
-<button class="active" onclick="filterProduk('all')">SEMUA</button>
+<button onclick="filterProduk('all')">SEMUA</button>
 <button onclick="filterProduk('item')">ITEM</button>
 <button onclick="filterProduk('akun')">AKUN</button>
 <button onclick="filterProduk('boost')">BOOST</button>
 </div>
-</div>
 
 <div class="grid">
+
 <div class="card item" data-kategori="boost">
 <img src="https://files.catbox.moe/fj7j4i.jpg">
-<h3>Fish It Boost Roblox</h3>
+<h3>Boost Fish It Roblox</h3>
 <p class="price">Rp 15.000</p>
-<div class="buy" onclick="beli('Fish It Boost Roblox')">Beli</div>
+<div class="buy" onclick="beli('Boost Fish It Roblox')">Beli</div>
+</div>
+
+<div class="card item" data-kategori="boost">
+<img src="https://files.catbox.moe/fj7j4i.jpg">
+<h3>Boost XP Fish It</h3>
+<p class="price">Rp 20.000</p>
+<div class="buy" onclick="beli('Boost XP Fish It')">Beli</div>
 </div>
 
 <div class="card item" data-kategori="item">
@@ -265,46 +187,75 @@ filter:drop-shadow(0 0 6px #0ff)
 <div class="buy" onclick="beli('Item Fish It Rare')">Beli</div>
 </div>
 
+<div class="card item" data-kategori="item">
+<img src="https://files.catbox.moe/fj7j4i.jpg">
+<h3>Item Fish It Legendary</h3>
+<p class="price">Rp 50.000</p>
+<div class="buy" onclick="beli('Item Fish It Legendary')">Beli</div>
+</div>
+
 <div class="card item" data-kategori="akun">
 <img src="https://files.catbox.moe/fj7j4i.jpg">
-<h3>Akun Fish It Lengkap</h3>
-<p class="price">Rp 75.000</p>
-<div class="buy" onclick="beli('Akun Fish It Lengkap')">Beli</div>
+<h3>Akun Fish It Starter</h3>
+<p class="price">Rp 30.000</p>
+<div class="buy" onclick="beli('Akun Fish It Starter')">Beli</div>
 </div>
+
+<div class="card item" data-kategori="akun">
+<img src="https://files.catbox.moe/fj7j4i.jpg">
+<h3>Akun Fish It Pro</h3>
+<p class="price">Rp 55.000</p>
+<div class="buy" onclick="beli('Akun Fish It Pro')">Beli</div>
+</div>
+
+<div class="card item" data-kategori="akun">
+<img src="https://files.catbox.moe/fj7j4i.jpg">
+<h3>Akun Fish It Full Item</h3>
+<p class="price">Rp 90.000</p>
+<div class="buy" onclick="beli('Akun Fish It Full Item')">Beli</div>
+</div>
+
+</div>
+</div>
+
+<!-- TENTANG -->
+<div id="tentangPage" class="page about">
+<h2>Tentang Yanzx Store</h2>
+<img src="https://files.catbox.moe/fj7j4i.jpg">
+<p>
+Yanzx Store adalah website penyedia layanan jual beli kebutuhan game Roblox khususnya Fish It.
+Kami menyediakan berbagai item langka, boost, hingga akun siap pakai untuk membantu pemain
+meningkatkan progres permainan dengan cepat dan aman.
+</p>
+<p>
+Dengan harga terjangkau, proses cepat, dan pelayanan ramah, Yanzx Store menjadi pilihan terbaik
+bagi pemain Fish It Roblox yang ingin tampil lebih kuat, lebih cepat, dan lebih unggul
+dibanding pemain lainnya.
+</p>
+</div>
+
+<!-- TESTIMONI -->
+<div id="testimoniPage" class="page">
+<h2>Testimoni</h2>
+<p>Pembeli puas & transaksi aman ✅</p>
+</div>
+
+<!-- KONTAK -->
+<div id="kontakPage" class="page">
+<h2>Kontak</h2>
+<button class="contact-btn" onclick="toggleContact()">Tampilkan Kontak</button>
+<div class="contact-icons" id="contactIcons">
+<a href="https://wa.me/6281234567890" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> WhatsApp
+</a>
+<a href="https://www.tiktok.com" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/3046/3046127.png"> TikTok
+</a>
 </div>
 </div>
 
 <script>
-const WA="6281234567890";
+const audio=document.getElementById("welcomeSound");
+document.addEventListener("click",()=>audio.play().catch(()=>{}),{once:true});
 
-function toggleMenu(){
-menu.classList.toggle("show");
-overlay.classList.toggle("show");
-}
-function hideAll(){
-homePage.style.display="none";
-testimoniPage.style.display="none";
-tentangPage.style.display="none";
-kontakPage.style.display="none";
-}
-function showHome(){hideAll();homePage.style.display="block";toggleMenu();}
-function cari(){
-let v=search.value.toLowerCase();
-document.querySelectorAll(".item").forEach(i=>{
-i.style.display=i.innerText.toLowerCase().includes(v)?"block":"none";
-});
-}
-function filterProduk(k){
-document.querySelectorAll('.filter button').forEach(b=>b.classList.remove('active'));
-event.target.classList.add('active');
-document.querySelectorAll('.item').forEach(p=>{
-p.style.display=(k==="all"||p.dataset.kategori===k)?"block":"none";
-});
-}
-function beli(n){
-window.open(`https://wa.me/${WA}?text=`+encodeURIComponent("Halo saya mau beli "+n));
-}
-</script>
-
-</body>
-</html>
+const menu=document.getElement
