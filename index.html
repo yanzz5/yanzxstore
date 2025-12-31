@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yanzx Store</title>
 
-<!-- FAVICON -->
 <link rel="icon" type="image/jpeg" href="https://files.catbox.moe/88pd47.jpeg">
 
 <style>
@@ -29,12 +28,12 @@ font-size:26px;color:#0ff;cursor:pointer;z-index:1002
 
 /* MENU */
 .menu{
-position:fixed;top:60px;left:-200px;width:180px;height:calc(100% - 60px);
+position:fixed;top:60px;left:-220px;width:200px;height:calc(100% - 60px);
 background:#060015;padding:20px;transition:.3s;z-index:1001
 }
 .menu a{
 display:block;color:#0ff;text-decoration:none;
-margin:14px 0;cursor:pointer
+margin:16px 0;cursor:pointer
 }
 .menu.show{left:0}
 
@@ -62,10 +61,8 @@ gap:10px;padding:15px
 background:#0a0220;border-radius:12px;padding:8px
 }
 .card-img{
-width:100%;
-height:110px;
-border-radius:8px;
-background:url("https://files.catbox.moe/88pd47.jpeg") center/cover no-repeat;
+width:100%;height:110px;border-radius:8px;
+background:url("https://files.catbox.moe/88pd47.jpeg") center/cover no-repeat
 }
 .card h3{font-size:13px;margin:6px 0}
 .price{color:#00ff88;font-size:13px;font-weight:bold}
@@ -84,11 +81,9 @@ font-size:12px;font-weight:bold;cursor:pointer
 display:grid;grid-template-columns:repeat(3,1fr);gap:10px
 }
 .testi-img{
-width:100%;
-height:100px;
-border-radius:10px;
+width:100%;height:100px;border-radius:10px;
 border:1px solid #0ff;
-background:url("https://files.catbox.moe/88pd47.jpeg") center/cover no-repeat;
+background:url("https://files.catbox.moe/88pd47.jpeg") center/cover no-repeat
 }
 
 /* KONTAK */
@@ -104,8 +99,7 @@ gap:15px;align-items:center;margin-top:15px
 }
 .contact-icons a{
 display:flex;align-items:center;
-gap:10px;color:#0ff;
-text-decoration:none;font-size:15px
+gap:10px;color:#0ff;text-decoration:none;font-size:15px
 }
 .contact-icons img{
 width:36px;filter:drop-shadow(0 0 6px #0ff)
@@ -124,7 +118,6 @@ width:36px;filter:drop-shadow(0 0 6px #0ff)
 <h1>Selamat Datang<br>di Website Kebutuhan Fish It</h1>
 </div>
 
-<!-- AUDIO -->
 <audio id="welcomeSound">
 <source src="https://files.catbox.moe/atdzi4.mp3" type="audio/mpeg">
 </audio>
@@ -132,10 +125,12 @@ width:36px;filter:drop-shadow(0 0 6px #0ff)
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 <div class="burger" onclick="toggleMenu()">☰</div>
 
+<!-- MENU -->
 <div class="menu" id="menu">
 <a onclick="showHome()">Home</a>
 <a onclick="showHome()">Produk</a>
 <a onclick="showTestimoni()">Testimoni</a>
+<a onclick="showTentang()">Tentang</a>
 <a onclick="showKontak()">Kontak</a>
 </div>
 
@@ -187,6 +182,18 @@ width:36px;filter:drop-shadow(0 0 6px #0ff)
 </div>
 </div>
 
+<!-- TENTANG -->
+<div id="tentangPage" class="page">
+<h2>Tentang Yanzx Store</h2>
+<p style="line-height:1.6;color:#ccc">
+Yanzx Store adalah website penjualan kebutuhan <b>Fish It & Aquarium</b>  
+mulai dari pakan, filter, pompa hingga perlengkapan aquascape.  
+<br><br>
+Kami mengutamakan kualitas produk, harga terjangkau,  
+dan pemesanan langsung via WhatsApp agar cepat & mudah.
+</p>
+</div>
+
 <!-- KONTAK -->
 <div id="kontakPage" class="page">
 <h2>Hubungi Kami</h2>
@@ -215,6 +222,7 @@ const overlay=document.getElementById("overlay");
 const homePage=document.getElementById("homePage");
 const testiPage=document.getElementById("testimoniPage");
 const kontakPage=document.getElementById("kontakPage");
+const tentangPage=document.getElementById("tentangPage");
 
 function toggleMenu(){
 menu.classList.toggle("show");
@@ -224,6 +232,7 @@ function hideAll(){
 homePage.style.display="none";
 testiPage.style.display="none";
 kontakPage.style.display="none";
+tentangPage.style.display="none";
 }
 function showHome(){
 hideAll();homePage.style.display="block";
@@ -231,6 +240,10 @@ toggleMenu();window.scrollTo(0,0);
 }
 function showTestimoni(){
 hideAll();testiPage.style.display="block";
+toggleMenu();window.scrollTo(0,0);
+}
+function showTentang(){
+hideAll();tentangPage.style.display="block";
 toggleMenu();window.scrollTo(0,0);
 }
 function showKontak(){
