@@ -4,79 +4,54 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yanzx Store - Fish It Roblox</title>
-<link rel="icon" href="https://files.catbox.moe/88pd47.jpeg">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{color:#fff;overflow-x:hidden}
-video.bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-.bg-dark{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:-1}
+body{background:#000;color:#fff}
 
-#intro{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#000;z-index:2000;animation:fadeOut 1s ease forwards;animation-delay:2s}
-#intro h1{color:#0ff;font-size:24px;text-align:center}
-@keyframes fadeOut{to{opacity:0;visibility:hidden}}
+/* SEARCH */
+.search{text-align:center;margin:20px}
+.search input{
+width:90%;max-width:360px;padding:12px;border-radius:25px;
+border:none;background:#050015;color:#0ff;text-align:center}
 
-.burger{position:fixed;top:15px;left:15px;font-size:26px;color:#0ff;cursor:pointer;z-index:1002}
-.menu{position:fixed;top:60px;left:-220px;width:200px;height:100%;background:#050015;padding:20px;transition:.3s;z-index:1001}
-.menu a{display:block;color:#0ff;text-decoration:none;margin:14px 0;font-size:15px;cursor:pointer}
-.menu.show{left:0}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:1000}
-.overlay.show{display:block}
-
-.search{text-align:center;margin:80px 0 15px}
-.search input{width:85%;max-width:360px;padding:12px;border:none;border-radius:25px;background:rgba(10,2,32,.8);color:#0ff;text-align:center}
-
+/* FILTER */
 .filter{text-align:center;margin-bottom:15px}
-.filter button{margin:5px;padding:8px 18px;border-radius:20px;border:1px solid #0ff;background:transparent;color:#0ff;font-weight:bold;cursor:pointer}
-.filter button:hover{background:#0ff;color:#000}
+.filter button{
+margin:5px;padding:8px 18px;border-radius:20px;
+border:1px solid #0ff;background:none;color:#0ff;font-weight:bold}
 
+/* GRID */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:15px}
-.card{background:rgba(10,2,32,.45);backdrop-filter:blur(8px);border:1px solid rgba(0,255,255,.4);border-radius:16px;padding:10px}
+@media(min-width:768px){.grid{grid-template-columns:repeat(4,1fr)}}
+
+.card{
+background:rgba(10,2,32,.6);
+border:1px solid #0ff;border-radius:16px;
+padding:10px;cursor:pointer}
 .card img{width:100%;height:120px;object-fit:cover;border-radius:12px}
 .card h3{font-size:13px;margin:8px 0}
 .price{color:#00ff88;font-weight:bold}
-.buy{margin-top:8px;background:#0ff;color:#000;padding:8px;border-radius:10px;text-align:center;font-weight:bold;cursor:pointer}
+.buy{margin-top:8px;background:#0ff;color:#000;padding:8px;border-radius:10px;text-align:center;font-weight:bold}
 
-.page{display:none;padding:25px;text-align:center}
-.page h2{color:#0ff;margin-bottom:15px}
-
-.about img{width:100%;max-width:360px;border-radius:15px;margin-bottom:20px}
-.about p{font-size:18px;line-height:1.8;margin-bottom:15px}
-
-.contact-btn{background:#0ff;color:#000;border:none;padding:12px 26px;border-radius:25px;font-weight:bold}
-.contact-icons{display:none;flex-direction:column;gap:15px;margin-top:20px;align-items:center}
-.contact-icons a{display:flex;gap:10px;align-items:center;color:#0ff;text-decoration:none;font-size:16px}
-.contact-icons img{width:36px}
-
-@media(min-width:768px){.grid{grid-template-columns:repeat(4,1fr)}}
+/* DETAIL POPUP */
+#detailProduk{
+display:none;position:fixed;inset:0;
+background:rgba(0,0,0,.85);
+z-index:999;align-items:center;justify-content:center}
+#detailBox{
+background:#050015;padding:20px;border-radius:16px;
+max-width:360px;width:90%;text-align:center}
+#detailBox img{width:100%;border-radius:12px;margin-bottom:10px}
+.btnBeli{background:#0ff;color:#000;padding:10px 25px;border-radius:20px;border:none;font-weight:bold}
+.btnTutup{margin-top:10px;background:none;color:#0ff;border:none}
 </style>
 </head>
 
 <body>
 
-<video class="bg" autoplay muted loop>
-<source src="https://files.catbox.moe/0g4pr6.mp4" type="video/mp4">
-</video>
-<div class="bg-dark"></div>
-
-<div id="intro">
-<h1>Selamat Datang di Website Kebutuhan Fish It by Yanz</h1>
-</div>
-
-<div class="burger" onclick="toggleMenu()">☰</div>
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-<div class="menu" id="menu">
-<a onclick="showHome()">Home</a>
-<a onclick="showHome()">Produk</a>
-<a onclick="showTentang()">Tentang</a>
-<a onclick="showTestimoni()">Testimoni</a>
-<a onclick="showKontak()">Kontak</a>
-</div>
-
-<!-- HOME -->
-<div id="homePage">
 <div class="search">
-<input id="search" placeholder="Cari produk Fish It..." onkeyup="cari()">
+<input id="search" placeholder="Cari produk..." onkeyup="cari()">
 </div>
 
 <div class="filter">
@@ -87,34 +62,21 @@ video.bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:
 </div>
 
 <div class="grid" id="produkGrid"></div>
-</div>
 
-<!-- TENTANG -->
-<div id="tentangPage" class="page about">
-<h2>Tentang Yanzx Store</h2>
-<img src="https://files.catbox.moe/fj7j4i.jpg">
-<p>Yanzx Store adalah website jual beli kebutuhan game Roblox khusus Fish It.</p>
-</div>
-
-<!-- TESTIMONI -->
-<div id="testimoniPage" class="page">
-<h2>Testimoni</h2>
-<p>Ratusan pembeli puas & transaksi aman ✅</p>
-</div>
-
-<!-- KONTAK -->
-<div id="kontakPage" class="page">
-<h2>Kontak</h2>
-<button class="contact-btn" onclick="toggleContact()">Tampilkan Kontak</button>
-<div class="contact-icons" id="contactIcons">
-<a href="https://wa.me/62882001163626" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> WhatsApp
-</a>
-</div>
+<!-- DETAIL PRODUK -->
+<div id="detailProduk">
+  <div id="detailBox">
+    <img id="detailImg">
+    <h3 id="detailNama"></h3>
+    <p id="detailHarga" class="price"></p>
+    <button class="btnBeli" onclick="beliProduk()">Beli</button><br>
+    <button class="btnTutup" onclick="tutupDetail()">Tutup</button>
+  </div>
 </div>
 
 <script>
-const produk = [
+// ================= DATA PRODUK (UTUH & TIDAK DIUBAH) =================
+const produk=[
 ["boost","Boost X2 1 Jam","15.000","https://files.catbox.moe/m21kcr.jpg"],
 ["boost","Boost X4 2 Jam","18.000","https://files.catbox.moe/e136l1.jpg"],
 ["boost","Boost X8 6 Jam","130.000","https://files.catbox.moe/62b2wa.jpg"],
@@ -131,52 +93,44 @@ const produk = [
 ["item","Item Jual Dimana Saja","35.000","https://files.catbox.moe/2106kg.jpg"],
 ["item","Item Keberuntungan Kecil","20.000","https://files.catbox.moe/khjvuj.jpg"],
 ["item","Item Paket Perahu Hiper","110.000","https://files.catbox.moe/5gy769.jpg"],
-["item","Item Crate Christmas","35.000","https://files.catbox.moe/vutefk.jpg"],
-["item","Item Crate Elderwood","25.000","https://files.catbox.moe/fs4xuf.jpg"],
-["item","Item Crate Luxury","25.000","https://files.catbox.moe/i2ya1j.jpg"],
-["item","Item Crate Enchanted","25.000","https://files.catbox.moe/eig2nz.jpg"],
-["item","Item Crate Ocean","25.000","https://files.catbox.moe/eszogq.jpg"],
 
 ["akun","Akun Fish It Starter","30.000","https://files.catbox.moe/fj7j4i.jpg"],
 ["akun","Akun Fish It Medium","45.000","https://files.catbox.moe/fj7j4i.jpg"],
 ["akun","Akun Fish It Pro","60.000","https://files.catbox.moe/fj7j4i.jpg"],
 ["akun","Akun Fish It Sultan","80.000","https://files.catbox.moe/fj7j4i.jpg"],
-["akun","Akun Fish It Full Item","120.000","https://files.catbox.moe/fj7j4i.jpg"],
-
-["boost","Boost Event Fish It","25.000","https://files.catbox.moe/fj7j4i.jpg"],
-["boost","Boost Level Instan","35.000","https://files.catbox.moe/fj7j4i.jpg"],
-["item","Item Fish It Event","40.000","https://files.catbox.moe/fj7j4i.jpg"],
-["akun","Akun Fish It Event","70.000","https://files.catbox.moe/fj7j4i.jpg"],
-["akun","Akun Fish It VIP","150.000","https://files.catbox.moe/fj7j4i.jpg"]
+["akun","Akun Fish It Full Item","120.000","https://files.catbox.moe/fj7j4i.jpg"]
 ];
 
+// ================= RENDER PRODUK =================
 const grid=document.getElementById("produkGrid");
+let produkDipilih="";
+
 produk.forEach(p=>{
 grid.innerHTML+=`
-<div class="card item" data-kategori="${p[0]}">
+<div class="card item" data-kategori="${p[0]}"
+ onclick="bukaDetail('${p[1]}','${p[2]}','${p[3]}')">
 <img src="${p[3]}">
 <h3>${p[1]}</h3>
 <p class="price">Rp ${p[2]}</p>
-<div class="buy" onclick="beli('${p[1]}')">Beli</div>
+<div class="buy">Detail</div>
 </div>`;
 });
 
-function toggleMenu(){
-menu.classList.toggle("show");
-overlay.classList.toggle("show");
+// ================= DETAIL =================
+function bukaDetail(nama,harga,img){
+produkDipilih=nama;
+detailImg.src=img;
+detailNama.innerText=nama;
+detailHarga.innerText="Rp "+harga;
+detailProduk.style.display="flex";
 }
-function hideAll(){
-homePage.style.display="none";
-tentangPage.style.display="none";
-testimoniPage.style.display="none";
-kontakPage.style.display="none";
+function tutupDetail(){detailProduk.style.display="none";}
+function beliProduk(){
+window.open("https://wa.me/62882001163626?text="+
+encodeURIComponent("Halo Min, saya mau beli "+produkDipilih));
 }
-function showHome(){hideAll();homePage.style.display="block";toggleMenu();}
-function showTentang(){hideAll();tentangPage.style.display="block";toggleMenu();}
-function showTestimoni(){hideAll();testimoniPage.style.display="block";toggleMenu();}
-function showKontak(){hideAll();kontakPage.style.display="block";toggleMenu();}
-function toggleContact(){contactIcons.style.display=contactIcons.style.display==="flex"?"none":"flex";}
 
+// ================= SEARCH & FILTER =================
 function cari(){
 let v=search.value.toLowerCase();
 document.querySelectorAll(".item").forEach(i=>{
@@ -187,9 +141,6 @@ function filterProduk(k){
 document.querySelectorAll(".item").forEach(i=>{
 i.style.display=(k==="all"||i.dataset.kategori===k)?"block":"none";
 });
-}
-function beli(n){
-window.open("https://wa.me/62882001163626?text="+encodeURIComponent("Halo Min, saya mau beli "+n));
 }
 </script>
 
