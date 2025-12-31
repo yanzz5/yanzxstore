@@ -2,245 +2,221 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yanzx Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fish IT Store</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#05010d;color:#fff}
-
-/* INTRO */
-#intro{
-position:fixed;inset:0;background:#05010d;
-display:flex;align-items:center;justify-content:center;
-z-index:2000;animation:fadeOut 1s ease forwards;animation-delay:2s
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{
+  background:#050010;
+  color:#fff;
 }
-#intro h1{color:#0ff;font-size:22px;text-align:center;text-shadow:0 0 10px #0ff}
-@keyframes fadeOut{to{opacity:0;visibility:hidden}}
 
-/* BURGER */
+/* ===== AUDIO ===== */
+audio{display:none}
+
+/* ===== HEADER ===== */
+header{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  padding:12px;
+  background:rgba(5,0,20,.9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
 .burger{
-position:fixed;top:15px;left:15px;
-font-size:26px;color:#0ff;cursor:pointer;z-index:1002
+  position:absolute;
+  left:15px;
+  font-size:24px;
+  cursor:pointer;
+  color:#00ffff;
 }
-
-/* MENU */
-.menu{
-position:fixed;top:60px;left:-200px;width:180px;height:calc(100% - 60px);
-background:#060015;padding:20px;transition:.3s;z-index:1001
+.search{
+  width:60%;
 }
-.menu a{
-display:block;color:#0ff;text-decoration:none;
-margin:14px 0;cursor:pointer
-}
-.menu.show{left:0}
-
-/* OVERLAY */
-.overlay{
-position:fixed;inset:0;background:rgba(0,0,0,.5);
-display:none;z-index:1000
-}
-.overlay.show{display:block}
-
-/* SEARCH */
-.search{text-align:center;margin:25px 0}
 .search input{
-width:85%;max-width:350px;padding:10px;
-border:none;border-radius:20px;
-background:#0a0220;color:#0ff;text-align:center
+  width:100%;
+  padding:8px 12px;
+  border-radius:20px;
+  border:none;
+  outline:none;
 }
 
-/* PRODUK */
+/* ===== MENU ===== */
+nav{
+  position:fixed;
+  top:55px;
+  left:-260px;
+  width:240px;
+  height:100%;
+  background:#080020;
+  padding:20px;
+  transition:.3s;
+  z-index:998;
+}
+nav.active{left:0}
+nav a{
+  display:block;
+  color:#00ffff;
+  text-decoration:none;
+  margin:15px 0;
+}
+
+/* ===== CONTENT ===== */
+main{
+  padding:80px 15px;
+}
+
+/* ===== CARD ===== */
 .grid{
-display:grid;grid-template-columns:repeat(2,1fr);
-gap:10px;padding:15px
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:15px;
 }
 .card{
-background:#0a0220;border-radius:12px;padding:8px
+  background:linear-gradient(145deg,#12002a,#050010);
+  border-radius:12px;
+  padding:10px;
+  box-shadow:0 0 12px #00ffff33;
 }
-.card img{
-width:100%;height:110px;object-fit:cover;border-radius:8px
+.card-img{
+  width:100%;
+  height:100px;
+  border-radius:8px;
+  background:url("https://files.catbox.moe/88pd47.jpeg") center/cover no-repeat;
 }
-.card h3{font-size:13px;margin:6px 0}
-.price{color:#00ff88;font-size:13px;font-weight:bold}
-.buy{
-display:block;margin-top:6px;background:#0ff;color:#000;
-text-align:center;padding:6px;border-radius:6px;
-font-size:12px;font-weight:bold;cursor:pointer
+.card h4{margin:8px 0 4px}
+.price{color:#00ff99}
+button{
+  width:100%;
+  padding:8px;
+  border:none;
+  border-radius:20px;
+  background:#00ffff;
+  cursor:pointer;
+  margin-top:8px;
 }
 
-/* PAGE */
-.page{display:none;padding:25px;text-align:center}
-.page h2{color:#0ff;margin-bottom:15px}
-
-/* TESTIMONI */
+/* ===== TESTIMONI ===== */
 .testi-grid{
-display:grid;grid-template-columns:repeat(3,1fr);gap:10px
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:10px;
 }
-.testi-grid img{
-width:100%;height:100px;object-fit:cover;
-border-radius:10px;border:1px solid #0ff
+.testi-img{
+  height:120px;
+  border-radius:10px;
+  background:url("https://files.catbox.moe/88pd47.jpeg") center/cover no-repeat;
 }
 
-/* KONTAK */
-.contact-btn{
-background:#0ff;color:#000;
-border:none;padding:10px 20px;
-border-radius:20px;font-weight:bold;
-cursor:pointer;margin-bottom:15px
-}
+/* ===== CONTACT ===== */
 .contact-icons{
-display:none;flex-direction:column;
-gap:15px;align-items:center;margin-top:15px
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  margin-top:20px;
 }
 .contact-icons a{
-display:flex;align-items:center;
-gap:10px;color:#0ff;
-text-decoration:none;font-size:15px
-}
-.contact-icons img{
-width:36px;filter:drop-shadow(0 0 6px #0ff)
-}
-
-@media(min-width:768px){
-.grid{grid-template-columns:repeat(4,1fr)}
-.testi-grid img{height:150px}
+  color:#00ffff;
+  font-size:30px;
+  text-decoration:none;
 }
 </style>
 </head>
+
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-<h1>Selamat Datang<br>di Website Kebutuhan Fish It</h1>
-</div>
-
-<!-- AUDIO -->
-<audio id="welcomeSound">
-<source src="https://files.catbox.moe/atdzi4.mp3" type="audio/mpeg">
+<!-- AUDIO OTOMATIS -->
+<audio autoplay>
+  <source src="https://files.catbox.moe/atdzi4.mp3" type="audio/mpeg">
 </audio>
 
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-<div class="burger" onclick="toggleMenu()">☰</div>
+<header>
+  <div class="burger" onclick="toggleMenu()">☰</div>
+  <div class="search">
+    <input type="text" placeholder="Cari produk fish it...">
+  </div>
+</header>
 
-<div class="menu" id="menu">
-<a onclick="showHome()">Home</a>
-<a onclick="showHome()">Produk</a>
-<a onclick="showTestimoni()">Testimoni</a>
-<a onclick="showKontak()">Kontak</a>
-</div>
+<nav id="menu">
+  <a href="#" onclick="showPage('home')">Home</a>
+  <a href="#" onclick="showPage('testimoni')">Testimoni</a>
+  <a href="#" onclick="showPage('kontak')">Kontak</a>
+</nav>
+
+<main>
 
 <!-- HOME -->
-<div id="homePage">
-<div class="search">
-<input id="search" placeholder="Cari produk..." onkeyup="cari()">
-</div>
+<section id="home">
+  <div class="grid">
+    <div class="card">
+      <div class="card-img"></div>
+      <h4>Lampu LED Aquascape</h4>
+      <div class="price">Rp 200.000</div>
+      <button onclick="beli()">Beli</button>
+    </div>
 
-<div class="grid">
-<div class="card item">
-<img src="p1.jpg">
-<h3>Lampu LED Aquascape</h3>
-<p class="price">Rp 200.000</p>
-<div class="buy" onclick="beli('Lampu LED Aquascape')">Beli</div>
-</div>
+    <div class="card">
+      <div class="card-img"></div>
+      <h4>Pakan Ikan Premium</h4>
+      <div class="price">Rp 45.000</div>
+      <button onclick="beli()">Beli</button>
+    </div>
 
-<div class="card item">
-<img src="p2.jpg">
-<h3>Pakan Ikan Premium</h3>
-<p class="price">Rp 45.000</p>
-<div class="buy" onclick="beli('Pakan Ikan Premium')">Beli</div>
-</div>
+    <div class="card">
+      <div class="card-img"></div>
+      <h4>Pompa Aquarium</h4>
+      <div class="price">Rp 120.000</div>
+      <button onclick="beli()">Beli</button>
+    </div>
 
-<div class="card item">
-<img src="p3.jpg">
-<h3>Pompa Aquarium</h3>
-<p class="price">Rp 120.000</p>
-<div class="buy" onclick="beli('Pompa Aquarium')">Beli</div>
-</div>
-
-<div class="card item">
-<img src="p4.jpg">
-<h3>Filter Aquarium</h3>
-<p class="price">Rp 150.000</p>
-<div class="buy" onclick="beli('Filter Aquarium')">Beli</div>
-</div>
-</div>
-</div>
+    <div class="card">
+      <div class="card-img"></div>
+      <h4>Filter Aquarium</h4>
+      <div class="price">Rp 150.000</div>
+      <button onclick="beli()">Beli</button>
+    </div>
+  </div>
+</section>
 
 <!-- TESTIMONI -->
-<div id="testimoniPage" class="page">
-<h2>Testimoni Pembeli</h2>
-<div class="testi-grid">
-<img src="testi1.jpg">
-<img src="testi2.jpg">
-<img src="testi3.jpg">
-<img src="testi4.jpg">
-</div>
-</div>
+<section id="testimoni" style="display:none">
+  <h3 style="margin-bottom:15px">Testimoni Pelanggan</h3>
+  <div class="testi-grid">
+    <div class="testi-img"></div>
+    <div class="testi-img"></div>
+    <div class="testi-img"></div>
+    <div class="testi-img"></div>
+  </div>
+</section>
 
 <!-- KONTAK -->
-<div id="kontakPage" class="page">
-<h2>Hubungi Kami</h2>
-<button class="contact-btn" onclick="toggleContact()">Tampilkan Kontak</button>
+<section id="kontak" style="display:none;text-align:center">
+  <h3>Hubungi Kami</h3>
+  <div class="contact-icons">
+    <a href="https://wa.me/6281234567890" target="_blank">🟢</a>
+    <a href="https://tiktok.com" target="_blank">🎵</a>
+  </div>
+</section>
 
-<div class="contact-icons" id="contactIcons">
-<a href="https://wa.me/6281234567890" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> WhatsApp
-</a>
-<a href="https://www.tiktok.com/@yanzxstore" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/3046/3046127.png"> TikTok
-</a>
-</div>
-</div>
+</main>
 
 <script>
-const NOMOR_WHATSAPP="6281234567890";
-const audio=document.getElementById("welcomeSound");
-
-document.addEventListener("click",()=>{
-audio.play().catch(()=>{});
-},{once:true});
-
-const menu=document.getElementById("menu");
-const overlay=document.getElementById("overlay");
-const homePage=document.getElementById("homePage");
-const testiPage=document.getElementById("testimoniPage");
-const kontakPage=document.getElementById("kontakPage");
-
 function toggleMenu(){
-menu.classList.toggle("show");
-overlay.classList.toggle("show");
+  document.getElementById("menu").classList.toggle("active");
 }
-function hideAll(){
-homePage.style.display="none";
-testiPage.style.display="none";
-kontakPage.style.display="none";
+
+function showPage(page){
+  document.querySelectorAll("section").forEach(s=>s.style.display="none");
+  document.getElementById(page).style.display="block";
+  toggleMenu();
 }
-function showHome(){
-hideAll();homePage.style.display="block";
-toggleMenu();window.scrollTo(0,0);
-}
-function showTestimoni(){
-hideAll();testiPage.style.display="block";
-toggleMenu();window.scrollTo(0,0);
-}
-function showKontak(){
-hideAll();kontakPage.style.display="block";
-toggleMenu();window.scrollTo(0,0);
-}
-function toggleContact(){
-const c=document.getElementById("contactIcons");
-c.style.display=c.style.display==="flex"?"none":"flex";
-}
-function cari(){
-let v=search.value.toLowerCase();
-document.querySelectorAll(".item").forEach(i=>{
-i.style.display=i.innerText.toLowerCase().includes(v)?"block":"none";
-});
-}
-function beli(nama){
-const pesan=encodeURIComponent("Halo, saya mau beli:\n"+nama);
-window.open(`https://wa.me/${NOMOR_WHATSAPP}?text=${pesan}`,"_blank");
+
+function beli(){
+  window.open("https://wa.me/6281234567890","_blank");
 }
 </script>
 
