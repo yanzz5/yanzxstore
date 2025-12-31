@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yanzx Store - Fish It Roblox</title>
 
-<!-- FAVICON -->
-<link rel="icon" type="image/jpeg" href="https://files.catbox.moe/88pd47.jpeg">
+<link rel="icon" href="https://files.catbox.moe/88pd47.jpeg">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
@@ -20,41 +19,42 @@ object-fit:cover;z-index:-2}
 
 /* INTRO */
 #intro{
-position:fixed;inset:0;background:#000;
+position:fixed;inset:0;
 display:flex;align-items:center;justify-content:center;
-z-index:2000;animation:fadeOut 1s forwards 3s}
-#intro h1{color:#0ff;text-align:center;font-size:22px}
+background:#000;z-index:9999;
+animation:fadeOut 1s forwards 3s}
+#intro h1{color:#0ff;font-size:22px;text-align:center}
 @keyframes fadeOut{to{opacity:0;visibility:hidden}}
 
 /* BURGER */
 .burger{
 position:fixed;top:15px;left:15px;
-font-size:26px;color:#0ff;z-index:1002;cursor:pointer}
+font-size:28px;color:#0ff;z-index:1001;cursor:pointer}
 
 /* MENU */
 .menu{
-position:fixed;top:60px;left:-220px;width:200px;height:100%;
-background:#050015;padding:20px;transition:.3s;z-index:1001}
+position:fixed;top:0;left:-230px;
+width:220px;height:100%;
+background:#050015;padding:20px;
+transition:.3s;z-index:1000}
 .menu a{
-display:block;color:#0ff;text-decoration:none;margin:15px 0}
+display:block;color:#0ff;
+margin:15px 0;text-decoration:none;font-size:16px}
 .menu.show{left:0}
-.overlay{
-position:fixed;inset:0;background:rgba(0,0,0,.5);
-display:none;z-index:1000}
-.overlay.show{display:block}
 
 /* SEARCH */
 .search{text-align:center;margin:80px 0 15px}
 .search input{
-width:85%;max-width:360px;padding:12px;
+width:90%;max-width:360px;padding:12px;
 border-radius:25px;border:none;
-background:rgba(10,2,32,.8);color:#0ff;text-align:center}
+background:rgba(10,2,32,.8);color:#0ff}
 
 /* FILTER */
 .filter{text-align:center;margin-bottom:15px}
 .filter button{
-margin:5px;padding:8px 18px;border-radius:20px;
-border:1px solid #0ff;background:none;color:#0ff}
+margin:5px;padding:8px 18px;
+border-radius:20px;border:1px solid #0ff;
+background:none;color:#0ff}
 
 /* GRID */
 .grid{
@@ -64,30 +64,34 @@ gap:14px;padding:15px}
 .grid{grid-template-columns:repeat(4,1fr)}}
 
 .card{
-background:rgba(10,2,32,.5);border:1px solid #0ff;
-border-radius:16px;padding:10px;cursor:pointer}
-.card img{width:100%;height:120px;object-fit:cover;border-radius:12px}
+background:rgba(10,2,32,.5);
+border:1px solid rgba(0,255,255,.4);
+border-radius:16px;padding:10px;
+cursor:pointer}
+.card img{
+width:100%;height:120px;
+object-fit:cover;border-radius:12px}
 .card h3{font-size:13px;margin:8px 0}
 .price{color:#00ff88;font-weight:bold}
-.buy{margin-top:8px;background:#0ff;color:#000;
-padding:8px;border-radius:10px;text-align:center}
-
-/* PAGE */
-.page{display:none;padding:25px;text-align:center}
 
 /* DETAIL */
 #detail{
 display:none;position:fixed;inset:0;
 background:rgba(0,0,0,.85);
-z-index:1500;align-items:center;justify-content:center}
+z-index:2000;align-items:center;justify-content:center}
 #detailBox{
-background:#050015;padding:20px;border-radius:16px;
-max-width:360px;width:90%;text-align:center}
-#detailBox img{width:100%;border-radius:12px}
-.btn{margin-top:10px;padding:10px 25px;border-radius:20px;
+background:#050015;
+padding:20px;border-radius:16px;
+width:90%;max-width:360px;text-align:center}
+#detailBox img{
+width:100%;border-radius:12px;margin-bottom:10px}
+.btn{
+margin-top:10px;
+padding:10px 25px;
+border-radius:25px;
 border:none;font-weight:bold}
-.btn-beli{background:#0ff;color:#000}
-.btn-close{background:none;color:#0ff}
+.btn.buy{background:#0ff;color:#000}
+.btn.close{background:none;color:#0ff}
 </style>
 </head>
 
@@ -104,47 +108,33 @@ border:none;font-weight:bold}
 <h1>Selamat Datang di Yanzx Store<br>Fish It Roblox</h1>
 </div>
 
-<!-- AUDIO -->
-<audio id="welcome">
+<audio id="welcome" autoplay>
 <source src="https://files.catbox.moe/atdzi4.mp3" type="audio/mpeg">
 </audio>
 
-<!-- NAV -->
-<div class="burger" onclick="toggleMenu()">☰</div>
-<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+<!-- BURGER MENU -->
+<div class="burger" onclick="menu.classList.toggle('show')">☰</div>
 <div class="menu" id="menu">
-<a onclick="showPage('home')">Home</a>
-<a onclick="showPage('home')">Produk</a>
-<a onclick="showPage('about')">Tentang</a>
-<a onclick="showPage('contact')">Kontak</a>
+<a onclick="showHome()">Home</a>
+<a onclick="showHome()">Produk</a>
+<a onclick="alert('Yanzx Store adalah toko kebutuhan Fish It Roblox')">Tentang</a>
+<a onclick="window.open('https://wa.me/62882001163626')">Kontak</a>
 </div>
 
 <!-- HOME -->
-<div id="home" class="page" style="display:block">
+<div id="home">
 <div class="search">
 <input id="search" placeholder="Cari produk..." onkeyup="cari()">
 </div>
+
 <div class="filter">
-<button onclick="filterProduk('all')">SEMUA</button>
-<button onclick="filterProduk('item')">ITEM</button>
-<button onclick="filterProduk('akun')">AKUN</button>
-<button onclick="filterProduk('boost')">BOOST</button>
-</div>
-<div class="grid" id="produkGrid"></div>
+<button onclick="filter('all')">SEMUA</button>
+<button onclick="filter('item')">ITEM</button>
+<button onclick="filter('akun')">AKUN</button>
+<button onclick="filter('boost')">BOOST</button>
 </div>
 
-<!-- ABOUT -->
-<div id="about" class="page">
-<h2>Tentang Yanzx Store</h2>
-<p>Menjual kebutuhan game Fish It Roblox terpercaya, cepat & aman.</p>
-</div>
-
-<!-- CONTACT -->
-<div id="contact" class="page">
-<h2>Kontak</h2>
-<a style="color:#0ff" href="https://wa.me/62882001163626" target="_blank">
-WhatsApp Admin
-</a>
+<div class="grid" id="grid"></div>
 </div>
 
 <!-- DETAIL -->
@@ -152,77 +142,104 @@ WhatsApp Admin
 <div id="detailBox">
 <img id="dImg">
 <h3 id="dNama"></h3>
-<p id="dDesc"></p>
-<p class="price" id="dHarga"></p>
-<button class="btn btn-beli" onclick="beli()">Beli</button><br>
-<button class="btn btn-close" onclick="tutup()">Tutup</button>
+<p id="dHarga" class="price"></p>
+<p id="dDesk"></p>
+<button class="btn buy" onclick="beli()">Beli via WhatsApp</button><br>
+<button class="btn close" onclick="detail.style.display='none'">Tutup</button>
 </div>
 </div>
 
 <script>
-/* AUDIO */
-let played=false;
-document.addEventListener("click",()=>{
-if(!played){played=true;welcome.play().catch(()=>{})}
-});
-
-/* MENU */
-function toggleMenu(){
-menu.classList.toggle("show");
-overlay.classList.toggle("show");
-}
-function showPage(p){
-document.querySelectorAll(".page").forEach(x=>x.style.display="none");
-document.getElementById(p).style.display="block";
-toggleMenu();
-}
-
-/* DATA PRODUK + DESKRIPSI */
 const produk=[
-["boost","Boost X2 1 Jam","15.000","Melipatgandakan XP 2x selama 1 jam.","https://files.catbox.moe/m21kcr.jpg"],
-["boost","Boost X4 2 Jam","18.000","XP 4x selama 2 jam.","https://files.catbox.moe/e136l1.jpg"],
-["item","Item VIP+HOKI","50.000","Menambah hoki & bonus drop.","https://files.catbox.moe/1qjmey.jpg"],
-["akun","Akun Fish It Sultan","80.000","Akun siap main dengan item premium.","https://files.catbox.moe/fj7j4i.jpg"]
+
+// ===== BOOST (8) =====
+["boost","Boost X2 1 Jam","15.000","Melipatgandakan XP 2x selama 1 jam","https://files.catbox.moe/m21kcr.jpg"],
+["boost","Boost X4 2 Jam","30.000","XP 4x mempercepat level","https://files.catbox.moe/e136l1.jpg"],
+["boost","Boost X8 3 Jam","70.000","Level naik sangat cepat","https://files.catbox.moe/62b2wa.jpg"],
+["boost","Boost X8 6 Jam","130.000","Grinding maksimal","https://files.catbox.moe/62b2wa.jpg"],
+["boost","Boost X8 12 Jam","250.000","Cocok event panjang","https://files.catbox.moe/62b2wa.jpg"],
+["boost","Boost X8 24 Jam","280.000","Push level seharian","https://files.catbox.moe/62b2wa.jpg"],
+["boost","Boost Event","25.000","Khusus event Fish It","https://files.catbox.moe/fj7j4i.jpg"],
+["boost","Boost Level Instan","35.000","Langsung naik level","https://files.catbox.moe/fj7j4i.jpg"],
+
+// ===== ITEM (20) =====
+["item","Item VIP","50.000","Bonus loot & XP","https://files.catbox.moe/1qjmey.jpg"],
+["item","Item Mutasi","35.000","Mutasi ikan","https://files.catbox.moe/3tbzra.jpg"],
+["item","Item Luck Lanjutan","60.000","Drop rare lebih sering","https://files.catbox.moe/5qxjls.jpg"],
+["item","Item Luck Ekstra","30.000","Tambah keberuntungan","https://files.catbox.moe/emsxwr.jpg"],
+["item","Item EXP Ganda","65.000","EXP dua kali lipat","https://files.catbox.moe/utb06r.jpg"],
+["item","Perahu Melayang","25.000","Mobilitas cepat","https://files.catbox.moe/atay2a.jpg"],
+["item","Jual Dimana Saja","35.000","Jual ikan di mana pun","https://files.catbox.moe/2106kg.jpg"],
+["item","Luck Kecil","20.000","Bonus luck kecil","https://files.catbox.moe/khjvuj.jpg"],
+["item","Paket Perahu Hiper","110.000","Perahu tercepat","https://files.catbox.moe/5gy769.jpg"],
+["item","Crate Christmas","35.000","Item event natal","https://files.catbox.moe/vutefk.jpg"],
+["item","Crate Elderwood","25.000","Tema elderwood","https://files.catbox.moe/fs4xuf.jpg"],
+["item","Crate Luxury","25.000","Item mewah","https://files.catbox.moe/i2ya1j.jpg"],
+["item","Crate Enchanted","25.000","Item enchant","https://files.catbox.moe/eig2nz.jpg"],
+["item","Crate Ocean","25.000","Tema laut","https://files.catbox.moe/eszogq.jpg"],
+["item","Rod Premium","40.000","Rod kuat","https://files.catbox.moe/fj7j4i.jpg"],
+["item","Rod Sultan","70.000","Rod terbaik","https://files.catbox.moe/fj7j4i.jpg"],
+["item","Umpan Rare","20.000","Tarik ikan langka","https://files.catbox.moe/fj7j4i.jpg"],
+["item","Umpan Epic","35.000","Tarik ikan epic","https://files.catbox.moe/fj7j4i.jpg"],
+["item","Paket Event","50.000","Isi event lengkap","https://files.catbox.moe/fj7j4i.jpg"],
+["item","Item Kolektor","90.000","Item koleksi","https://files.catbox.moe/fj7j4i.jpg"],
+
+// ===== AKUN (10) =====
+["akun","Akun Starter","30.000","Akun awal siap main","https://files.catbox.moe/fj7j4i.jpg"],
+["akun","Akun Medium","45.000","Level menengah","https://files.catbox.moe/fj7j4i.jpg"],
+["akun","Akun Pro","60.000","Level tinggi","https://files.catbox.moe/fj7j4i.jpg"],
+["akun","Akun Sultan","80.000","Item premium","https://files.catbox.moe/fj7j4i.jpg"],
+["akun","Akun Full Item","120.000","Lengkap item","https://files.catbox.moe/fj7j4i.jpg"],
+["akun","Akun Event","70.000","Event ready","https://files.catbox.moe/fj7j4i.jpg"],
+["akun","Akun VIP","150.000","VIP permanen","https://files.catbox.moe/fj7j4i.jpg"],
+["akun","Akun Rare","95.000","Item langka","https://files.catbox.moe/fj7j4i.jpg"],
+["akun","Akun Legend","180.000","Akun top tier","https://files.catbox.moe/fj7j4i.jpg"],
+["akun","Akun Max Level","250.000","Level maksimal","https://files.catbox.moe/fj7j4i.jpg"]
 ];
 
-/* RENDER */
-const grid=document.getElementById("produkGrid");
-let dipilih="";
+const grid=document.getElementById("grid");
+let selected="";
+
 produk.forEach(p=>{
 grid.innerHTML+=`
-<div class="card item" data-kategori="${p[0]}"
-onclick="detail('${p[1]}','${p[2]}','${p[3]}','${p[4]}')">
+<div class="card item" data-kat="${p[0]}"
+onclick="openDetail('${p[1]}','${p[2]}','${p[3]}','${p[4]}')">
 <img src="${p[4]}">
 <h3>${p[1]}</h3>
 <p class="price">Rp ${p[2]}</p>
-<div class="buy">Detail</div>
 </div>`;
 });
 
-/* DETAIL */
-function detail(n,h,d,i){
-dipilih=n;
-dImg.src=i;dNama.innerText=n;
-dDesc.innerText=d;dHarga.innerText="Rp "+h;
+function openDetail(n,h,d,i){
+selected=n;
+dImg.src=i;
+dNama.innerText=n;
+dHarga.innerText="Rp "+h;
+dDesk.innerText=d;
 detail.style.display="flex";
 }
-function tutup(){detail.style.display="none";}
+
 function beli(){
 window.open("https://wa.me/62882001163626?text="+
-encodeURIComponent("Halo Min, saya mau beli "+dipilih));
+encodeURIComponent("Halo Min, saya mau beli "+selected));
 }
 
-/* SEARCH & FILTER */
 function cari(){
 let v=search.value.toLowerCase();
 document.querySelectorAll(".item").forEach(i=>{
 i.style.display=i.innerText.toLowerCase().includes(v)?"block":"none";
 });
 }
-function filterProduk(k){
+
+function filter(k){
 document.querySelectorAll(".item").forEach(i=>{
-i.style.display=(k==="all"||i.dataset.kategori===k)?"block":"none";
+i.style.display=(k==="all"||i.dataset.kat===k)?"block":"none";
 });
+}
+
+function showHome(){
+menu.classList.remove("show");
+window.scrollTo(0,0);
 }
 </script>
 
