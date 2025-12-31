@@ -19,7 +19,10 @@ z-index:2000;animation:fadeOut 1s ease forwards;animation-delay:2s
 @keyframes fadeOut{to{opacity:0;visibility:hidden}}
 
 /* BURGER */
-.burger{position:fixed;top:15px;left:15px;font-size:26px;color:#0ff;cursor:pointer;z-index:1002}
+.burger{
+position:fixed;top:15px;left:15px;
+font-size:26px;color:#0ff;cursor:pointer;z-index:1002
+}
 
 /* MENU */
 .menu{
@@ -30,25 +33,37 @@ background:#060015;padding:20px;transition:.3s;z-index:1001
 .menu.show{left:0}
 
 /* OVERLAY */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:1000}
+.overlay{
+position:fixed;inset:0;background:rgba(0,0,0,.5);
+display:none;z-index:1000
+}
 .overlay.show{display:block}
 
 /* SEARCH */
 .search{text-align:center;margin:25px 0}
 .search input{
-width:85%;max-width:350px;padding:10px;border:none;border-radius:20px;
+width:85%;max-width:350px;padding:10px;
+border:none;border-radius:20px;
 background:#0a0220;color:#0ff;text-align:center
 }
 
 /* PRODUK */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:15px}
-.card{background:#0a0220;border-radius:12px;padding:8px}
-.card img{width:100%;height:110px;object-fit:cover;border-radius:8px}
+.grid{
+display:grid;grid-template-columns:repeat(2,1fr);
+gap:10px;padding:15px
+}
+.card{
+background:#0a0220;border-radius:12px;padding:8px
+}
+.card img{
+width:100%;height:110px;object-fit:cover;border-radius:8px
+}
 .card h3{font-size:13px;margin:6px 0}
 .price{color:#00ff88;font-size:13px;font-weight:bold}
 .buy{
-display:block;margin-top:6px;background:#0ff;color:#000;text-align:center;
-padding:6px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:bold
+display:block;margin-top:6px;background:#0ff;color:#000;
+text-align:center;padding:6px;border-radius:6px;
+font-size:12px;font-weight:bold;cursor:pointer
 }
 
 /* PAGE */
@@ -56,16 +71,22 @@ padding:6px;border-radius:6px;text-decoration:none;font-size:12px;font-weight:bo
 .page h2{color:#0ff;margin-bottom:15px}
 
 /* TESTIMONI */
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.testi-grid{
+display:grid;grid-template-columns:repeat(3,1fr);gap:10px
+}
 .testi-grid img{
-width:100%;height:100px;object-fit:cover;border-radius:10px;border:1px solid #0ff
+width:100%;height:100px;object-fit:cover;
+border-radius:10px;border:1px solid #0ff
 }
 
 /* KONTAK */
 .contact-box{
-background:#0a0220;border-radius:15px;padding:20px;margin:10px auto;max-width:300px
+background:#0a0220;border-radius:15px;
+padding:20px;margin:10px auto;max-width:300px
 }
-.contact-box a{display:block;color:#0ff;text-decoration:none;margin:10px 0;font-size:14px}
+.contact-box a{
+display:block;color:#0ff;text-decoration:none;margin:10px 0
+}
 
 @media(min-width:768px){
 .grid{grid-template-columns:repeat(4,1fr)}
@@ -77,8 +98,13 @@ background:#0a0220;border-radius:15px;padding:20px;margin:10px auto;max-width:30
 
 <!-- INTRO -->
 <div id="intro">
-  <h1>Selamat Datang<br>di Website Kebutuhan Fish It</h1>
+<h1>Selamat Datang<br>di Website Kebutuhan Fish It</h1>
 </div>
+
+<!-- AUDIO SAMBUTAN -->
+<audio id="welcomeSound" preload="auto">
+<source src="https://files.catbox.moe/atdzi4.mp3" type="audio/mpeg">
+</audio>
 
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 <div class="burger" onclick="toggleMenu()">☰</div>
@@ -92,102 +118,108 @@ background:#0a0220;border-radius:15px;padding:20px;margin:10px auto;max-width:30
 
 <!-- HOME -->
 <div id="homePage">
-  <div class="search">
-    <input id="search" placeholder="Cari produk..." onkeyup="cari()">
-  </div>
-
-  <div class="grid">
-    <div class="card item">
-      <img src="p1.jpg">
-      <h3>Lampu LED Aquascape</h3>
-      <p class="price">Rp 200.000</p>
-      <a class="buy" onclick="beli('Lampu LED Aquascape')">Beli</a>
-    </div>
-
-    <div class="card item">
-      <img src="p2.jpg">
-      <h3>Pakan Ikan Premium</h3>
-      <p class="price">Rp 45.000</p>
-      <a class="buy" onclick="beli('Pakan Ikan Premium')">Beli</a>
-    </div>
-
-    <div class="card item">
-      <img src="p3.jpg">
-      <h3>Pompa Aquarium</h3>
-      <p class="price">Rp 120.000</p>
-      <a class="buy" onclick="beli('Pompa Aquarium')">Beli</a>
-    </div>
-
-    <div class="card item">
-      <img src="p4.jpg">
-      <h3>Filter Aquarium</h3>
-      <p class="price">Rp 150.000</p>
-      <a class="buy" onclick="beli('Filter Aquarium')">Beli</a>
-    </div>
-  </div>
+<div class="search">
+<input id="search" placeholder="Cari produk..." onkeyup="cari()">
 </div>
 
-<!-- TESTIMONI PAGE -->
+<div class="grid">
+<div class="card item">
+<img src="p1.jpg">
+<h3>Lampu LED Aquascape</h3>
+<p class="price">Rp 200.000</p>
+<div class="buy" onclick="beli('Lampu LED Aquascape')">Beli</div>
+</div>
+
+<div class="card item">
+<img src="p2.jpg">
+<h3>Pakan Ikan Premium</h3>
+<p class="price">Rp 45.000</p>
+<div class="buy" onclick="beli('Pakan Ikan Premium')">Beli</div>
+</div>
+
+<div class="card item">
+<img src="p3.jpg">
+<h3>Pompa Aquarium</h3>
+<p class="price">Rp 120.000</p>
+<div class="buy" onclick="beli('Pompa Aquarium')">Beli</div>
+</div>
+
+<div class="card item">
+<img src="p4.jpg">
+<h3>Filter Aquarium</h3>
+<p class="price">Rp 150.000</p>
+<div class="buy" onclick="beli('Filter Aquarium')">Beli</div>
+</div>
+</div>
+</div>
+
+<!-- TESTIMONI -->
 <div id="testimoniPage" class="page">
-  <h2>Testimoni Pembeli</h2>
-  <div class="testi-grid">
-    <img src="testi1.jpg">
-    <img src="testi2.jpg">
-    <img src="testi3.jpg">
-    <img src="testi4.jpg">
-  </div>
+<h2>Testimoni Pembeli</h2>
+<div class="testi-grid">
+<img src="testi1.jpg">
+<img src="testi2.jpg">
+<img src="testi3.jpg">
+<img src="testi4.jpg">
+</div>
 </div>
 
-<!-- KONTAK PAGE -->
+<!-- KONTAK -->
 <div id="kontakPage" class="page">
-  <h2>Hubungi Kami</h2>
-  <div class="contact-box">
-    <a href="https://wa.me/6281234567890" target="_blank">📱 WhatsApp: 0812-3456-7890</a>
-    <a href="https://www.tiktok.com/@yanzxstore" target="_blank">🎵 TikTok: @yanzxstore</a>
-  </div>
+<h2>Hubungi Kami</h2>
+<div class="contact-box">
+<a href="https://wa.me/6281234567890" target="_blank">📱 WhatsApp</a>
+<a href="https://www.tiktok.com/@yanzxstore" target="_blank">🎵 TikTok</a>
+</div>
 </div>
 
 <script>
-const NOMOR_WHATSAPP = "6281234567890"; // GANTI DI SINI
+const NOMOR_WHATSAPP="6281234567890";
 
-const menu=document.getElementById('menu');
-const overlay=document.getElementById('overlay');
-const homePage=document.getElementById('homePage');
-const testiPage=document.getElementById('testimoniPage');
-const kontakPage=document.getElementById('kontakPage');
+const menu=document.getElementById("menu");
+const overlay=document.getElementById("overlay");
+const homePage=document.getElementById("homePage");
+const testiPage=document.getElementById("testimoniPage");
+const kontakPage=document.getElementById("kontakPage");
+const audio=document.getElementById("welcomeSound");
+
+/* SOUND – LANGSUNG SAMBUT */
+window.addEventListener("load",()=>{
+audio.play().catch(()=>{
+document.body.addEventListener("click",()=>audio.play(),{once:true});
+});
+});
 
 function toggleMenu(){
-  menu.classList.toggle('show');
-  overlay.classList.toggle('show');
+menu.classList.toggle("show");
+overlay.classList.toggle("show");
 }
 function hideAll(){
-  homePage.style.display="none";
-  testiPage.style.display="none";
-  kontakPage.style.display="none";
+homePage.style.display="none";
+testiPage.style.display="none";
+kontakPage.style.display="none";
 }
 function showHome(){
-  hideAll(); homePage.style.display="block";
-  toggleMenu(); window.scrollTo(0,0);
+hideAll();homePage.style.display="block";
+toggleMenu();window.scrollTo(0,0);
 }
 function showTestimoni(){
-  hideAll(); testiPage.style.display="block";
-  toggleMenu(); window.scrollTo(0,0);
+hideAll();testiPage.style.display="block";
+toggleMenu();window.scrollTo(0,0);
 }
 function showKontak(){
-  hideAll(); kontakPage.style.display="block";
-  toggleMenu(); window.scrollTo(0,0);
+hideAll();kontakPage.style.display="block";
+toggleMenu();window.scrollTo(0,0);
 }
 function cari(){
-  let v=search.value.toLowerCase();
-  document.querySelectorAll('.item').forEach(i=>{
-    i.style.display=i.innerText.toLowerCase().includes(v)?"block":"none";
-  });
+let v=search.value.toLowerCase();
+document.querySelectorAll(".item").forEach(i=>{
+i.style.display=i.innerText.toLowerCase().includes(v)?"block":"none";
+});
 }
-function beli(namaProduk){
-  const pesan = encodeURIComponent(
-    "Halo, saya mau beli produk:\n- " + namaProduk
-  );
-  window.open(`https://wa.me/${NOMOR_WHATSAPP}?text=${pesan}`,'_blank');
+function beli(nama){
+const pesan=encodeURIComponent("Halo, saya mau beli:\n"+nama);
+window.open(`https://wa.me/${NOMOR_WHATSAPP}?text=${pesan}`,"_blank");
 }
 </script>
 
