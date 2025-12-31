@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yanzx Store - Fish It Roblox</title>
 
+<!-- FAVICON -->
+<link rel="icon" type="image/jpeg" href="https://files.catbox.moe/88pd47.jpeg">
+<link rel="shortcut icon" type="image/jpeg" href="https://files.catbox.moe/88pd47.jpeg">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#000;color:#fff}
@@ -19,7 +23,8 @@ border:none;background:#050015;color:#0ff;text-align:center}
 .filter{text-align:center;margin-bottom:15px}
 .filter button{
 margin:5px;padding:8px 18px;border-radius:20px;
-border:1px solid #0ff;background:none;color:#0ff;font-weight:bold}
+border:1px solid #0ff;background:none;color:#0ff;font-weight:bold;
+cursor:pointer}
 
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:15px}
@@ -34,7 +39,7 @@ padding:10px;cursor:pointer}
 .price{color:#00ff88;font-weight:bold}
 .buy{margin-top:8px;background:#0ff;color:#000;padding:8px;border-radius:10px;text-align:center;font-weight:bold}
 
-/* DETAIL POPUP */
+/* DETAIL */
 #detailProduk{
 display:none;position:fixed;inset:0;
 background:rgba(0,0,0,.85);
@@ -75,7 +80,7 @@ max-width:360px;width:90%;text-align:center}
 </div>
 
 <script>
-// ================= DATA PRODUK (UTUH & TIDAK DIUBAH) =================
+// ================= DATA PRODUK (TIDAK DIUBAH) =================
 const produk=[
 ["boost","Boost X2 1 Jam","15.000","https://files.catbox.moe/m21kcr.jpg"],
 ["boost","Boost X4 2 Jam","18.000","https://files.catbox.moe/e136l1.jpg"],
@@ -101,7 +106,7 @@ const produk=[
 ["akun","Akun Fish It Full Item","120.000","https://files.catbox.moe/fj7j4i.jpg"]
 ];
 
-// ================= RENDER PRODUK =================
+// ================= RENDER =================
 const grid=document.getElementById("produkGrid");
 let produkDipilih="";
 
@@ -126,8 +131,10 @@ detailProduk.style.display="flex";
 }
 function tutupDetail(){detailProduk.style.display="none";}
 function beliProduk(){
-window.open("https://wa.me/62882001163626?text="+
-encodeURIComponent("Halo Min, saya mau beli "+produkDipilih));
+window.open(
+"https://wa.me/62882001163626?text="+
+encodeURIComponent("Halo Min, saya mau beli "+produkDipilih)
+);
 }
 
 // ================= SEARCH & FILTER =================
