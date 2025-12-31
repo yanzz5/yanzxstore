@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yanzx Store</title>
 
-<link rel="icon" type="image/jpeg" href="https://files.catbox.moe/88pd47.jpeg">
+<link rel="icon" href="https://files.catbox.moe/88pd47.jpeg">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
@@ -21,28 +21,37 @@ z-index:2000;animation:fadeOut 1s ease forwards;animation-delay:2s
 @keyframes fadeOut{to{opacity:0;visibility:hidden}}
 
 /* BURGER */
-.burger{
-position:fixed;top:15px;left:15px;
-font-size:26px;color:#0ff;cursor:pointer;z-index:1002
-}
+.burger{position:fixed;top:15px;left:15px;font-size:26px;color:#0ff;cursor:pointer;z-index:1002}
 
 /* MENU */
 .menu{
 position:fixed;top:60px;left:-220px;width:200px;height:calc(100% - 60px);
 background:#060015;padding:20px;transition:.3s;z-index:1001
 }
-.menu a{
-display:block;color:#0ff;text-decoration:none;
-margin:16px 0;cursor:pointer
-}
+.menu a{display:block;color:#0ff;text-decoration:none;margin:16px 0;cursor:pointer}
 .menu.show{left:0}
 
 /* OVERLAY */
-.overlay{
-position:fixed;inset:0;background:rgba(0,0,0,.5);
-display:none;z-index:1000
-}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:1000}
 .overlay.show{display:block}
+
+/* SEARCH */
+.search{text-align:center;margin:25px 0}
+.search input{
+width:85%;max-width:350px;padding:10px;border:none;border-radius:20px;
+background:#0a0220;color:#0ff;text-align:center
+}
+
+/* PRODUK */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:15px}
+.card{background:#0a0220;border-radius:14px;padding:8px}
+.card img{width:100%;height:110px;object-fit:cover;border-radius:10px}
+.card h3{font-size:13px;margin:6px 0}
+.price{color:#00ff88;font-size:13px;font-weight:bold}
+.buy{
+display:block;margin-top:6px;background:#0ff;color:#000;text-align:center;
+padding:7px;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer
+}
 
 /* PAGE */
 .page{display:none;padding:25px;text-align:center}
@@ -51,17 +60,23 @@ display:none;z-index:1000
 /* TENTANG */
 .about-img{
 width:100%;max-width:320px;border-radius:15px;
-margin:15px auto;display:block;
-box-shadow:0 0 15px #0ff
+margin:15px auto;display:block;box-shadow:0 0 15px #0ff
 }
 .about-text{
-color:#e0e0e0;
-line-height:1.9;
-font-size:17px; /* DIBESARKAN */
-margin-top:18px;
-text-align:justify
+font-size:17px;line-height:1.9;color:#ddd;text-align:justify
 }
 .about-text p{margin-bottom:15px}
+
+/* KONTAK */
+.contact-icons a{
+display:flex;align-items:center;gap:10px;
+color:#0ff;text-decoration:none;margin:12px 0;justify-content:center
+}
+.contact-icons img{width:36px}
+
+@media(min-width:768px){
+.grid{grid-template-columns:repeat(4,1fr)}
+}
 </style>
 </head>
 <body>
@@ -82,43 +97,61 @@ text-align:justify
 <div class="menu" id="menu">
 <a onclick="showHome()">Home</a>
 <a onclick="showHome()">Produk</a>
-<a onclick="showTestimoni()">Testimoni</a>
 <a onclick="showTentang()">Tentang</a>
 <a onclick="showKontak()">Kontak</a>
 </div>
 
 <!-- HOME -->
 <div id="homePage">
-<p style="padding:30px;text-align:center;color:#0ff">
-Halaman utama produk Fish It Roblox
-</p>
+<div class="search">
+<input id="search" placeholder="Cari produk Fish It..." onkeyup="cari()">
 </div>
 
-<!-- TESTIMONI -->
-<div id="testimoniPage" class="page">
-<h2>Testimoni Pembeli</h2>
-<p style="color:#ccc">Testimoni pembeli Fish It Roblox</p>
+<div class="grid">
+<div class="card item">
+<img src="https://files.catbox.moe/88pd47.jpeg">
+<h3>Fish It Boost Roblox</h3>
+<p class="price">Rp 15.000</p>
+<div class="buy" onclick="beli('Fish It Boost Roblox')">Beli</div>
+</div>
+
+<div class="card item">
+<img src="https://files.catbox.moe/88pd47.jpeg">
+<h3>Item Fish It Rare</h3>
+<p class="price">Rp 25.000</p>
+<div class="buy" onclick="beli('Item Fish It Rare')">Beli</div>
+</div>
+
+<div class="card item">
+<img src="https://files.catbox.moe/88pd47.jpeg">
+<h3>Gear Fish It Pro</h3>
+<p class="price">Rp 40.000</p>
+<div class="buy" onclick="beli('Gear Fish It Pro')">Beli</div>
+</div>
+
+<div class="card item">
+<img src="https://files.catbox.moe/88pd47.jpeg">
+<h3>Paket Fish It Lengkap</h3>
+<p class="price">Rp 75.000</p>
+<div class="buy" onclick="beli('Paket Fish It Lengkap')">Beli</div>
+</div>
+</div>
 </div>
 
 <!-- TENTANG -->
 <div id="tentangPage" class="page">
 <h2>Tentang Yanzx Store</h2>
-
 <img src="https://files.catbox.moe/fj7j4i.jpg" class="about-img">
-
 <div class="about-text">
 <p>
-Yanzx Store adalah website yang menyediakan layanan penjualan kebutuhan
-<b>Fish It di game Roblox</b>, khusus untuk pemain yang ingin berkembang lebih
-cepat dan efisien. Kami menyediakan berbagai item pendukung Fish It seperti
-perlengkapan, boost, dan kebutuhan lainnya yang dibutuhkan dalam permainan.
+Yanzx Store adalah website penjualan kebutuhan <b>Fish It di game Roblox</b>.
+Kami menyediakan berbagai item, boost, dan paket Fish It untuk membantu pemain
+naik level lebih cepat dan efisien.
 </p>
-
 <p>
-Website ini dibuat untuk mempermudah pemain Roblox dalam melakukan pemesanan
-secara aman dan cepat melalui WhatsApp. Dengan tampilan bertema gelap neon yang
-ringan dan modern, Yanzx Store hadir sebagai tempat terpercaya untuk memenuhi
-kebutuhan Fish It Roblox dengan pelayanan cepat dan responsif.
+Semua pemesanan dilakukan langsung melalui WhatsApp agar proses cepat, aman,
+dan terpercaya. Yanzx Store hadir dengan tampilan modern bertema neon untuk
+memberikan pengalaman belanja yang nyaman bagi pemain Roblox.
 </p>
 </div>
 </div>
@@ -126,19 +159,26 @@ kebutuhan Fish It Roblox dengan pelayanan cepat dan responsif.
 <!-- KONTAK -->
 <div id="kontakPage" class="page">
 <h2>Hubungi Kami</h2>
-<p style="color:#ccc">WhatsApp & TikTok tersedia</p>
+<div class="contact-icons">
+<a href="https://wa.me/6281234567890" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"> WhatsApp
+</a>
+<a href="https://www.tiktok.com/@yanzxstore" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/3046/3046127.png"> TikTok
+</a>
+</div>
 </div>
 
 <script>
+const NOMOR_WHATSAPP="6281234567890";
 const audio=document.getElementById("welcomeSound");
 document.addEventListener("click",()=>{audio.play().catch(()=>{});},{once:true});
 
 const menu=document.getElementById("menu");
 const overlay=document.getElementById("overlay");
 const homePage=document.getElementById("homePage");
-const testiPage=document.getElementById("testimoniPage");
-const kontakPage=document.getElementById("kontakPage");
 const tentangPage=document.getElementById("tentangPage");
+const kontakPage=document.getElementById("kontakPage");
 
 function toggleMenu(){
 menu.classList.toggle("show");
@@ -146,14 +186,23 @@ overlay.classList.toggle("show");
 }
 function hideAll(){
 homePage.style.display="none";
-testiPage.style.display="none";
-kontakPage.style.display="none";
 tentangPage.style.display="none";
+kontakPage.style.display="none";
 }
 function showHome(){hideAll();homePage.style.display="block";toggleMenu();}
-function showTestimoni(){hideAll();testiPage.style.display="block";toggleMenu();}
 function showTentang(){hideAll();tentangPage.style.display="block";toggleMenu();}
 function showKontak(){hideAll();kontakPage.style.display="block";toggleMenu();}
+
+function cari(){
+let v=search.value.toLowerCase();
+document.querySelectorAll(".item").forEach(i=>{
+i.style.display=i.innerText.toLowerCase().includes(v)?"block":"none";
+});
+}
+function beli(nama){
+const pesan=encodeURIComponent("Halo, saya mau beli:\n"+nama);
+window.open(`https://wa.me/${NOMOR_WHATSAPP}?text=${pesan}`,"_blank");
+}
 </script>
 
 </body>
