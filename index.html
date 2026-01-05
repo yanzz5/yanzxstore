@@ -30,9 +30,12 @@ z-index:1001;cursor:pointer}
 
 /* MENU */
 .menu{
-position:fixed;top:0;left:-240px;
+position:fixed;
+top:0;left:-240px;
 width:220px;height:100%;
-background:#050015;padding:25px;
+background:#050015;
+padding:25px;
+padding-top:80px;
 transition:.3s;z-index:1000}
 .menu a{
 display:block;color:#0ff;
@@ -120,6 +123,8 @@ border-radius:25px;border:none;font-weight:bold}
 <div class="menu" id="menu">
 <a onclick="menu.classList.remove('show')">Home</a>
 <a onclick="menu.classList.remove('show')">Produk</a>
+<a onclick="menu.classList.remove('show')">Tentang</a>
+<a onclick="menu.classList.remove('show')">Testimoni</a>
 <a onclick="window.open('https://wa.me/62882001163626')">Kontak</a>
 </div>
 
@@ -151,25 +156,16 @@ border-radius:25px;border:none;font-weight:bold}
 </div>
 
 <script>
-/* AUDIO FIX – PLAY AFTER CLICK */
+/* AUDIO PLAY AFTER CLICK */
 document.addEventListener("click",()=>{
-  const bgm=document.getElementById("bgm");
-  if(bgm && bgm.paused){
-    bgm.volume=0.6;
-    bgm.play().catch(()=>{});
-  }
+const bgm=document.getElementById("bgm");
+if(bgm && bgm.paused){bgm.volume=0.6;bgm.play().catch(()=>{});}
 },{once:true});
 
-/* BEST SELLER */
-const bestSeller=[
-"Item VIP",
-"Joki Rod Element",
-"Joki Rod Ghosfin",
-"Joki Rod Diamond"
-];
+/* BEST */
+const bestSeller=["Item VIP","Joki Rod Element","Joki Rod Ghosfin","Joki Rod Diamond"];
 
 const produk=[
-/* BOOST */
 ["boost","Boost X2 1 Jam","15.000","XP 2x","https://files.catbox.moe/m21kcr.jpg"],
 ["boost","Boost X4 2 Jam","30.000","XP 4x","https://files.catbox.moe/e136l1.jpg"],
 ["boost","Boost X8 3 Jam","70.000","XP cepat","https://files.catbox.moe/62b2wa.jpg"],
@@ -177,7 +173,6 @@ const produk=[
 ["boost","Boost X8 12 Jam","250.000","Long farm","https://files.catbox.moe/62b2wa.jpg"],
 ["boost","Boost X8 24 Jam","280.000","All day boost","https://files.catbox.moe/62b2wa.jpg"],
 
-/* ITEM + JOKI */
 ["item","Item VIP","50.000","Bonus loot","https://files.catbox.moe/1qjmey.jpg"],
 ["item","Item Mutasi","35.000","Mutasi ikan","https://files.catbox.moe/3tbzra.jpg"],
 ["item","Item Luck Lanjutan","60.000","Drop rare","https://files.catbox.moe/5qxjls.jpg"],
@@ -185,19 +180,11 @@ const produk=[
 ["item","Item EXP Ganda","65.000","EXP double","https://files.catbox.moe/utb06r.jpg"],
 ["item","Perahu Melayang","25.000","Mobilitas","https://files.catbox.moe/atay2a.jpg"],
 ["item","Jual Dimana Saja","35.000","Sell anywhere","https://files.catbox.moe/2106kg.jpg"],
-["item","Luck Kecil","20.000","Luck bonus","https://files.catbox.moe/khjvuj.jpg"],
-["item","Paket Perahu Hiper","110.000","Fast boat","https://files.catbox.moe/5gy769.jpg"],
-["item","Crate Christmas","35.000","Event","https://files.catbox.moe/vutefk.jpg"],
-["item","Crate Elderwood","25.000","Theme","https://files.catbox.moe/fs4xuf.jpg"],
-["item","Crate Luxury","25.000","Luxury","https://files.catbox.moe/i2ya1j.jpg"],
-["item","Crate Enchanted","25.000","Enchant","https://files.catbox.moe/eig2nz.jpg"],
-["item","Crate Ocean","25.000","Ocean","https://files.catbox.moe/eszogq.jpg"],
 
 ["item","Joki Rod Diamond","130.000","Joki Rod Diamond","https://files.catbox.moe/r2nwb5.jpg"],
 ["item","Joki Rod Element","75.000","Joki Rod Element","https://files.catbox.moe/i1liuw.jpg"],
 ["item","Joki Rod Ghosfin","40.000","Joki Rod Ghosfin","https://files.catbox.moe/1katin.jpg"],
 
-/* AKUN */
 ["akun","Akun Starter","30.000","Akun awal","https://files.catbox.moe/fj7j4i.jpg"],
 ["akun","Akun Medium","45.000","Mid game","https://files.catbox.moe/fj7j4i.jpg"],
 ["akun","Akun Pro","60.000","High level","https://files.catbox.moe/fj7j4i.jpg"],
@@ -205,6 +192,14 @@ const produk=[
 ["akun","Akun Premium Ghosfin","95.000","STOK AMAN","https://files.catbox.moe/ot6dr9.jpg"],
 ["akun","Akun Max Level","250.000","Max level","https://files.catbox.moe/fj7j4i.jpg"]
 ];
+
+/* SORT AKUN TERMAHAL → TERMURAH */
+produk.sort((a,b)=>{
+if(a[0]==="akun" && b[0]==="akun"){
+return parseInt(b[2].replace(".",""))-parseInt(a[2].replace(".",""));
+}
+return 0;
+});
 
 const grid=document.getElementById("grid");
 let selected="";
