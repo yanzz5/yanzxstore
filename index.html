@@ -12,10 +12,15 @@ body{color:#fff;overflow-x:hidden}
 
 /* BACKGROUND VIDEO */
 video.bg{
-position:fixed;top:0;left:0;width:100%;height:100%;
+position:fixed;top:0;left:0;
+width:100%;height:100%;
 object-fit:cover;z-index:-2}
 .bg-dark{
-position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:-1}
+position:fixed;inset:0;
+background:rgba(0,0,0,.65);z-index:-1}
+
+/* AUDIO */
+audio{display:none}
 
 /* BURGER */
 .burger{
@@ -48,12 +53,16 @@ margin:5px;padding:8px 18px;
 border-radius:20px;border:1px solid #0ff;
 background:none;color:#0ff}
 
-/* GRID */
+/* GRID – HP 2 KOLOM */
 .grid{
-display:grid;grid-template-columns:repeat(2,1fr);
+display:grid;
+grid-template-columns:repeat(2,1fr);
 gap:14px;padding:15px}
+
+/* PC */
 @media(min-width:768px){
-.grid{grid-template-columns:repeat(4,1fr)}}
+.grid{grid-template-columns:repeat(4,1fr)}
+}
 
 .card{
 position:relative;
@@ -62,7 +71,7 @@ border:1px solid rgba(0,255,255,.4);
 border-radius:16px;padding:10px;
 cursor:pointer}
 .card img{
-width:100%;height:120px;
+width:100%;height:130px;
 object-fit:cover;border-radius:12px}
 .card h3{font-size:13px;margin:8px 0}
 .price{color:#00ff88;font-weight:bold}
@@ -70,23 +79,24 @@ object-fit:cover;border-radius:12px}
 /* BADGE */
 .badge{
 position:absolute;top:8px;left:8px;
-padding:4px 10px;font-size:10px;
-border-radius:12px;font-weight:bold}
+padding:4px 10px;
+font-size:10px;border-radius:12px;
+font-weight:bold}
 .badge.joki{background:#a855f7}
 .badge.best{background:#facc15;color:#000;top:32px}
 
-/* DETAIL FULLSCREEN */
+/* DETAIL FULL */
 #detail{
 display:none;position:fixed;inset:0;
 background:#050015;z-index:3000;
 overflow-y:auto}
 #detailBox{
-padding:20px;max-width:500px;
+padding:20px;max-width:520px;
 margin:60px auto;text-align:center}
 #detailBox img{
 width:100%;border-radius:16px;margin-bottom:15px}
 .btn{
-margin-top:10px;padding:10px 25px;
+margin-top:10px;padding:12px 28px;
 border-radius:25px;border:none;font-weight:bold}
 .btn.buy{background:#0ff;color:#000}
 .btn.close{background:none;color:#0ff}
@@ -98,13 +108,13 @@ border-radius:25px;border:none;font-weight:bold}
 
 <!-- BACKGROUND VIDEO -->
 <video class="bg" autoplay muted loop playsinline>
-  <source src="https://files.catbox.moe/0g4pr6.mp4" type="video/mp4">
+<source src="https://files.catbox.moe/0g4pr6.mp4" type="video/mp4">
 </video>
 <div class="bg-dark"></div>
 
 <!-- AUDIO -->
 <audio autoplay loop>
-  <source src="https://files.catbox.moe/92bod9.mp4" type="audio/mp4">
+<source src="https://files.catbox.moe/92bod9.mp4" type="audio/mp4">
 </audio>
 
 <!-- BURGER -->
@@ -116,7 +126,6 @@ border-radius:25px;border:none;font-weight:bold}
 </div>
 
 <!-- HOME -->
-<div id="home">
 <div class="search">
 <input id="search" placeholder="Cari produk..." onkeyup="cari()">
 </div>
@@ -130,7 +139,6 @@ border-radius:25px;border:none;font-weight:bold}
 </div>
 
 <div class="grid" id="grid"></div>
-</div>
 
 <!-- DETAIL -->
 <div id="detail">
@@ -154,6 +162,7 @@ const bestSeller=[
 ];
 
 const produk=[
+
 // BOOST
 ["boost","Boost X2 1 Jam","15.000","XP 2x","https://files.catbox.moe/m21kcr.jpg"],
 ["boost","Boost X4 2 Jam","30.000","XP 4x","https://files.catbox.moe/e136l1.jpg"],
@@ -171,17 +180,24 @@ const produk=[
 ["item","Perahu Melayang","25.000","Mobilitas","https://files.catbox.moe/atay2a.jpg"],
 ["item","Jual Dimana Saja","35.000","Sell anywhere","https://files.catbox.moe/2106kg.jpg"],
 ["item","Luck Kecil","20.000","Luck bonus","https://files.catbox.moe/khjvuj.jpg"],
+["item","Paket Perahu Hiper","110.000","Fast boat","https://files.catbox.moe/5gy769.jpg"],
+["item","Crate Christmas","35.000","Event","https://files.catbox.moe/vutefk.jpg"],
+["item","Crate Elderwood","25.000","Theme","https://files.catbox.moe/fs4xuf.jpg"],
+["item","Crate Luxury","25.000","Luxury","https://files.catbox.moe/i2ya1j.jpg"],
+["item","Crate Enchanted","25.000","Enchant","https://files.catbox.moe/eig2nz.jpg"],
+["item","Crate Ocean","25.000","Ocean","https://files.catbox.moe/eszogq.jpg"],
 
-["item","Joki Rod Diamond","130.000","Joki rod","https://files.catbox.moe/r2nwb5.jpg"],
-["item","Joki Rod Element","75.000","Joki rod element","https://files.catbox.moe/i1liuw.jpg"],
-["item","Joki Rod Ghosfin","40.000","Unlock Diamond Rod Element","https://files.catbox.moe/1katin.jpg"],
+["item","Joki Rod Diamond","130.000","Joki Rod Diamond","https://files.catbox.moe/r2nwb5.jpg"],
+["item","Joki Rod Element","75.000","Joki Rod Element","https://files.catbox.moe/i1liuw.jpg"],
+["item","Joki Rod Ghosfin","40.000","Joki Rod Ghosfin","https://files.catbox.moe/1katin.jpg"],
 
 // AKUN
 ["akun","Akun Starter","30.000","Akun awal","https://files.catbox.moe/fj7j4i.jpg"],
-["akun","Akun Medium","45.000","Mid","https://files.catbox.moe/fj7j4i.jpg"],
-["akun","Akun Pro","60.000","High","https://files.catbox.moe/fj7j4i.jpg"],
-["akun","Akun Sultan","80.000","Premium","https://files.catbox.moe/fj7j4i.jpg"],
-["akun","Akun Max Level","250.000","Max","https://files.catbox.moe/fj7j4i.jpg"]
+["akun","Akun Medium","45.000","Mid game","https://files.catbox.moe/fj7j4i.jpg"],
+["akun","Akun Pro","60.000","High level","https://files.catbox.moe/fj7j4i.jpg"],
+["akun","Akun Sultan","110.000","STOK YANZ ALL AMAN FREE CEIN FISH IT ON SKIN ROD CORRUPT SECRET MEGA MAXTON ON OP??110+","https://files.catbox.moe/33gh1l.jpg"],
+["akun","Akun Premium Ghosfin","95.000","STOK YANGZ ALL AMAN FREE CEIN FISH IT ROD GHOSFIN SKIN PINK ELDERWOOD AVA BEROBUX BANYAK FISH IT ON AVA MINI ON ANIMASI ADIDAS ON OP??95+","https://files.catbox.moe/ot6dr9.jpg"],
+["akun","Akun Max Level","250.000","Max level","https://files.catbox.moe/fj7j4i.jpg"]
 ];
 
 const grid=document.getElementById("grid");
@@ -203,19 +219,10 @@ ${badge}
 });
 
 function filterJoki(){
-const items=[...document.querySelectorAll(".item")];
-items.forEach(i=>i.style.display="none");
-
-// Joki Diamond Rod Element di atas menu JOKI
-items.forEach(i=>{
-if(i.dataset.name.includes("joki diamond rod element")) i.style.display="block";
-});
-items.forEach(i=>{
-if(i.dataset.name.includes("joki") && !i.dataset.name.includes("joki diamond rod element"))
-i.style.display="block";
+document.querySelectorAll(".item").forEach(i=>{
+i.style.display=i.dataset.name.includes("joki")?"block":"none";
 });
 }
-
 function openDetail(n,h,d,i){
 selected=n;
 dImg.src=i;
@@ -241,9 +248,11 @@ i.style.display=(k==="all"||i.dataset.kat===k)?"block":"none";
 });
 }
 
-/* SWIPE DOWN CLOSE */
+/* SWIPE DOWN */
 let startY=0;
-detail.addEventListener("touchstart",e=>startY=e.touches[0].clientY);
+detail.addEventListener("touchstart",e=>{
+startY=e.touches[0].clientY;
+});
 detail.addEventListener("touchend",e=>{
 if(e.changedTouches[0].clientY-startY>120) closeDetail();
 });
