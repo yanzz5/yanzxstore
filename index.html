@@ -21,7 +21,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* VIDEO */
+/* HERO */
 header{
 height:100vh;
 position:relative;
@@ -111,7 +111,7 @@ padding:10px;
 background:rgba(0,0,0,.5);
 }
 
-/* HATI */
+/* HATI ANIMASI */
 .hearts{
 position:fixed;
 top:0;
@@ -154,9 +154,26 @@ box-shadow:0 0 25px rgba(255,77,109,.6);
 position:fixed;
 bottom:95px;
 right:20px;
-width:320px;
+width:280px;
+background:rgba(0,0,0,.6);
+backdrop-filter:blur(10px);
+padding:15px;
+border-radius:20px;
+color:white;
+z-index:99999;
 display:none;
-z-index:9999;
+}
+
+#musicMenu button{
+width:100%;
+padding:10px;
+border:none;
+border-radius:12px;
+background:#ff4d6d;
+color:white;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
 }
 
 /* FOOTER */
@@ -166,10 +183,10 @@ text-align:center;
 background:rgba(0,0,0,.15);
 }
 
+/* RESPONSIVE */
 @media(max-width:768px){
 .hero h1{font-size:55px;}
 .card img{height:300px;}
-#musicMenu{width:280px;right:10px;}
 }
 </style>
 </head>
@@ -195,88 +212,53 @@ background:rgba(0,0,0,.15);
 <section class="gallery" id="gallery">
 <h2>Galeri Kita 💖</h2>
 
-  <div class="grid">
+<div class="grid">
 
-<div class="card">
-<img src="https://files.catbox.moe/k3waij.jpg">
-<div class="caption">Tatapan favoritku ❤️</div>
-</div>
-
-<div class="card">
-<img src="https://files.catbox.moe/ieefhg.jpg">
-<div class="caption">Manisnya ga ada obat 💕</div>
-</div>
-
-<div class="card">
-<img src="https://files.catbox.moe/uzw6tf.jpg">
-<div class="caption">Kamu selalu bikin nyaman ✨</div>
-</div>
-
-<div class="card">
-<img src="https://files.catbox.moe/vbisdn.jpg">
-<div class="caption">Senyummu candu 😍</div>
-</div>
-
-<div class="card">
-<img src="https://files.catbox.moe/8pyqcq.jpg">
-<div class="caption">Kalau sama kamu rasanya tenang 🤍</div>
-</div>
-
-<div class="card">
-<img src="https://files.catbox.moe/5nlpwi.jpg">
-<div class="caption">Favoritku selamanya 💖</div>
-</div>
-
-<div class="card">
-<img src="https://files.catbox.moe/odnkpf.jpg">
-<div class="caption">Cantik tanpa usaha 🥰</div>
-</div>
-
-<div class="card">
-<img src="https://files.catbox.moe/xvslb4.jpg">
-<div class="caption">Bersamamu semuanya indah 💫</div>
-</div>
-
-<div class="card">
-<img src="https://files.catbox.moe/8c6cmm.jpg">
-<div class="caption">Selalu pengen dekat ❤️</div>
-</div>
-
-<div class="card">
-<img src="https://files.catbox.moe/67vdg9.jpg">
-<div class="caption">Terima kasih sudah hadir 💕</div>
-</div>
-
-<div class="card">
-<img src="https://files.catbox.moe/yn7www.mp4">
-<div class="caption">Kenangan kita ✨</div>
-</div>
-
-<div class="card">
-<img src="https://files.catbox.moe/k3waij.jpg">
-<div class="caption">Selalu kamu ❤️</div>
-</div>
+<div class="card"><img src="https://files.catbox.moe/k3waij.jpg"><div class="caption">Tatapan favoritku ❤️</div></div>
+<div class="card"><img src="https://files.catbox.moe/ieefhg.jpg"><div class="caption">Manisnya ga ada obat 💕</div></div>
+<div class="card"><img src="https://files.catbox.moe/uzw6tf.jpg"><div class="caption">Kamu selalu bikin nyaman ✨</div></div>
+<div class="card"><img src="https://files.catbox.moe/vbisdn.jpg"><div class="caption">Senyummu candu 😍</div></div>
+<div class="card"><img src="https://files.catbox.moe/8pyqcq.jpg"><div class="caption">Kalau sama kamu rasanya tenang 🤍</div></div>
+<div class="card"><img src="https://files.catbox.moe/5nlpwi.jpg"><div class="caption">Favoritku selamanya 💖</div></div>
+<div class="card"><img src="https://files.catbox.moe/odnkpf.jpg"><div class="caption">Cantik tanpa usaha 🥰</div></div>
+<div class="card"><img src="https://files.catbox.moe/xvslb4.jpg"><div class="caption">Bersamamu semuanya indah 💫</div></div>
+<div class="card"><img src="https://files.catbox.moe/8c6cmm.jpg"><div class="caption">Selalu pengen dekat ❤️</div></div>
+<div class="card"><img src="https://files.catbox.moe/67vdg9.jpg"><div class="caption">Terima kasih sudah hadir 💕</div></div>
 
 </div>
+</section>
 
 <section style="padding:80px 20px;text-align:center;">
 <h2 style="font-size:55px;font-family:'Great Vibes',cursive;">Pesan Untuk Kamu 💌</h2>
+
 <p style="max-width:800px;margin:auto;line-height:1.9;">
-Aku akan 
+Aku akan selalu berusaha jadi yang terbaik buat kamu ❤️
+</p>
+</section>
 
-<footer>Dibuat dengan penuh cinta ❤️</footer>
+<footer>
+Dibuat dengan penuh cinta ❤️
+</footer>
 
+<!-- MUSIC -->
 <div id="musicBtn">🎧</div>
 
 <div id="musicMenu">
-<iframe style="border-radius:20px"
-src="https://open.spotify.com/embed/playlist/53TxS2Jb2EwNbV9yl6eyuJ"
-width="100%" height="352" frameborder="0"
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-</iframe>
+
+<h3 style="font-family:'Great Vibes',cursive;font-size:22px;">
+Music ❤️
+</h3>
+
+<audio id="bgMusic" loop>
+<source src="https://files.catbox.moe/30ztdm.m4a" type="audio/mp4">
+</audio>
+
+<button onclick="toggleMusic()">▶ Play / Pause</button>
+
 </div>
 
 <script>
+
 // HATI
 const hearts=document.querySelector(".hearts");
 
@@ -293,14 +275,20 @@ hearts.appendChild(heart);
 // MUSIC TOGGLE
 const musicBtn=document.getElementById("musicBtn");
 const musicMenu=document.getElementById("musicMenu");
+const bgMusic=document.getElementById("bgMusic");
 
 musicBtn.addEventListener("click",()=>{
-if(musicMenu.style.display==="block"){
-musicMenu.style.display="none";
-}else{
-musicMenu.style.display="block";
-}
+musicMenu.style.display =
+musicMenu.style.display==="block" ? "none" : "block";
 });
+
+function toggleMusic(){
+if(bgMusic.paused){
+bgMusic.play();
+}else{
+bgMusic.pause();
+}
+}
 
 // FULLSCREEN VIDEO
 const loveVideo=document.getElementById("loveVideo");
@@ -312,7 +300,8 @@ await loveVideo.requestFullscreen();
 }
 }catch(e){}
 });
+
 </script>
 
 </body>
-</html>
+  </html>
