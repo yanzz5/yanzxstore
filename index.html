@@ -113,7 +113,7 @@ background:rgba(0,0,0,.5);
 font-size:14px;
 }
 
-/* HATI */
+/* HEART */
 .hearts{
 position:fixed;
 top:0;
@@ -152,7 +152,7 @@ z-index:9999;
 box-shadow:0 0 25px rgba(255,77,109,.6);
 }
 
-/* MUSIC MENU (WITH IMAGE BACKGROUND) */
+/* MUSIC MENU */
 #musicMenu{
 position:fixed;
 bottom:95px;
@@ -163,12 +163,9 @@ border-radius:20px;
 z-index:99999;
 display:none;
 overflow:hidden;
-
-/* 🔥 GAMBAR BACKGROUND */
 background:url("https://files.catbox.moe/hqywy2.png") center/cover no-repeat;
 }
 
-/* overlay biar teks tetap kebaca */
 #musicMenu::before{
 content:"";
 position:absolute;
@@ -223,13 +220,6 @@ align-items:center;
 z-index:99999;
 }
 
-.modal-content{
-position:relative;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
 #modalImg{
 max-width:90%;
 max-height:80%;
@@ -265,7 +255,6 @@ cursor:pointer;
 <body>
 
 <div class="hearts"></div>
-
 <div id="nowPlaying">Now Playing: -</div>
 
 <header>
@@ -286,12 +275,17 @@ cursor:pointer;
 <h2>Galeri Kita 💖</h2>
 
 <div class="grid">
-<div class="card"><img src="https://files.catbox.moe/k3waij.jpg"><div class="caption">Kamu bikin aku jatuh cinta tiap hari ❤️</div></div>
-<div class="card"><img src="https://files.catbox.moe/ieefhg.jpg"><div class="caption">Senyum kamu candu 💕</div></div>
-<div class="card"><img src="https://files.catbox.moe/uzw6tf.jpg"><div class="caption">Dekat kamu tenang ✨</div></div>
-<div class="card"><img src="https://files.catbox.moe/vbisdn.jpg"><div class="caption">Aku sayang kamu 😍</div></div>
-<div class="card"><img src="https://files.catbox.moe/8pyqcq.jpg"><div class="caption">Selalu kamu 🤍</div></div>
-<div class="card"><img src="https://files.catbox.moe/5nlpwi.jpg"><div class="caption">Tidak terganti 💖</div></div>
+<div class="card"><img src="https://files.catbox.moe/k3waij.jpg"><div class="caption">Aku bersyukur tiap hari karena semesta ngasih kamu ke aku ❤️</div></div>
+
+<div class="card"><img src="https://files.catbox.moe/ieefhg.jpg"><div class="caption">Kalau boleh minta satu hal lagi, aku cuma mau kamu tetap di sini 💕</div></div>
+
+<div class="card"><img src="https://files.catbox.moe/uzw6tf.jpg"><div class="caption">Di antara banyak doa, kamu yang paling sering aku sebut ✨</div></div>
+
+<div class="card"><img src="https://files.catbox.moe/vbisdn.jpg"><div class="caption">Terima kasih sudah jadi alasan aku tersenyum tiap hari 😍</div></div>
+
+<div class="card"><img src="https://files.catbox.moe/8pyqcq.jpg"><div class="caption">Kalau kebahagiaan itu orang, berarti itu kamu 🤍</div></div>
+
+<div class="card"><img src="https://files.catbox.moe/5nlpwi.jpg"><div class="caption">Aku nggak butuh banyak hal, cukup kamu dan rasa syukur ini 💖</div></div>
 </div>
 </section>
 
@@ -309,6 +303,15 @@ Dibuat dengan penuh cinta ❤️
 
 <button onclick="playSong(1)">🎵 Sadrah</button>
 <button onclick="playSong(2)">🎵 Penyangkalan</button>
+<button onclick="playSong(3)">🎵 Jakarta Hari Ini</button>
+<button onclick="playSong(4)">🎵 Everything You Are</button>
+<button onclick="playSong(5)">🎵 Cincin</button>
+<button onclick="playSong(6)">🎵 Evaluasi</button>
+<button onclick="playSong(7)">🎵 Kita Kesana</button>
+<button onclick="playSong(8)">🎵 O Tuan</button>
+<button onclick="playSong(9)">🎵 Tarot</button>
+<button onclick="playSong(10)">🎵 Nina</button>
+
 <button onclick="toggleMusic()">⏯ Play / Pause</button>
 </div>
 
@@ -323,7 +326,6 @@ Dibuat dengan penuh cinta ❤️
 
 // HEART
 const hearts=document.querySelector(".hearts");
-
 for(let i=0;i<40;i++){
 const h=document.createElement("div");
 h.className="heart";
@@ -340,7 +342,15 @@ const nowPlaying=document.getElementById("nowPlaying");
 
 const songs={
 1:{name:"Sadrah ❤️",url:"https://files.catbox.moe/30ztdm.m4a"},
-2:{name:"Penyangkalan 💔",url:"https://files.catbox.moe/k0cz58.mp3"}
+2:{name:"Penyangkalan 💔",url:"https://files.catbox.moe/k0cz58.mp3"},
+3:{name:"Jakarta Hari Ini",url:"https://files.catbox.moe/4kaegh.m4a"},
+4:{name:"Everything You Are",url:"https://files.catbox.moe/5neofm.mp3"},
+5:{name:"Cincin",url:"https://files.catbox.moe/tep78o.m4a"},
+6:{name:"Evaluasi",url:"https://files.catbox.moe/ozz3zf.mp3"},
+7:{name:"Kita Kesana",url:"https://files.catbox.moe/c5v90r.mp3"},
+8:{name:"O Tuan",url:"https://files.catbox.moe/wlkn8t.m4a"},
+9:{name:"Tarot",url:"https://files.catbox.moe/mmafw6.mp3"},
+10:{name:"Nina",url:"https://files.catbox.moe/o16dwo.m4a"}
 };
 
 function playSong(id){
@@ -366,7 +376,7 @@ musicMenu.style.display=
 musicMenu.style.display==="block"?"none":"block";
 };
 
-// SWIPE
+// IMAGE MODAL
 const imgs=document.querySelectorAll(".card img");
 const modal=document.getElementById("imgModal");
 const modalImg=document.getElementById("modalImg");
