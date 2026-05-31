@@ -6,7 +6,7 @@
 
 <title>Website Bucin Romantis ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 
@@ -23,35 +23,8 @@ scroll-behavior:smooth;
 body{
 font-family:'Poppins',sans-serif;
 background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ffdde1);
-color:white;
 overflow-x:hidden;
-}
-
-.hearts{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-z-index:999;
-overflow:hidden;
-}
-
-.heart{
-position:absolute;
 color:white;
-opacity:.7;
-animation:float 8s linear infinite;
-}
-
-@keyframes float{
-0%{
-transform:translateY(100vh) scale(0);
-}
-100%{
-transform:translateY(-10vh) scale(1.5);
-}
 }
 
 header{
@@ -66,12 +39,11 @@ overflow:hidden;
 
 #loveVideo{
 position:absolute;
+top:0;
+left:0;
 width:100%;
 height:100%;
 object-fit:cover;
-top:0;
-left:0;
-z-index:0;
 cursor:pointer;
 }
 
@@ -79,56 +51,58 @@ cursor:pointer;
 position:absolute;
 inset:0;
 background:rgba(0,0,0,.45);
-backdrop-filter:blur(2px);
-z-index:1;
 }
 
 .hero{
 position:relative;
 z-index:2;
 padding:20px;
-animation:fadeUp 1.5s ease;
 }
 
 .hero h1{
 font-size:80px;
 font-family:'Great Vibes',cursive;
-text-shadow:0 5px 20px rgba(0,0,0,.4);
 margin-bottom:15px;
 }
 
 .hero p{
-font-size:18px;
-max-width:750px;
-line-height:1.8;
+max-width:700px;
 margin:auto;
+line-height:1.8;
 }
 
 .btn{
 display:inline-block;
-margin-top:30px;
-padding:15px 35px;
-border-radius:999px;
+margin-top:25px;
+padding:14px 32px;
 background:white;
 color:#ff4d6d;
-font-weight:bold;
+border-radius:999px;
 text-decoration:none;
-transition:.3s;
-box-shadow:0 10px 25px rgba(0,0,0,.2);
+font-weight:bold;
 }
 
-.btn:hover{
-transform:scale(1.08);
+.hearts{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:999;
 }
 
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(40px);
+.heart{
+position:absolute;
+animation:float 8s linear infinite;
 }
-to{
-opacity:1;
-transform:translateY(0);
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+}
+100%{
+transform:translateY(-10vh);
 }
 }
 
@@ -146,20 +120,12 @@ margin-bottom:40px;
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
+gap:20px;
 }
 
 .card{
-position:relative;
 overflow:hidden;
-border-radius:25px;
-cursor:pointer;
-transition:.4s;
-box-shadow:0 10px 30px rgba(0,0,0,.25);
-}
-
-.card:hover{
-transform:translateY(-10px) scale(1.03);
+border-radius:20px;
 }
 
 .card img{
@@ -170,82 +136,50 @@ display:block;
 }
 
 .caption{
-position:absolute;
-bottom:0;
-width:100%;
-padding:15px;
-background:linear-gradient(to top,rgba(0,0,0,.85),transparent);
-} 
-
- .love-text{
-padding:90px 20px;
-text-align:center;
+padding:10px;
+background:rgba(0,0,0,.4);
 }
 
-.love-text h2{
-font-size:60px;
-font-family:'Great Vibes',cursive;
-margin-bottom:20px;
-}
-
-.love-text p{
-max-width:800px;
-margin:auto;
-line-height:1.9;
-font-size:18px;
-}
-
-footer{
-padding:30px;
-text-align:center;
-background:rgba(0,0,0,.15);
-}
-
-.lightbox{
+#musicBtn{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.95);
-display:none;
+bottom:20px;
+right:20px;
+width:60px;
+height:60px;
+border-radius:50%;
+background:#ff4d6d;
+display:flex;
 justify-content:center;
 align-items:center;
+font-size:28px;
+cursor:pointer;
 z-index:9999;
 }
 
-.lightbox img{
-max-width:90%;
-max-height:90%;
-border-radius:20px;
+#musicMenu{
+position:fixed;
+bottom:90px;
+right:20px;
+width:220px;
+background:white;
+padding:15px;
+border-radius:15px;
+display:none;
+z-index:9999;
 }
 
-@media(max-width:768px){
-
-.hero h1{
-font-size:55px;
-}
-
-.hero p{
-font-size:16px;
-}
-
-.gallery h2,
-.love-text h2{
-font-size:40px;
-}
-
-.card img{
-height:300px;
-}
-
+#musicMenu button{
+width:100%;
+padding:10px;
+margin:5px 0;
+cursor:pointer;
 }
 
 </style>
 </head>
 <body>
 
-<div class="hearts"></div>
+ <div class="hearts"></div>
 
 <header>
 
@@ -314,7 +248,7 @@ Terima kasih sudah jadi bagian paling indah dalam hidupku.
 <div class="caption">Favoritku selamanya 💖</div>
 </div>
 
- <div class="card">
+<div class="card">
 <img src="https://files.catbox.moe/odnkpf.jpg">
 <div class="caption">Cantik tanpa usaha 🥰</div>
 </div>
@@ -338,30 +272,50 @@ Terima kasih sudah jadi bagian paling indah dalam hidupku.
 
 </section>
 
-<section class="love-text">
+ <section style="padding:80px 20px;text-align:center;">
 
-<h2>Pesan Untuk Kamu 💌</h2>
+<h2 style="font-size:55px;font-family:'Great Vibes',cursive;margin-bottom:20px;">
+Pesan Untuk Kamu 💌
+</h2>
 
-<p>
+<p style="max-width:800px;margin:auto;line-height:1.9;">
 Aku mungkin bukan orang paling sempurna,
-tapi aku akan selalu berusaha menjadi yang terbaik untukmu.
-Terima kasih sudah hadir dan memberi warna dalam hidupku.
-Semoga kita selalu dipenuhi kebahagiaan, tawa,
-dan cinta yang tidak pernah habis. ❤️
+tapi aku akan selalu berusaha jadi yang terbaik buat kamu.
+Terima kasih sudah hadir dan menjadi bagian paling indah dalam hidupku.
+Semoga hubungan ini selalu dipenuhi kebahagiaan,
+kenyamanan, dan cinta yang tidak pernah habis. ❤️
 </p>
 
 </section>
 
-<footer>
+<footer style="padding:30px;text-align:center;background:rgba(0,0,0,.15);">
 Dibuat dengan penuh cinta ❤️
 </footer>
 
-<div class="lightbox" id="lightbox">
-<img id="lightboxImg">
+<!-- Tombol Musik -->
+<div id="musicBtn">🎵</div>
+
+<div id="musicMenu">
+
+<h3 style="color:black;margin-bottom:10px;">
+Playlist ❤️
+</h3>
+
+<button onclick="playSong('https://files.catbox.moe/jbo3lq.m4a')">
+🎵 Lagu Romantis
+</button>
+
+<button onclick="playSong('https://files.catbox.moe/30ztdm.m4a')">
+🎵 Sadrah
+</button>
+
 </div>
 
- <script>
+<audio id="musicPlayer"></audio>
 
+<script>
+
+// Efek hati
 const hearts=document.querySelector('.hearts');
 
 for(let i=0;i<40;i++){
@@ -369,59 +323,54 @@ for(let i=0;i<40;i++){
 const heart=document.createElement('div');
 
 heart.classList.add('heart');
-heart.innerHTML='❤';
+heart.innerHTML='❤️';
 
 heart.style.left=Math.random()*100+'vw';
-heart.style.fontSize=(Math.random()*25+15)+'px';
+heart.style.fontSize=(Math.random()*20+15)+'px';
 heart.style.animationDuration=(Math.random()*5+5)+'s';
-heart.style.animationDelay=Math.random()*5+'s';
 
 hearts.appendChild(heart);
 
 }
 
+// Fullscreen video
 const loveVideo=document.getElementById("loveVideo");
-
-window.addEventListener("load",()=>{
-loveVideo.play().catch(()=>{});
-});
 
 loveVideo.addEventListener("click",async()=>{
 
 loveVideo.muted=false;
-loveVideo.volume=1;
 
 try{
 
 if(loveVideo.requestFullscreen){
 await loveVideo.requestFullscreen();
-}else if(loveVideo.webkitRequestFullscreen){
-await loveVideo.webkitRequestFullscreen();
 }
 
 }catch(err){}
 
 });
 
-const lightbox=document.getElementById("lightbox");
-const lightboxImg=document.getElementById("lightboxImg");
+// Playlist
+const musicBtn=document.getElementById("musicBtn");
+const musicMenu=document.getElementById("musicMenu");
+const musicPlayer=document.getElementById("musicPlayer");
 
-document.querySelectorAll(".card img").forEach(img=>{
+musicBtn.addEventListener("click",()=>{
 
-img.addEventListener("click",()=>{
-
-lightbox.style.display="flex";
-lightboxImg.src=img.src;
-
-});
-
-});
-
-lightbox.addEventListener("click",()=>{
-
-lightbox.style.display="none";
+if(musicMenu.style.display==="block"){
+musicMenu.style.display="none";
+}else{
+musicMenu.style.display="block";
+}
 
 });
+
+function playSong(url){
+
+musicPlayer.src=url;
+musicPlayer.play();
+
+}
 
 </script>
 
