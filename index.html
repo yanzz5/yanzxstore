@@ -105,11 +105,6 @@ cursor:pointer;
 width:100%;
 height:350px;
 object-fit:cover;
-transition:.3s;
-}
-
-.card img:hover{
-transform:scale(1.05);
 }
 
 .caption{
@@ -139,7 +134,7 @@ animation:float 8s linear infinite;
 100%{transform:translateY(-10vh);}
 }
 
-/* MUSIC */
+/* MUSIC BUTTON */
 #musicBtn{
 position:fixed;
 bottom:20px;
@@ -157,18 +152,34 @@ z-index:9999;
 box-shadow:0 0 25px rgba(255,77,109,.6);
 }
 
+/* MUSIC MENU (WITH IMAGE BACKGROUND) */
 #musicMenu{
 position:fixed;
 bottom:95px;
 right:20px;
 width:280px;
-background:rgba(0,0,0,.6);
-backdrop-filter:blur(10px);
 padding:15px;
 border-radius:20px;
-color:white;
 z-index:99999;
 display:none;
+overflow:hidden;
+
+/* 🔥 GAMBAR BACKGROUND */
+background:url("https://files.catbox.moe/hqywy2.png") center/cover no-repeat;
+}
+
+/* overlay biar teks tetap kebaca */
+#musicMenu::before{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.55);
+backdrop-filter:blur(6px);
+}
+
+#musicMenu *{
+position:relative;
+z-index:2;
 }
 
 #musicMenu button{
@@ -223,12 +234,6 @@ justify-content:center;
 max-width:90%;
 max-height:80%;
 border-radius:15px;
-animation:zoomIn .2s ease;
-}
-
-@keyframes zoomIn{
-from{transform:scale(.8);opacity:0;}
-to{transform:scale(1);opacity:1;}
 }
 
 .navBtn{
@@ -261,12 +266,11 @@ cursor:pointer;
 
 <div class="hearts"></div>
 
-<!-- NOW PLAYING -->
 <div id="nowPlaying">Now Playing: -</div>
 
 <header>
 <video id="loveVideo" autoplay muted loop playsinline>
-<source src="https://files.catbox.moe/yn7www.mp4" type="video/mp4">
+<source src="https://files.catbox.moe/yn7www.mp4">
 </video>
 
 <div class="overlay"></div>
@@ -282,18 +286,12 @@ cursor:pointer;
 <h2>Galeri Kita 💖</h2>
 
 <div class="grid">
-
-<div class="card"><img src="https://files.catbox.moe/k3waij.jpg"><div class="caption">Kalau senyum kamu obat, aku nggak mau sembuh ❤️</div></div>
-<div class="card"><img src="https://files.catbox.moe/ieefhg.jpg"><div class="caption">Kamu bikin aku bahagia 💕</div></div>
+<div class="card"><img src="https://files.catbox.moe/k3waij.jpg"><div class="caption">Kamu bikin aku jatuh cinta tiap hari ❤️</div></div>
+<div class="card"><img src="https://files.catbox.moe/ieefhg.jpg"><div class="caption">Senyum kamu candu 💕</div></div>
 <div class="card"><img src="https://files.catbox.moe/uzw6tf.jpg"><div class="caption">Dekat kamu tenang ✨</div></div>
-<div class="card"><img src="https://files.catbox.moe/vbisdn.jpg"><div class="caption">Senyum kamu candu 😍</div></div>
-<div class="card"><img src="https://files.catbox.moe/8pyqcq.jpg"><div class="caption">Aku lupa sedih 🤍</div></div>
-<div class="card"><img src="https://files.catbox.moe/5nlpwi.jpg"><div class="caption">Kamu segalanya 💖</div></div>
-<div class="card"><img src="https://files.catbox.moe/odnkpf.jpg"><div class="caption">Cantik 🥰</div></div>
-<div class="card"><img src="https://files.catbox.moe/xvslb4.jpg"><div class="caption">Indah 💫</div></div>
-<div class="card"><img src="https://files.catbox.moe/8c6cmm.jpg"><div class="caption">Aku nyaman ❤️</div></div>
-<div class="card"><img src="https://files.catbox.moe/67vdg9.jpg"><div class="caption">Terima kasih 💕</div></div>
-
+<div class="card"><img src="https://files.catbox.moe/vbisdn.jpg"><div class="caption">Aku sayang kamu 😍</div></div>
+<div class="card"><img src="https://files.catbox.moe/8pyqcq.jpg"><div class="caption">Selalu kamu 🤍</div></div>
+<div class="card"><img src="https://files.catbox.moe/5nlpwi.jpg"><div class="caption">Tidak terganti 💖</div></div>
 </div>
 </section>
 
@@ -316,43 +314,33 @@ Dibuat dengan penuh cinta ❤️
 
 <!-- MODAL -->
 <div id="imgModal">
-  <div class="modal-content">
-    <button class="navBtn" id="prevBtn">❮</button>
-    <img id="modalImg">
-    <button class="navBtn" id="nextBtn">❯</button>
-  </div>
+<img id="modalImg">
+<button class="navBtn" id="prevBtn">❮</button>
+<button class="navBtn" id="nextBtn">❯</button>
 </div>
 
 <script>
 
-// HATI
+// HEART
 const hearts=document.querySelector(".hearts");
 
 for(let i=0;i<40;i++){
-const heart=document.createElement("div");
-heart.classList.add("heart");
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(Math.random()*20+15)+"px";
-heart.style.animationDuration=(Math.random()*5+5)+"s";
-hearts.appendChild(heart);
+const h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(15+Math.random()*20)+"px";
+h.style.animationDuration=(5+Math.random()*5)+"s";
+hearts.appendChild(h);
 }
-
-// NOW PLAYING
-const nowPlaying=document.getElementById("nowPlaying");
 
 // MUSIC
 const bgMusic=document.getElementById("bgMusic");
+const nowPlaying=document.getElementById("nowPlaying");
 
 const songs={
-1:{
-name:"Sadrah ❤️",
-url:"https://files.catbox.moe/30ztdm.m4a"
-},
-2:{
-name:"Penyangkalan 💔",
-url:"https://files.catbox.moe/k0cz58.mp3"
-}
+1:{name:"Sadrah ❤️",url:"https://files.catbox.moe/30ztdm.m4a"},
+2:{name:"Penyangkalan 💔",url:"https://files.catbox.moe/k0cz58.mp3"}
 };
 
 function playSong(id){
@@ -362,67 +350,50 @@ bgMusic.play();
 nowPlaying.innerText="Now Playing: "+songs[id].name;
 nowPlaying.style.opacity="1";
 
-setTimeout(()=>{
-nowPlaying.style.opacity="0";
-},3000);
+setTimeout(()=>{nowPlaying.style.opacity="0";},3000);
 }
 
 function toggleMusic(){
-if(bgMusic.paused){
-bgMusic.play();
-}else{
-bgMusic.pause();
-}
+bgMusic.paused ? bgMusic.play() : bgMusic.pause();
 }
 
 // MUSIC MENU
 const musicBtn=document.getElementById("musicBtn");
 const musicMenu=document.getElementById("musicMenu");
 
-musicBtn.addEventListener("click",()=>{
-musicMenu.style.display =
-musicMenu.style.display==="block" ? "none" : "block";
-});
+musicBtn.onclick=()=>{
+musicMenu.style.display=
+musicMenu.style.display==="block"?"none":"block";
+};
 
-// SWIPE IMAGE
+// SWIPE
+const imgs=document.querySelectorAll(".card img");
 const modal=document.getElementById("imgModal");
 const modalImg=document.getElementById("modalImg");
-const images=document.querySelectorAll(".card img");
 
-let currentIndex=0;
+let index=0;
 
-images.forEach((img,index)=>{
-img.addEventListener("click",()=>{
-currentIndex=index;
+imgs.forEach((img,i)=>{
+img.onclick=()=>{
+index=i;
 modal.style.display="flex";
-modalImg.src=images[currentIndex].src;
-});
-});
-
-document.getElementById("prevBtn").addEventListener("click",()=>{
-currentIndex--;
-if(currentIndex<0) currentIndex=images.length-1;
-modalImg.src=images[currentIndex].src;
-});
-
-document.getElementById("nextBtn").addEventListener("click",()=>{
-currentIndex++;
-if(currentIndex>=images.length) currentIndex=images.length-1;
-modalImg.src=images[currentIndex].src;
-});
-
-modal.addEventListener("click",(e)=>{
-if(e.target===modal){
-modal.style.display="none";
+modalImg.src=img.src;
 }
 });
 
-// VIDEO FULLSCREEN
-document.getElementById("loveVideo").addEventListener("click",async()=>{
-try{
-await document.getElementById("loveVideo").requestFullscreen();
-}catch(e){}
-});
+document.getElementById("prevBtn").onclick=()=>{
+index=(index-1+imgs.length)%imgs.length;
+modalImg.src=imgs[index].src;
+};
+
+document.getElementById("nextBtn").onclick=()=>{
+index=(index+1)%imgs.length;
+modalImg.src=imgs[index].src;
+};
+
+modal.onclick=(e)=>{
+if(e.target===modal) modal.style.display="none";
+};
 
 </script>
 
