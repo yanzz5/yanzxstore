@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Website Bucin Romantis ❤️</title>
+<title>Bucin Romantis ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 
@@ -14,17 +14,13 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-font-family:'Poppins',sans-serif;
-background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ffdde1);
-overflow-x:hidden;
+background:#ffd6e0;
 color:white;
+overflow-x:hidden;
 }
 
 header{
@@ -44,7 +40,6 @@ left:0;
 width:100%;
 height:100%;
 object-fit:cover;
-cursor:pointer;
 }
 
 .overlay{
@@ -60,29 +55,94 @@ padding:20px;
 }
 
 .hero h1{
-font-size:80px;
+font-size:70px;
 font-family:'Great Vibes',cursive;
 margin-bottom:15px;
 }
 
 .hero p{
 max-width:700px;
-margin:auto;
 line-height:1.8;
+margin:auto;
 }
 
 .btn{
 display:inline-block;
-margin-top:25px;
-padding:14px 32px;
+margin-top:20px;
+padding:14px 30px;
+border-radius:999px;
 background:white;
 color:#ff4d6d;
-border-radius:999px;
 text-decoration:none;
 font-weight:bold;
 }
 
-.hearts{
+.gallery{
+padding:80px 20px;
+}
+
+.gallery h2{
+text-align:center;
+font-size:50px;
+font-family:'Great Vibes',cursive;
+margin-bottom:30px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+.card img{
+width:100%;
+height:350px;
+object-fit:cover;
+display:block;
+}
+
+.caption{
+padding:10px;
+background:rgba(0,0,0,.5);
+}
+
+#musicBtn{
+position:fixed;
+bottom:20px;
+right:20px;
+width:65px;
+height:65px;
+border-radius:50%;
+background:linear-gradient(135deg,#ff4d6d,#ff8fab);
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+cursor:pointer;
+z-index:9999;
+box-shadow:0 0 25px rgba(255,77,109,.6);
+}
+
+#musicMenu{
+position:fixed;
+bottom:95px;
+right:20px;
+width:320px;
+display:none;
+z-index:9999;
+}
+
+</style>
+</head>
+<body>
+
+ .hearts{
 position:fixed;
 top:0;
 left:0;
@@ -106,80 +166,60 @@ transform:translateY(-10vh);
 }
 }
 
-.gallery{
-padding:80px 20px;
-}
-
-.gallery h2{
-text-align:center;
-font-size:55px;
-font-family:'Great Vibes',cursive;
-margin-bottom:40px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.card{
-overflow:hidden;
-border-radius:20px;
-}
-
-.card img{
-width:100%;
-height:350px;
-object-fit:cover;
-display:block;
-}
-
-.caption{
-padding:10px;
-background:rgba(0,0,0,.4);
-}
-
 #musicBtn{
 position:fixed;
 bottom:20px;
 right:20px;
-width:60px;
-height:60px;
+width:65px;
+height:65px;
 border-radius:50%;
-background:#ff4d6d;
+background:linear-gradient(135deg,#ff4d6d,#ff8fab);
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:28px;
+font-size:30px;
 cursor:pointer;
-z-index:9999;
+z-index:99999;
+box-shadow:0 0 25px rgba(255,77,109,.6);
 }
 
 #musicMenu{
 position:fixed;
-bottom:90px;
+bottom:95px;
 right:20px;
-width:220px;
-background:white;
-padding:15px;
-border-radius:15px;
+width:330px;
 display:none;
-z-index:9999;
+z-index:99999;
 }
 
-#musicMenu button{
-width:100%;
-padding:10px;
-margin:5px 0;
-cursor:pointer;
+footer{
+padding:30px;
+text-align:center;
+background:rgba(0,0,0,.15);
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:55px;
+}
+
+.card img{
+height:300px;
+}
+
+#musicMenu{
+width:280px;
+right:10px;
+}
+
 }
 
 </style>
 </head>
 <body>
 
- <div class="hearts"></div>
+<div class="hearts"></div>
 
 <header>
 
@@ -196,7 +236,7 @@ playsinline>
 
 <div class="overlay"></div>
 
-<div class="hero">
+ <div class="hero">
 
 <h1>Kamu Adalah Alasanku Bahagia ❤️</h1>
 
@@ -272,7 +312,7 @@ Terima kasih sudah jadi bagian paling indah dalam hidupku.
 
 </section>
 
- <section style="padding:80px 20px;text-align:center;">
+<section style="padding:80px 20px;text-align:center;">
 
 <h2 style="font-size:55px;font-family:'Great Vibes',cursive;margin-bottom:20px;">
 Pesan Untuk Kamu 💌
@@ -281,37 +321,31 @@ Pesan Untuk Kamu 💌
 <p style="max-width:800px;margin:auto;line-height:1.9;">
 Aku mungkin bukan orang paling sempurna,
 tapi aku akan selalu berusaha jadi yang terbaik buat kamu.
-Terima kasih sudah hadir dan menjadi bagian paling indah dalam hidupku.
-Semoga hubungan ini selalu dipenuhi kebahagiaan,
-kenyamanan, dan cinta yang tidak pernah habis. ❤️
+Terima kasih sudah hadir dan menjadi bagian paling indah dalam hidupku. ❤️
 </p>
 
 </section>
 
-<footer style="padding:30px;text-align:center;background:rgba(0,0,0,.15);">
+<footer>
 Dibuat dengan penuh cinta ❤️
 </footer>
 
-<!-- Tombol Musik -->
-<div id="musicBtn">🎵</div>
+<div id="musicBtn">🎧</div>
 
 <div id="musicMenu">
 
-<h3 style="color:black;margin-bottom:10px;">
-Playlist ❤️
-</h3>
-
-<button onclick="playSong('https://files.catbox.moe/jbo3lq.m4a')">
-🎵 Lagu Romantis
-</button>
-
-<button onclick="playSong('https://files.catbox.moe/30ztdm.m4a')">
-🎵 Sadrah
-</button>
+<iframe
+style="border-radius:20px"
+src="https://open.spotify.com/embed/playlist/53TxS2Jb2EwNbV9yl6eyuJ?utm_source=generator"
+width="100%"
+height="352"
+frameborder="0"
+allowfullscreen=""
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+loading="lazy">
+</iframe>
 
 </div>
-
-<audio id="musicPlayer"></audio>
 
 <script>
 
@@ -333,27 +367,9 @@ hearts.appendChild(heart);
 
 }
 
-// Fullscreen video
-const loveVideo=document.getElementById("loveVideo");
-
-loveVideo.addEventListener("click",async()=>{
-
-loveVideo.muted=false;
-
-try{
-
-if(loveVideo.requestFullscreen){
-await loveVideo.requestFullscreen();
-}
-
-}catch(err){}
-
-});
-
-// Playlist
+// Tombol Spotify
 const musicBtn=document.getElementById("musicBtn");
 const musicMenu=document.getElementById("musicMenu");
-const musicPlayer=document.getElementById("musicPlayer");
 
 musicBtn.addEventListener("click",()=>{
 
@@ -365,12 +381,22 @@ musicMenu.style.display="block";
 
 });
 
-function playSong(url){
+// Fullscreen video
+const loveVideo=document.getElementById("loveVideo");
 
-musicPlayer.src=url;
-musicPlayer.play();
+loveVideo.addEventListener("click",async()=>{
 
+try{
+
+if(loveVideo.requestFullscreen){
+await loveVideo.requestFullscreen();
+}else if(loveVideo.webkitRequestFullscreen){
+await loveVideo.webkitRequestFullscreen();
 }
+
+}catch(err){}
+
+});
 
 </script>
 
