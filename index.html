@@ -180,10 +180,10 @@ background:#ff4d6d;
 color:white;
 font-weight:bold;
 cursor:pointer;
-margin-top:10px;
+margin-top:8px;
 }
 
-/* MODAL SWIPE + BLUR */
+/* MODAL */
 #imgModal{
 position:fixed;
 inset:0;
@@ -264,10 +264,10 @@ cursor:pointer;
 <div class="grid">
 
 <div class="card"><img src="https://files.catbox.moe/k3waij.jpg"><div class="caption">Kalau senyum kamu obat, aku nggak mau sembuh ❤️</div></div>
-<div class="card"><img src="https://files.catbox.moe/ieefhg.jpg"><div class="caption">Kamu itu alasan hari aku selalu bahagia 💕</div></div>
-<div class="card"><img src="https://files.catbox.moe/uzw6tf.jpg"><div class="caption">Dekat sama kamu, dunia rasanya lebih tenang ✨</div></div>
-<div class="card"><img src="https://files.catbox.moe/vbisdn.jpg"><div class="caption">Senyum kamu itu candu 😍</div></div>
-<div class="card"><img src="https://files.catbox.moe/8pyqcq.jpg"><div class="caption">Kalau sama kamu aku lupa cara sedih 🤍</div></div>
+<div class="card"><img src="https://files.catbox.moe/ieefhg.jpg"><div class="caption">Kamu itu alasan aku bahagia 💕</div></div>
+<div class="card"><img src="https://files.catbox.moe/uzw6tf.jpg"><div class="caption">Dekat kamu, dunia tenang ✨</div></div>
+<div class="card"><img src="https://files.catbox.moe/vbisdn.jpg"><div class="caption">Senyum kamu candu 😍</div></div>
+<div class="card"><img src="https://files.catbox.moe/8pyqcq.jpg"><div class="caption">Kalau sama kamu aku lupa sedih 🤍</div></div>
 <div class="card"><img src="https://files.catbox.moe/5nlpwi.jpg"><div class="caption">Kamu segalanya 💖</div></div>
 <div class="card"><img src="https://files.catbox.moe/odnkpf.jpg"><div class="caption">Cantik tanpa usaha 🥰</div></div>
 <div class="card"><img src="https://files.catbox.moe/xvslb4.jpg"><div class="caption">Bersamamu indah 💫</div></div>
@@ -292,11 +292,11 @@ Aku akan selalu berusaha jadi yang terbaik buat kamu ❤️
 <div id="musicMenu">
 <h3 style="font-family:'Great Vibes',cursive;font-size:22px;">Music ❤️</h3>
 
-<audio id="bgMusic" loop>
-<source src="https://files.catbox.moe/30ztdm.m4a" type="audio/mp4">
-</audio>
+<audio id="bgMusic"></audio>
 
-<button onclick="toggleMusic()">▶ Play / Pause</button>
+<button onclick="playSong(1)">🎵 Sadrah</button>
+<button onclick="playSong(2)">🎵 Penyangkalan</button>
+<button onclick="toggleMusic()">⏯ Play / Pause</button>
 </div>
 
 <!-- MODAL -->
@@ -324,14 +324,17 @@ hearts.appendChild(heart);
 }
 
 // MUSIC
-const musicBtn=document.getElementById("musicBtn");
-const musicMenu=document.getElementById("musicMenu");
 const bgMusic=document.getElementById("bgMusic");
 
-musicBtn.addEventListener("click",()=>{
-musicMenu.style.display =
-musicMenu.style.display==="block" ? "none" : "block";
-});
+const songs={
+1:"https://files.catbox.moe/30ztdm.m4a", // Sadrah
+2:"https://files.catbox.moe/k0cz58.mp3"  // Penyangkalan
+};
+
+function playSong(id){
+bgMusic.src=songs[id];
+bgMusic.play();
+}
 
 function toggleMusic(){
 if(bgMusic.paused){
@@ -368,7 +371,7 @@ modalImg.src=images[currentIndex].src;
 
 document.getElementById("nextBtn").addEventListener("click",()=>{
 currentIndex++;
-if(currentIndex>=images.length) currentIndex=0;
+if(currentIndex>=images.length) currentIndex=images.length-1;
 modalImg.src=images[currentIndex].src;
 });
 
@@ -379,13 +382,9 @@ modal.style.display="none";
 });
 
 // VIDEO FULLSCREEN
-const loveVideo=document.getElementById("loveVideo");
-
-loveVideo.addEventListener("click",async()=>{
+document.getElementById("loveVideo").addEventListener("click",async()=>{
 try{
-if(loveVideo.requestFullscreen){
-await loveVideo.requestFullscreen();
-}
+await document.getElementById("loveVideo").requestFullscreen();
 }catch(e){}
 });
 
