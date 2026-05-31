@@ -115,6 +115,7 @@ transform:scale(1.05);
 .caption{
 padding:10px;
 background:rgba(0,0,0,.5);
+font-size:14px;
 }
 
 /* HATI */
@@ -182,28 +183,26 @@ cursor:pointer;
 margin-top:10px;
 }
 
-/* FOOTER */
-footer{
-padding:30px;
-text-align:center;
-background:rgba(0,0,0,.15);
-}
-
-/* MODAL IMAGE */
+/* MODAL SWIPE + BLUR */
 #imgModal{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.85);
+inset:0;
+background:rgba(0,0,0,.6);
+backdrop-filter:blur(8px);
 display:none;
 justify-content:center;
 align-items:center;
 z-index:99999;
 }
 
-#imgModal img{
+.modal-content{
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+#modalImg{
 max-width:90%;
 max-height:80%;
 border-radius:15px;
@@ -215,10 +214,28 @@ from{transform:scale(.8);opacity:0;}
 to{transform:scale(1);opacity:1;}
 }
 
-/* RESPONSIVE */
+.navBtn{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:rgba(255,255,255,.2);
+border:none;
+color:white;
+font-size:30px;
+width:45px;
+height:45px;
+border-radius:50%;
+cursor:pointer;
+}
+
+#prevBtn{left:-60px;}
+#nextBtn{right:-60px;}
+
 @media(max-width:768px){
 .hero h1{font-size:55px;}
 .card img{height:300px;}
+#prevBtn{left:10px;}
+#nextBtn{right:10px;}
 }
 </style>
 </head>
@@ -246,16 +263,16 @@ to{transform:scale(1);opacity:1;}
 
 <div class="grid">
 
-<div class="card"><img src="https://files.catbox.moe/k3waij.jpg"><div class="caption">Tatapan favoritku ❤️</div></div>
-<div class="card"><img src="https://files.catbox.moe/ieefhg.jpg"><div class="caption">Manisnya 💕</div></div>
-<div class="card"><img src="https://files.catbox.moe/uzw6tf.jpg"><div class="caption">Nyaman ✨</div></div>
-<div class="card"><img src="https://files.catbox.moe/vbisdn.jpg"><div class="caption">Senyummu 😍</div></div>
-<div class="card"><img src="https://files.catbox.moe/8pyqcq.jpg"><div class="caption">Tenang 🤍</div></div>
-<div class="card"><img src="https://files.catbox.moe/5nlpwi.jpg"><div class="caption">Favorit 💖</div></div>
-<div class="card"><img src="https://files.catbox.moe/odnkpf.jpg"><div class="caption">Cantik 🥰</div></div>
-<div class="card"><img src="https://files.catbox.moe/xvslb4.jpg"><div class="caption">Indah 💫</div></div>
-<div class="card"><img src="https://files.catbox.moe/8c6cmm.jpg"><div class="caption">Dekat ❤️</div></div>
-<div class="card"><img src="https://files.catbox.moe/67vdg9.jpg"><div class="caption">Terima kasih 💕</div></div>
+<div class="card"><img src="https://files.catbox.moe/k3waij.jpg"><div class="caption">Kalau senyum kamu obat, aku nggak mau sembuh ❤️</div></div>
+<div class="card"><img src="https://files.catbox.moe/ieefhg.jpg"><div class="caption">Kamu itu alasan hari aku selalu bahagia 💕</div></div>
+<div class="card"><img src="https://files.catbox.moe/uzw6tf.jpg"><div class="caption">Dekat sama kamu, dunia rasanya lebih tenang ✨</div></div>
+<div class="card"><img src="https://files.catbox.moe/vbisdn.jpg"><div class="caption">Senyum kamu itu candu 😍</div></div>
+<div class="card"><img src="https://files.catbox.moe/8pyqcq.jpg"><div class="caption">Kalau sama kamu aku lupa cara sedih 🤍</div></div>
+<div class="card"><img src="https://files.catbox.moe/5nlpwi.jpg"><div class="caption">Kamu segalanya 💖</div></div>
+<div class="card"><img src="https://files.catbox.moe/odnkpf.jpg"><div class="caption">Cantik tanpa usaha 🥰</div></div>
+<div class="card"><img src="https://files.catbox.moe/xvslb4.jpg"><div class="caption">Bersamamu indah 💫</div></div>
+<div class="card"><img src="https://files.catbox.moe/8c6cmm.jpg"><div class="caption">Aku nyaman sama kamu ❤️</div></div>
+<div class="card"><img src="https://files.catbox.moe/67vdg9.jpg"><div class="caption">Terima kasih sudah hadir 💕</div></div>
 
 </div>
 </section>
@@ -267,9 +284,7 @@ Aku akan selalu berusaha jadi yang terbaik buat kamu ❤️
 </p>
 </section>
 
-<footer>
-Dibuat dengan penuh cinta ❤️
-</footer>
+<footer>Dibuat dengan penuh cinta ❤️</footer>
 
 <!-- MUSIC -->
 <div id="musicBtn">🎧</div>
@@ -284,9 +299,13 @@ Dibuat dengan penuh cinta ❤️
 <button onclick="toggleMusic()">▶ Play / Pause</button>
 </div>
 
-<!-- IMAGE MODAL -->
-<div id="imgModal" onclick="closeModal()">
-<img id="modalImg">
+<!-- MODAL -->
+<div id="imgModal">
+  <div class="modal-content">
+    <button class="navBtn" id="prevBtn">❮</button>
+    <img id="modalImg">
+    <button class="navBtn" id="nextBtn">❯</button>
+  </div>
 </div>
 
 <script>
@@ -322,22 +341,44 @@ bgMusic.pause();
 }
 }
 
-// ZOOM IMAGE
+// SWIPE IMAGE
 const modal=document.getElementById("imgModal");
 const modalImg=document.getElementById("modalImg");
+const images=document.querySelectorAll(".card img");
 
-document.querySelectorAll(".card img").forEach(img=>{
+let currentIndex=0;
+
+images.forEach((img,index)=>{
 img.addEventListener("click",()=>{
-modal.style.display="flex";
-modalImg.src=img.src;
+currentIndex=index;
+openModal();
 });
 });
 
-function closeModal(){
-modal.style.display="none";
+function openModal(){
+modal.style.display="flex";
+modalImg.src=images[currentIndex].src;
 }
 
-// FULLSCREEN VIDEO
+document.getElementById("prevBtn").addEventListener("click",()=>{
+currentIndex--;
+if(currentIndex<0) currentIndex=images.length-1;
+modalImg.src=images[currentIndex].src;
+});
+
+document.getElementById("nextBtn").addEventListener("click",()=>{
+currentIndex++;
+if(currentIndex>=images.length) currentIndex=0;
+modalImg.src=images[currentIndex].src;
+});
+
+modal.addEventListener("click",(e)=>{
+if(e.target===modal){
+modal.style.display="none";
+}
+});
+
+// VIDEO FULLSCREEN
 const loveVideo=document.getElementById("loveVideo");
 
 loveVideo.addEventListener("click",async()=>{
@@ -351,4 +392,4 @@ await loveVideo.requestFullscreen();
 </script>
 
 </body>
-  </html>
+</html>
