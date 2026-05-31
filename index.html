@@ -183,6 +183,23 @@ cursor:pointer;
 margin-top:8px;
 }
 
+/* NOW PLAYING */
+#nowPlaying{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+background:rgba(0,0,0,.6);
+backdrop-filter:blur(10px);
+color:white;
+padding:10px 18px;
+border-radius:999px;
+font-size:14px;
+z-index:999999;
+opacity:0;
+transition:0.3s;
+}
+
 /* MODAL */
 #imgModal{
 position:fixed;
@@ -244,6 +261,9 @@ cursor:pointer;
 
 <div class="hearts"></div>
 
+<!-- NOW PLAYING -->
+<div id="nowPlaying">Now Playing: -</div>
+
 <header>
 <video id="loveVideo" autoplay muted loop playsinline>
 <source src="https://files.catbox.moe/yn7www.mp4" type="video/mp4">
@@ -264,27 +284,22 @@ cursor:pointer;
 <div class="grid">
 
 <div class="card"><img src="https://files.catbox.moe/k3waij.jpg"><div class="caption">Kalau senyum kamu obat, aku nggak mau sembuh ❤️</div></div>
-<div class="card"><img src="https://files.catbox.moe/ieefhg.jpg"><div class="caption">Kamu itu alasan aku bahagia 💕</div></div>
-<div class="card"><img src="https://files.catbox.moe/uzw6tf.jpg"><div class="caption">Dekat kamu, dunia tenang ✨</div></div>
+<div class="card"><img src="https://files.catbox.moe/ieefhg.jpg"><div class="caption">Kamu bikin aku bahagia 💕</div></div>
+<div class="card"><img src="https://files.catbox.moe/uzw6tf.jpg"><div class="caption">Dekat kamu tenang ✨</div></div>
 <div class="card"><img src="https://files.catbox.moe/vbisdn.jpg"><div class="caption">Senyum kamu candu 😍</div></div>
-<div class="card"><img src="https://files.catbox.moe/8pyqcq.jpg"><div class="caption">Kalau sama kamu aku lupa sedih 🤍</div></div>
+<div class="card"><img src="https://files.catbox.moe/8pyqcq.jpg"><div class="caption">Aku lupa sedih 🤍</div></div>
 <div class="card"><img src="https://files.catbox.moe/5nlpwi.jpg"><div class="caption">Kamu segalanya 💖</div></div>
-<div class="card"><img src="https://files.catbox.moe/odnkpf.jpg"><div class="caption">Cantik tanpa usaha 🥰</div></div>
-<div class="card"><img src="https://files.catbox.moe/xvslb4.jpg"><div class="caption">Bersamamu indah 💫</div></div>
-<div class="card"><img src="https://files.catbox.moe/8c6cmm.jpg"><div class="caption">Aku nyaman sama kamu ❤️</div></div>
-<div class="card"><img src="https://files.catbox.moe/67vdg9.jpg"><div class="caption">Terima kasih sudah hadir 💕</div></div>
+<div class="card"><img src="https://files.catbox.moe/odnkpf.jpg"><div class="caption">Cantik 🥰</div></div>
+<div class="card"><img src="https://files.catbox.moe/xvslb4.jpg"><div class="caption">Indah 💫</div></div>
+<div class="card"><img src="https://files.catbox.moe/8c6cmm.jpg"><div class="caption">Aku nyaman ❤️</div></div>
+<div class="card"><img src="https://files.catbox.moe/67vdg9.jpg"><div class="caption">Terima kasih 💕</div></div>
 
 </div>
 </section>
 
-<section style="padding:80px 20px;text-align:center;">
-<h2 style="font-size:55px;font-family:'Great Vibes',cursive;">Pesan Untuk Kamu 💌</h2>
-<p style="max-width:800px;margin:auto;line-height:1.9;">
-Aku akan selalu berusaha jadi yang terbaik buat kamu ❤️
-</p>
-</section>
-
-<footer>Dibuat dengan penuh cinta ❤️</footer>
+<footer style="padding:30px;text-align:center;background:rgba(0,0,0,.15);">
+Dibuat dengan penuh cinta ❤️
+</footer>
 
 <!-- MUSIC -->
 <div id="musicBtn">🎧</div>
@@ -323,17 +338,33 @@ heart.style.animationDuration=(Math.random()*5+5)+"s";
 hearts.appendChild(heart);
 }
 
+// NOW PLAYING
+const nowPlaying=document.getElementById("nowPlaying");
+
 // MUSIC
 const bgMusic=document.getElementById("bgMusic");
 
 const songs={
-1:"https://files.catbox.moe/30ztdm.m4a", // Sadrah
-2:"https://files.catbox.moe/k0cz58.mp3"  // Penyangkalan
+1:{
+name:"Sadrah ❤️",
+url:"https://files.catbox.moe/30ztdm.m4a"
+},
+2:{
+name:"Penyangkalan 💔",
+url:"https://files.catbox.moe/k0cz58.mp3"
+}
 };
 
 function playSong(id){
-bgMusic.src=songs[id];
+bgMusic.src=songs[id].url;
 bgMusic.play();
+
+nowPlaying.innerText="Now Playing: "+songs[id].name;
+nowPlaying.style.opacity="1";
+
+setTimeout(()=>{
+nowPlaying.style.opacity="0";
+},3000);
 }
 
 function toggleMusic(){
@@ -343,6 +374,15 @@ bgMusic.play();
 bgMusic.pause();
 }
 }
+
+// MUSIC MENU
+const musicBtn=document.getElementById("musicBtn");
+const musicMenu=document.getElementById("musicMenu");
+
+musicBtn.addEventListener("click",()=>{
+musicMenu.style.display =
+musicMenu.style.display==="block" ? "none" : "block";
+});
 
 // SWIPE IMAGE
 const modal=document.getElementById("imgModal");
@@ -354,14 +394,10 @@ let currentIndex=0;
 images.forEach((img,index)=>{
 img.addEventListener("click",()=>{
 currentIndex=index;
-openModal();
-});
-});
-
-function openModal(){
 modal.style.display="flex";
 modalImg.src=images[currentIndex].src;
-}
+});
+});
 
 document.getElementById("prevBtn").addEventListener("click",()=>{
 currentIndex--;
